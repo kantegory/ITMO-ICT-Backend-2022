@@ -34,9 +34,14 @@ class UserController {
         }
     }
 
-    me = async (request: any, response: any) => {
-        const user = await User.findAll(request.params)
-        response.send(user)
+    all = async (request: any, response: any) => {
+        try {
+            const user: User[] = await this.userService.getAll()
+
+            response.send(user)
+        } catch (error: any) {
+            response.status(404).send({ "error": error.message })
+        }
     }
 
     update = async (request: any, response: any) => {

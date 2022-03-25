@@ -12,6 +12,15 @@ class UserService {
         
     }
 
+    async getAll() : Promise<User[]> {
+        const user = await User.findAll()
+
+        if (user) return user
+        
+        throw new UserError('Not found!')
+        
+    }
+
     async create(userData: object) : Promise<User | UserError> {
         try {
             const user = await User.create(userData)

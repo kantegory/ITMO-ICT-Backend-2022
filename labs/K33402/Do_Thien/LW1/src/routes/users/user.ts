@@ -1,15 +1,10 @@
-import express, { Request, Response } from "express"
+import express from "express"
 import UserController from '../../controllers/users/user'
 
 const router: express.Router = express.Router()
 
 const userController = new UserController()
 
-// router
-//     .route('/')
-//     .get((req: Request, res: Response) => {
-//         return res.send('U')
-//     })
 router.post(
     '/create', 
     userController.post
@@ -22,7 +17,7 @@ router.get(
 
 router.get(
     '/user',
-    userController.me
+    userController.all
 )
 
 router.put(
