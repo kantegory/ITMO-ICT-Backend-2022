@@ -1,6 +1,6 @@
 import express from "express"
 import { createServer, Server } from "http"
-import routes from "../routes/example/index"
+import routes from "../routes/users/index"
 
 
 class App {
