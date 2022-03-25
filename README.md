@@ -29,7 +29,7 @@
 
 [Пример, который делали на паре](https://github.com/kantegory/mentoring/tree/master/14_express_example)
 
-**ДЗ2** (срок 18.03.2022, 23:59)
+**ДЗ2** (срок 25.03.2022, 23:59)
 
 Задание:
 
@@ -43,6 +43,7 @@
 ## 1.5. Автоматизация рутинных действий средствами Makefile
 
 [Презентация "Основы TypeScript, работа с Makefile"](https://docs.google.com/presentation/d/11LDwQ0tV_YmnsBNXtNYqB2yoEwfEK8UkzYIH6r0G3GI/edit?usp=sharing)
+[Презентация "Основы TypeScript, Sequelize + TypeScript"](https://docs.google.com/presentation/d/14uSAQEZj6Lk-VC5rmvT0Gi1XWO1EX24g3ljL1u4KECg/edit?usp=sharing)
 
 [Статья по основам синтаксиса на Хабре](https://habr.com/ru/company/nix/blog/301002/)
 [Статья на Nuances of Programming](https://nuancesprog.ru/p/14210/)
@@ -53,9 +54,15 @@
 
 [Пример, который делали на паре](https://github.com/kantegory/mentoring/tree/master/15_express_typescript_example)
 
+Источники по поводу использования typescript в ORM:
+
+[Документация пакета sequelize-typescript](https://www.npmjs.com/package/sequelize-typescript)
+[Мануал по использованию typescript внутри sequelize](https://sequelize.org/master/manual/typescript.html)
+[Документация TypeORM](https://typeorm.io/) (можно использовать в качестве альтернативы Sequelize)
+
 **ЛР1** (срок: 01.04.2022, 23:59)
 
-Нужно написать свой boilerplate на express + sequelize + typescript.
+Нужно написать свой boilerplate на express + sequelize / TypeORM + typescript.
 
 Должно быть явное разделение на:
 - модели
