@@ -8,7 +8,7 @@ db.sync().then(() => {
   console.log('connect');
 });
 
-class ExampleController {
+class Controller {
   private userService: UserService
 
   constructor() {
@@ -76,4 +76,4 @@ class ExampleController {
 //     }
 //   }
 }
-export default ExampleController
+export default Controller
