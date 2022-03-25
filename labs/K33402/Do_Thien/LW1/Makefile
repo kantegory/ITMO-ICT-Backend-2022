@@ -2,11 +2,6 @@
 init:
 	npm i
 	npm run build
-	pip3 install -r requirement.txt
-
-.PHONY: requirements
-requirements:
-	pip3 freeze | grep -v "pkg-resources" > requirement.txt
 
 .PHONY: run
 run:
