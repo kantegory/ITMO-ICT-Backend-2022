@@ -4,11 +4,8 @@ import 'dotenv/config';
 import express from 'express';
 import helmet from 'helmet';
 import 'reflect-metadata';
-import { errorHandler } from './middleware/errorHandler';
-import { getLanguage } from './middleware/getLanguage';
 import { dbCreateConnection } from './orm/dbCreateConnection';
 import routes from './routes';
-import './utils/response/customSuccess';
 
 
 
@@ -17,11 +14,8 @@ app.use(cors());
 app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(getLanguage);
 
 app.use('/', routes);
-
-app.use(errorHandler);
 
 const port = process.env.PORT || 4000;
 app.listen(port, () => {

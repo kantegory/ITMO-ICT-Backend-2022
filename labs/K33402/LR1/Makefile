@@ -1,10 +1,10 @@
+.PHONY: up
+up:
+	npm run start
+
 .PHONY: init
 init:
 	npm i
-
-.PHONY: run
-run:
-	npm start
 
 .PHONY: lint
 lint:
@@ -14,4 +14,12 @@ lint:
 build:
 	npm run build
 
-.DEFAULT_GOAL: init
+.PHONY: migrations
+migrations:
+	npm run migration:generate $(ARGS)
+
+.PHONY: migrate
+migrate:
+	npm run migration:run
+
+.DEFAULT_GOAL: up

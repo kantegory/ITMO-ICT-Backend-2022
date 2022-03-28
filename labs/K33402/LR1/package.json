@@ -9,13 +9,9 @@
     "build": "npx tsc",
     "lint": "npx eslint . --ext .ts",
     "migration:run": "NODE_PATH=./src ts-node ./node_modules/typeorm/cli.js migration:run --config ./src/orm/config/ormconfig.ts",
-    "migration:run:dev": "PG_HOST=localhost NODE_PATH=./src ts-node ./node_modules/typeorm/cli.js migration:run --config ./src/orm/config/ormconfig.ts",
-    "migration:revert": "PG_HOST=localhost NODE_PATH=./src ts-node ./node_modules/typeorm/cli.js migration:revert --config ./src/orm/config/ormconfig.ts",
-    "migration:generate": "PG_HOST=localhost NODE_PATH=./src ts-node ./node_modules/.bin/typeorm migration:generate --pretty --config ./src/orm/config/ormconfig.ts -n ",
-    "migration:create": "PG_HOST=localhost NODE_PATH=./src ts-node ./node_modules/.bin/typeorm migration:create --config ./src/orm/config/ormconfig.ts -n ",
-    "seed:run": "NODE_PATH=./src ts-node ./node_modules/.bin/typeorm migration:run --config ./src/orm/config/ormconfig-seed.ts",
-    "seed:run:dev": "PG_HOST=localhost NODE_PATH=./src ts-node ./node_modules/.bin/typeorm migration:run --config ./src/orm/config/ormconfig-seed.ts",
-    "seed:create": "PG_HOST=localhost NODE_PATH=./src ts-node ./node_modules/.bin/typeorm migration:create --config ./src/orm/config/ormconfig-seed.ts -n "
+    "migration:revert": "NODE_PATH=./src ts-node ./node_modules/typeorm/cli.js migration:revert --config ./src/orm/config/ormconfig.ts",
+    "migration:generate": "NODE_PATH=./src ts-node ./node_modules/.bin/typeorm migration:generate --pretty --config ./src/orm/config/ormconfig.ts -n ",
+    "migration:create": "NODE_PATH=./src ts-node ./node_modules/.bin/typeorm migration:create --config ./src/orm/config/ormconfig.ts -n "
   },
   "author": "Egor Kondrashov",
   "license": "ISC",
@@ -34,7 +30,6 @@
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.2.45",
     "typeorm-naming-strategies": "^4.0.0",
-    "uuid": "^8.3.2",
     "validator": "^13.7.0"
   },
   "devDependencies": {

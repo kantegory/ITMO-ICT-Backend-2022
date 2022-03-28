@@ -23,3 +23,5 @@ export class User {
   updated_at: Date;
 
 }
+
+export default User
