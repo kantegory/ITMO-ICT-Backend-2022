@@ -1,7 +1,12 @@
 {
   "compilerOptions": {
-    "esModuleInterop": true,
+    "target": "es6",
+    "module": "commonjs",
+    "sourceMap": true,
     "outDir": "dist",
-    "baseUrl": "."
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
   }
 }
