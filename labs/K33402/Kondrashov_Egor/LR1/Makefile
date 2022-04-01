@@ -16,10 +16,8 @@ build:
 
 .PHONY: migrations
 migrations:
-	npm run migration:generate $(ARGS)
+	npm run migration:generate $(n)
 
 .PHONY: migrate
 migrate:
 	npm run migration:run
-
-.DEFAULT_GOAL: up
