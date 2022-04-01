@@ -29,7 +29,7 @@
 
 [Пример, который делали на паре](https://github.com/kantegory/mentoring/tree/master/14_express_example)
 
-**ДЗ2** (срок 18.03.2022, 23:59)
+**ДЗ2** (срок 25.03.2022, 23:59)
 
 Задание:
 
@@ -41,6 +41,45 @@
 
 ## 1.4. Typescript: основы языка
 ## 1.5. Автоматизация рутинных действий средствами Makefile
+
+[Презентация "Основы TypeScript, работа с Makefile"](https://docs.google.com/presentation/d/11LDwQ0tV_YmnsBNXtNYqB2yoEwfEK8UkzYIH6r0G3GI/edit?usp=sharing)
+[Презентация "Основы TypeScript, Sequelize + TypeScript"](https://docs.google.com/presentation/d/14uSAQEZj6Lk-VC5rmvT0Gi1XWO1EX24g3ljL1u4KECg/edit?usp=sharing)
+
+[Статья по основам синтаксиса на Хабре](https://habr.com/ru/company/nix/blog/301002/)
+[Статья на Nuances of Programming](https://nuancesprog.ru/p/14210/)
+[Карманная книжка по TS](https://typescript-handbook.ru/docs/ts-1/)
+[Видео от Хекслет про утилиту make](https://www.youtube.com/watch?v=pK9mF5aK05Q)
+[Makefile для самых маленьких, но это больше про C](https://habr.com/ru/post/155201/)
+[Введение в make: история](http://pushorigin.ru/bash/make)
+
+[Пример, который делали на паре](https://github.com/kantegory/mentoring/tree/master/15_express_typescript_example)
+
+Источники по поводу использования typescript в ORM:
+
+[Документация пакета sequelize-typescript](https://www.npmjs.com/package/sequelize-typescript)
+[Мануал по использованию typescript внутри sequelize](https://sequelize.org/master/manual/typescript.html)
+[Документация TypeORM](https://typeorm.io/) (можно использовать в качестве альтернативы Sequelize)
+
+**ЛР1** (срок: 01.04.2022, 23:59)
+
+Нужно написать свой boilerplate на express + sequelize / TypeORM + typescript.
+
+Должно быть явное разделение на:
+- модели
+- контроллеры
+- роуты
+- сервисы для работы с моделями (реализуем паттерн “репозиторий”)
+
+Пример: https://github.com/kantegory/express-sequelize-boilerplate 
+
+Другие примеры можно поискать на github, набрав в поиске: "express boilerplate".
+
+**ДЗ3** (срок: 01.04.2022, 23:59)
+
+Составьте Makefile, который будет автоматизировать ваши рутинные действия, такие как:
+- проведение миграций через sequelize;
+- запуск приложения;
+- установка зависимостей и сборка приложения.
 
 # 2. Тестирование, разработка и документирование RESTful API
 
