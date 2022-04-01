@@ -85,7 +85,7 @@
 
 # 2. Тестирование, разработка и документирование RESTful API
 
-[Презентация: REST, RESTful, SOAP, GraphQL](https://docs.google.com/presentation/d/1ybKVSHdytRT0kugKoyy5t19WOaevwJBxrx7u1hg33NE/edit?usp=sharing)
+[Презентация: REST, RESTful, SOAP, GraphQL](https://docs.google.com/presentation/d/1ybKVSHdytRT0kugKoyy5t19WOaevwJBxrx7u1hg33NE/edit?usp=sharing)  
 [Видео](https://www.youtube.com/watch?v=we4NVJtY_4E)
 
 **ЛР2** (срок: 22.04.2022, 23:59)
