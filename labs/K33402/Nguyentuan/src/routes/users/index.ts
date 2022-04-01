@@ -1,37 +1,37 @@
 import express from "express"
-import ExampleController from '../../controllers/users/index'
+import MeController from '../../controllers/users/index'
 
 const router: express.Router = express.Router()
 
-const exampleController = new ExampleController()
+const meController = new MeController()
 
 router.get(
     '/gioithieu',
-    exampleController.gioithieu
+    meController.gioithieu
 )
 
 router.post(
     '/create',
-    exampleController.create
+    meController.create
 )
 
 router.get(
     '/getdata/:id',
-    exampleController.get
+    meController.get
 )
 
 router.get(
     '/getdata',
-    exampleController.getall
+    meController.getall
 )
 
 router.put(
     '/update/:id',
-    exampleController.update
+    meController.update
 )
 
 router.delete(
     '/delete/:id',
-    exampleController.delete
+    meController.delete
 )
 export default router
