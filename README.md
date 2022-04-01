@@ -60,7 +60,7 @@
 [Мануал по использованию typescript внутри sequelize](https://sequelize.org/master/manual/typescript.html)
 [Документация TypeORM](https://typeorm.io/) (можно использовать в качестве альтернативы Sequelize)
 
-**ЛР1** (срок: 01.04.2022, 23:59)
+**ЛР1** (срок: 08.04.2022, 23:59)
 
 Нужно написать свой boilerplate на express + sequelize / TypeORM + typescript.
 
