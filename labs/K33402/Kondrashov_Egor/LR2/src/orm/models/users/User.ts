@@ -1,5 +1,5 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
-
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import Booking from '../bookings/Booking';
 
 @Entity('users')
 export class User {
@@ -12,6 +12,9 @@ export class User {
   email: string;
 
   @Column()
+  name: string;
+
+  @Column()
   password: string;
 
   @Column()
@@ -22,6 +25,8 @@ export class User {
   @UpdateDateColumn()
   updated_at: Date;
 
+  @OneToMany(() => Booking, (booking) => booking.user)
+  bookings: Booking[]
 }
 
 export default User
