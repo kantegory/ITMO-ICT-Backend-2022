@@ -16,9 +16,6 @@
   "author": "Egor Kondrashov",
   "license": "ISC",
   "dependencies": {
-    "@adminjs/express": "^4.1.0",
-    "@adminjs/typeorm": "^2.0.2",
-    "adminjs": "^5.7.4",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.2",
     "cors": "^2.8.5",

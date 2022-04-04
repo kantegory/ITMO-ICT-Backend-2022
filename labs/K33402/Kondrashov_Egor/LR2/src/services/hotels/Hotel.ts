@@ -1,4 +1,4 @@
-import { getRepository, Like } from 'typeorm';
+import { getRepository, ILike } from 'typeorm';
 import Hotel from '../../orm/models/hotels/Hotel';
 
 class HotelService {
@@ -16,9 +16,11 @@ class HotelService {
         return hotels;
     }
 
-    async getFilteredList(city: string): Promise<Hotel[]> {
+    async getFilteredList(q: string): Promise<Hotel[]> {
         const hotels = await getRepository(Hotel).find({
-            address: Like(city)
+            where: {
+                address: ILike(`%${q}%`)
+            }
         });
         return hotels;
     }

@@ -1,7 +1,7 @@
 import Hotel from '../../orm/models/hotels/Hotel'
 import HotelService from '../../services/hotels/Hotel'
 
-class UserController {
+class HotelController {
     private hotelService
 
     constructor() {
@@ -31,4 +31,4 @@ class UserController {
 
 }
 
-export default UserController
+export default HotelController
