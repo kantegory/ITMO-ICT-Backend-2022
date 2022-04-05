@@ -1,4 +1,5 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { IsDateString, validateOrReject } from 'class-validator';
+import { BeforeInsert, BeforeUpdate, Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import Hotel from '../hotels/Hotel';
 import User from '../users/User';
 
@@ -13,14 +14,22 @@ export class Booking {
     @ManyToOne(() => Hotel, (hotel) => hotel.bookings)
     hotel: Hotel;
 
+    @IsDateString()
     @Column('date')
     starts_at: Date;
 
+    @IsDateString()
     @Column('date')
     ends_at: Date;
 
     @Column('smallint')
     number_of_guests: number;
+
+    @BeforeInsert()
+    @BeforeUpdate()
+    validate(): Promise<void> {
+        return validateOrReject(this);
+    }
 }
 
 export default Booking

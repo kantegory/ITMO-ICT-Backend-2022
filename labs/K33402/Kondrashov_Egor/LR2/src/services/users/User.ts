@@ -4,7 +4,7 @@ import User from '../../orm/models/users/User';
 
 class UserService {
 
-    async getById(id: number) : Promise<User> {
+    async getById(id: number): Promise<User> {
         const user = await getRepository(User).findOne(id);
 
         if (user) return user;
@@ -12,7 +12,7 @@ class UserService {
         throw new Error('User with specified ID is not found');
     }
 
-    async getByEmail(email: string) : Promise<User> {
+    async getByEmail(email: string): Promise<User> {
         const user = await getRepository(User).findOne({ where: { email } });
 
         if (user) return user;
@@ -20,18 +20,24 @@ class UserService {
         throw new Error('User with specified email is not found');
     }
 
-    async create(userData: {email: string, password: string}) : Promise<User> {
+    async create(userData: { email: string, password: string }): Promise<User> {
         try {
             userData.password = bcrypt.hashSync(userData.password, 8)
-            const user = await getRepository(User).save(userData)
+            let user = getRepository(User).create(userData)
+            user = await getRepository(User).save(user)
             return user
         } catch (e: any) {
             throw new Error(e)
         }
     }
 
-    async checkPassword(email: string, password: string) : Promise<any> {
-        const user = await getRepository(User).findOne({ where: { email } })
+    async checkPassword(email: string, password: string): Promise<any> {
+        // const user = await getRepository(User).findOne({ where: { email } })
+        const user = await getRepository(User)
+            .createQueryBuilder("user")
+            .addSelect("user.password")
+            .where("user.email = :email", { email })
+            .getOne()
 
         if (!user) {
             throw new Error('Does not exist')

@@ -29,7 +29,7 @@ class BookingService {
         user_id: number, hotel_id: number, starts_at: Date, ends_at: Date, number_of_guests: number
     }): Promise<Booking> {
         try {
-            const booking = new Booking()
+            let booking = new Booking()
             booking.starts_at = bookingData.starts_at
             booking.ends_at = bookingData.ends_at
             booking.number_of_guests = bookingData.number_of_guests
@@ -42,8 +42,9 @@ class BookingService {
 
             booking.user = user
             booking.hotel = hotel
-            const bookingDb = await getRepository(Booking).save(booking)
-            return bookingDb
+            booking = getRepository(Booking).create(booking)
+            booking = await getRepository(Booking).save(booking)
+            return booking
         } catch (e: any) {
             throw new Error(e)
         }
