@@ -14,7 +14,7 @@ export class Booking {
     hotel: Hotel;
 
     @Column('date')
-    start_at: Date;
+    starts_at: Date;
 
     @Column('date')
     ends_at: Date;

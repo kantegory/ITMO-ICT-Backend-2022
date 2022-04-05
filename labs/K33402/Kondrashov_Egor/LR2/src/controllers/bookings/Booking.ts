@@ -1,4 +1,4 @@
-import BookingService from '../../services/bookings/BookingService'
+import BookingService from '../../services/bookings/Booking'
 
 class BookingController {
     private bookingService
@@ -24,7 +24,7 @@ class BookingController {
     }
 
     create = async (request: any, response: any) => {
-        request.body.userId = request.user.id
+        request.body.user_id = request.user.id
         try {
             const booking = await this.bookingService.create(request.body);
             response.status(201).send(booking)
