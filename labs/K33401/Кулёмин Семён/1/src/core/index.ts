@@ -2,6 +2,7 @@ import express from "express"
 import { createServer, Server } from "http"
 import routes from "../routes/example/index"
 
+
 class App {
     public port: number
     public host: string
