@@ -10,7 +10,20 @@ app.get('/', (req, res) => {
 
 app.get('/users/:id', async (req, res) => {
   const user = await db.User.findByPk(req.params.id)
-  console.log('user is', user)
+
+  if (user) {
+    res.send(user.toJSON())
+  } else {
+    res.send({"msg": "user is not found"})
+  }
+})
+
+app.get('/users/email/:email', async (req, res) => {
+  const user = await db.User.findOne({
+    where: {
+      email: req.params.email
+    }
+  })
 
   if (user) {
     res.send(user.toJSON())
