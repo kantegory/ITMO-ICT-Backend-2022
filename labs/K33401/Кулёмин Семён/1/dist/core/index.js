@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const http_1 = require("http");
-const index_1 = __importDefault(require("../routes/example/index"));
+const index_1 = __importDefault(require("../routes/v1/index"));
 class App {
     constructor(port = 8000, host = "localhost") {
         this.port = port;
@@ -15,7 +15,7 @@ class App {
     }
     createApp() {
         const app = (0, express_1.default)();
-        app.use('/v1', index_1.default);
+        app.use('/', index_1.default);
         return app;
     }
     createServer() {

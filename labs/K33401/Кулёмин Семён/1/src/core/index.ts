@@ -1,6 +1,6 @@
 import express from "express"
 import { createServer, Server } from "http"
-import routes from "../routes/example/index"
+import routes from "../routes/v1/index"
 
 
 class App {
@@ -20,7 +20,7 @@ class App {
 
     private createApp(): express.Application {
         const app = express()
-        app.use('/v1', routes)
+        app.use('/', routes)
 
         return app
     }

@@ -9,5 +9,5 @@ const router = express_1.default.Router();
 const controller = new user_1.default();
 router.route('/')
     .post(controller.post);
-router.route('');
+router.route('/profile/:id');
 exports.default = router;
