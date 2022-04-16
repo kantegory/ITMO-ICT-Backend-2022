@@ -8,7 +8,7 @@
     "start": "nodemon dist/index.js",
     "build": "npx tsc",
     "lint": "npx eslint . --ext .ts",
-    "migrate": "npx sequelize db:migrate"
+    "migrate": "npx sequelize-cli db:migrate"
   },
   "author": "",
   "license": "ISC",

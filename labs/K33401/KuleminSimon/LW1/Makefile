@@ -7,4 +7,8 @@ init:
 run:
 	npm start
 
+.PHONY: migrate
+migrate:
+	npm run migrate
+
 .DEFAULT_GOAL := init
