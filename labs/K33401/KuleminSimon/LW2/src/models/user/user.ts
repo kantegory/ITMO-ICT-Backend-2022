@@ -1,5 +1,6 @@
 import {DataTypes, Model, Optional} from 'sequelize';
-import { sequelize } from '.';
+import { sequelize } from '../index';
+import Booking from "../booking/booking";
 
 interface UserAttributes {
   username: string;
@@ -32,5 +33,10 @@ const User = sequelize.define<UserInstance>(
           }
         }
 );
+
+Booking.belongsTo(User, {
+    foreignKey: "username",
+    as: "booking"
+})
 
 export default User

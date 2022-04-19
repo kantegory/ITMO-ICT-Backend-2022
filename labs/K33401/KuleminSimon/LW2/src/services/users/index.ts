@@ -1,19 +1,17 @@
-import UserError from "../../errors/users/index";
-import User from "../../models/user"
+import MyError from "../../errors";
+import User from "../../models/user/user"
 
 class UserService {
 
     async create(userData: any) {
         try {
-            console.log(userData)
             const user = await User.create(userData)
 
             return user.toJSON()
         } catch (e: any) {
-            console.log(e)
             const errors = e.errors.map((error: any) => error.message)
 
-            throw new UserError(errors)
+            throw new MyError(errors)
         }
     }
 
@@ -22,7 +20,7 @@ class UserService {
 
         if (user) return { user: user.toJSON(), checkPassword: (user.password === password) }
 
-        throw new UserError('Incorrect login or password!')
+        throw new MyError('Incorrect login or password!')
     }
 
     async getAll() {
@@ -30,7 +28,7 @@ class UserService {
 
         if (users) return users
 
-        throw new UserError('Users are not found')
+        throw new MyError('Users are not found')
     }
 
     async getById(id: number) {
@@ -38,7 +36,7 @@ class UserService {
 
         if (user) return user.toJSON()
 
-        throw new UserError('User with this id not found')
+        throw new MyError('User with this id not found')
     }
 
     async getByUsername(username: string) {
@@ -50,7 +48,7 @@ class UserService {
 
         if (user) return user.toJSON()
 
-        throw new UserError('User with this username not found')
+        throw new MyError('User with this username not found')
     }
 }
 

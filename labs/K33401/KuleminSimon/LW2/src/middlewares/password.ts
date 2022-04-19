@@ -2,7 +2,8 @@ import passport from "passport"
 import { ExtractJwt, Strategy as JwtStrategy } from "passport-jwt"
 import UserService from "../services/users";
 
-let secretKey = ""
+let secretKey = "sheeeesh"
+secretKey ??= 'secret_key'
 
 const opts = {
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),

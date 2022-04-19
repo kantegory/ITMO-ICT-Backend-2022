@@ -1,6 +1,6 @@
 import UserService from "../../services/users/index";
 import jwt from "jsonwebtoken"
-import UserError from "../../errors/users";
+import MyError from "../../errors";
 import {jwtOptions} from "../../middlewares/password";
 
 
@@ -40,15 +40,15 @@ class UserController {
 
                 response.send({ accessToken })
             } else {
-                throw new UserError("Incorrect password!")
+                throw new MyError("Incorrect password!")
             }
         } catch (error: any) {
             response.status(400).send({ "error": error.message })
         }
     }
 
-    refreshToken = async (request: any, response: any) => {
-
+    me = async (request: any, response: any) => {
+        response.send(request.user)
     }
 
     getAll = async (request: any, response: any) => {
