@@ -1,7 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert, BeforeUpdate } from "typeorm"
-import { IsEmail, validate, validateOrReject } from 'class-validator'
+import { IsEmail, validateOrReject } from 'class-validator'
 import hashPassword from '../../utils/hashPassword'
-import { ValidationError } from "sequelize/types"
 
 @Entity({ name: "users" })
 export class User {
@@ -24,7 +23,6 @@ export class User {
     @BeforeInsert()
     @BeforeUpdate()
     generatePasswordHash() {
-        console.log('generating...')
         if(this.password) this.password = hashPassword(this.password)
     }
 

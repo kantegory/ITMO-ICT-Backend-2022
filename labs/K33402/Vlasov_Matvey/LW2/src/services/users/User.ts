@@ -4,10 +4,12 @@ import checkPassword from '../../utils/checkPassword'
 import { UpdateResult, DeleteResult } from 'typeorm'
 
 class UserService {
+    repository = dataSource.getRepository(User);
+
     async create(userData: object) : Promise<User> {
         try {
             const entity = Object.assign(new User(), userData)
-            const user = await dataSource.getRepository(User).save(entity)
+            const user = await this.repository.save(entity)
             return user
         } catch (e: any) {
             throw new Error(e)
@@ -15,7 +17,7 @@ class UserService {
     }
 
     async getById(id: number) : Promise<User> {
-        const user = await dataSource.getRepository(User).findOneBy({ 'id': id })
+        const user = await this.repository.findOneBy({ 'id': id })
 
         if (user) return user
 
@@ -23,7 +25,7 @@ class UserService {
     }
 
     async getByEmail(email: string) : Promise<User> {
-        const user = await dataSource.getRepository(User).findOneBy({ 'email': email })
+        const user = await this.repository.findOneBy({ 'email': email })
 
         if (user) return user
 
@@ -33,7 +35,7 @@ class UserService {
     async update(id: number, userData: object) : Promise<UpdateResult> {
         try {
             const entity = Object.assign(new User(), userData)
-            return await dataSource.getRepository(User).update({ 'id' : id }, entity)
+            return await this.repository.update({ 'id' : id }, entity)
         } catch (e: any) {
             throw new Error(e)
         }
@@ -41,14 +43,14 @@ class UserService {
 
     async delete(id: number) : Promise<DeleteResult> {
         try {
-            return await dataSource.getRepository(User).delete({ 'id' : id })
+            return await this.repository.delete({ 'id' : id })
         } catch (e: any) {
             throw new Error(e)
         }
     }
 
     async getList() : Promise<User[]> {
-        const user = await dataSource.getRepository(User).find()
+        const user = await this.repository.find()
 
         if (user) return user
 
@@ -56,7 +58,7 @@ class UserService {
     }
 
     async checkPassword(email: string, password: string) : Promise<any> {
-        const user = await dataSource.getRepository(User).findOneBy({ 'email': email })
+        const user = await this.repository.findOneBy({ 'email': email })
 
         if (user) return { user: user, checkPassword: checkPassword(user, password) }
 
