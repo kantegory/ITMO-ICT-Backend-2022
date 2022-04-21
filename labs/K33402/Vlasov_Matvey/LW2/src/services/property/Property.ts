@@ -25,7 +25,13 @@ class PropertyService {
 
     async update(id: number, propertyData: object) : Promise<UpdateResult> {
         try {
-            const entity = Object.assign(new Property(), propertyData)
+            const newEntity = Object.assign(new Property(), propertyData)
+            const entity = await this.get(id)
+            for (const field in entity) {
+                if (newEntity.hasOwnProperty(field)) {
+                    entity[field] = newEntity[field]
+                }
+            }
             return await this.repository.update({ 'id' : id }, entity)
         } catch (e: any) {
             throw new Error(e)
