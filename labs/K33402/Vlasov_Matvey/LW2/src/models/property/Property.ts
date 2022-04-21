@@ -1,4 +1,4 @@
-import { Max, Min, validateOrReject } from "class-validator"
+import { IsString, Max, Min, validateOrReject } from "class-validator"
 import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert, BeforeUpdate, OneToMany } from "typeorm"
 import Booking from "../bookings/Booking"
 
@@ -8,15 +8,19 @@ export class Property {
     id!: number
 
     @Column()
+    @IsString()
     title!: string
 
     @Column()
+    @IsString()
     description!: string
 
     @Column()
+    @IsString()
     city!: string
 
     @Column()
+    @IsString()
     address!: string
 
     @Column()

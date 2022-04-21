@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert, BeforeUpdate, OneToMany } from "typeorm"
-import { IsEmail, validateOrReject } from 'class-validator'
+import { IsEmail, IsString, validateOrReject } from 'class-validator'
 import hashPassword from '../../utils/hashPassword'
 import Booking from "../bookings/Booking"
 
@@ -9,9 +9,11 @@ export class User {
     id!: number
 
     @Column()
+    @IsString()
     firstName!: string
 
     @Column()
+    @IsString()
     lastName!: string
 
     @Column({ unique: true })
@@ -19,6 +21,7 @@ export class User {
     email!: string
 
     @Column()
+    @IsString()
     password!: string
 
     @OneToMany(() => Booking, booking => booking.tenant)
@@ -27,7 +30,7 @@ export class User {
     @BeforeInsert()
     @BeforeUpdate()
     generatePasswordHash() {
-        if(this.password) this.password = hashPassword(this.password)
+        this.password = hashPassword(this.password)
     }
 
     @BeforeInsert()
@@ -36,8 +39,7 @@ export class User {
     }
 
     @BeforeUpdate()
-    validateOnUpdate(): Promise<void> | null {
-        if (this.email == undefined) return null
+    validateOnUpdate(): Promise<void> {
         return validateOrReject(this)
     }
 }

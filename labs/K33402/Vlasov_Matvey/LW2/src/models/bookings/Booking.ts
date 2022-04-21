@@ -1,4 +1,4 @@
-import { NotContains, validateOrReject } from "class-validator"
+import { IsNotEmpty, IsString, NotContains, validateOrReject } from "class-validator"
 import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert, BeforeUpdate, ManyToOne } from "typeorm"
 import Property from "../property/Property"
 import User from "../users/User"
@@ -9,9 +9,11 @@ export class Booking {
     id!: number
 
     @ManyToOne(() => User, user => user.bookings)
+    @IsNotEmpty()
     tenant!: User
 
     @ManyToOne(() => Property, property => property.bookings)
+    @IsNotEmpty()
     property!: Property
 
     @Column()
@@ -34,7 +36,8 @@ export class Booking {
         return validateOrReject(this)
     }
 
-    isDate(str: string) : boolean {
+    isDate(str: any) : boolean {
+        if (typeof(str) != 'string') return false
         return (str.includes('/') || str.includes('-') || str.includes('.')) && !isNaN(Date.parse(str))
     }
 }
