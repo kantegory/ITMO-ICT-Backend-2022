@@ -1,6 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert, BeforeUpdate } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert, BeforeUpdate, OneToMany } from "typeorm"
 import { IsEmail, validateOrReject } from 'class-validator'
 import hashPassword from '../../utils/hashPassword'
+import Booking from "../bookings/Booking"
 
 @Entity({ name: "users" })
 export class User {
@@ -19,6 +20,9 @@ export class User {
 
     @Column()
     password!: string
+
+    @OneToMany(() => Booking, booking => booking.tenant)
+    bookings!: Booking[]
 
     @BeforeInsert()
     @BeforeUpdate()

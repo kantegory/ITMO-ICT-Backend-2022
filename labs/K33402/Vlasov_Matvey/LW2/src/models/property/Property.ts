@@ -1,5 +1,6 @@
-import { IsInt, Max, Min, validateOrReject } from "class-validator"
-import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert, BeforeUpdate } from "typeorm"
+import { Max, Min, validateOrReject } from "class-validator"
+import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert, BeforeUpdate, OneToMany } from "typeorm"
+import Booking from "../bookings/Booking"
 
 @Entity({ name: "property" })
 export class Property {
@@ -27,6 +28,9 @@ export class Property {
     @Min(1)
     @Max(100000)
     price!: number
+
+    @OneToMany(() => Booking, booking => booking.property)
+    bookings!: Booking[]
 
     @BeforeInsert()
     @BeforeUpdate()
