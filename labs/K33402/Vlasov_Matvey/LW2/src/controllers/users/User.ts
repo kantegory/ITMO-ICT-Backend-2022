@@ -13,9 +13,9 @@ class UserController {
         try {
             const { body } = request
 
-            const user: User | Error = await this.userService.create(body)
+            const res: User | Error = await this.userService.create(body)
 
-            response.status(201).send(user)
+            response.status(201).send(res)
         } catch (error: any) {
             response.status(400).send({ "error": error.message })
         }

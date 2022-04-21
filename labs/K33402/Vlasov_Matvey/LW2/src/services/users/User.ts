@@ -50,11 +50,7 @@ class UserService {
     }
 
     async getList() : Promise<User[]> {
-        const user = await this.repository.find()
-
-        if (user) return user
-
-        throw new Error(`No users found`)
+        return await this.repository.find()
     }
 
     async checkPassword(email: string, password: string) : Promise<any> {
