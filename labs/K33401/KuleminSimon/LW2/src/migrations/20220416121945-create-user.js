@@ -9,11 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       username: {
-        type: Sequelize.STRING,
-        references: {
-          model: 'Booking',
-          key: 'username'
-        }
+        type: Sequelize.STRING
       },
       password: {
         type: Sequelize.STRING

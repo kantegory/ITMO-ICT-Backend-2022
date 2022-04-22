@@ -34,9 +34,9 @@ const User = sequelize.define<UserInstance>(
         }
 );
 
-Booking.belongsTo(User, {
-    foreignKey: "username",
-    as: "booking"
-})
+// Booking.belongsTo(User, {
+//     foreignKey: "username",
+//     as: "booking"
+// })
 
 export default User
