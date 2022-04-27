@@ -1,0 +1,1065 @@
+{
+	"info": {
+		"_postman_id": "4a38fa9b-e81f-4140-9f0f-6f6699d1da70",
+		"name": "lap-backend-ki6",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNjUwNjI4MjUxfQ.Up20vSR9YUQFxVeq11lgh9xUrhS_IBaQKe1GMlWTwhs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"test19@gmail.com\",\r\n    \"password\" : \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local-host}}/{{common source}}/auth/login",
+							"host": [
+								"{{local-host}}"
+							],
+							"path": [
+								"{{common source}}",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "successful login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\" : \"test4@gmail.com\",\r\n    \"password\" : \"123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/v1/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "133"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"85-7MuyOrsmGYQtM4i/ZhGtNu/8zgI\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 27 Apr 2022 18:25:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNjUxMDgzOTMwfQ.ADr_tSgYA8kJTyYycaSkEYTqo3u1oCP8pp6hBh0up-k\"\n}"
+						},
+						{
+							"name": "Error login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\" : \"test19@gmail.com\",\r\n    \"password\" : \"123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local-host}}/{{common source}}/auth/login",
+									"host": [
+										"{{local-host}}"
+									],
+									"path": [
+										"{{common source}}",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "35"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"23-Y+6AdhbEWDg61FPaVw/ptdz/PpI\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 27 Apr 2022 20:34:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"Wrong email or password\"\n}"
+						}
+					]
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"9\",\r\n    \"firstname\" : \"test22\",\r\n    \"lastname\" : \"test123\",\r\n    \"email\" : \"test8@gmail.com\",\r\n    \"password\" : \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local-host}}/{{common source}}/auth/register",
+							"host": [
+								"{{local-host}}"
+							],
+							"path": [
+								"{{common source}}",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "successful register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"99\",\r\n    \"firstname\" : \"test22\",\r\n    \"lastname\" : \"test123\",\r\n    \"email\" : \"test7@gmail.com\",\r\n    \"password\" : \"123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/api/v1/auth/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "174"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"ae-+VqGmkhJUf23gO2o++MnLyur8+w\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 27 Apr 2022 18:29:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"99\",\n    \"firstname\": \"test22\",\n    \"lastname\": \"test123\",\n    \"email\": \"test7@gmail.com\",\n    \"password\": \"123\",\n    \"updatedAt\": \"2022-04-27T18:29:05.571Z\",\n    \"createdAt\": \"2022-04-27T18:29:05.571Z\"\n}"
+						},
+						{
+							"name": "Error register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"9\",\r\n    \"firstname\" : \"test22\",\r\n    \"lastname\" : \"test123\",\r\n    \"email\" : \"test8@gmail.com\",\r\n    \"password\" : \"123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local-host}}/{{common source}}/auth/register",
+									"host": [
+										"{{local-host}}"
+									],
+									"path": [
+										"{{common source}}",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "52"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"34-Zi8AlTin4Np/ULtB0Bc9ihRSNfo\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 27 Apr 2022 20:21:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"User with specified email already exists\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "me",
+			"item": [
+				{
+					"name": "check infor me",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNjUwNjI4MjUxfQ.Up20vSR9YUQFxVeq11lgh9xUrhS_IBaQKe1GMlWTwhs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"test2@gmail.com\",\r\n    \"password\" : \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local-host}}/{{common source}}/users/me",
+							"host": [
+								"{{local-host}}"
+							],
+							"path": [
+								"{{common source}}",
+								"users",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "check my list booking",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNjUxMDc2NTgzfQ.KEcn0oFbEZuSxQ1rb2B_rYM0UTOYphAKYZxmwzgQ484",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : \"6\",\r\n    \"User_id\" : \"4\",\r\n    \"Hotel_id\" : \"1\",\r\n    \"Check_in\" : \"2022-03-30\",\r\n    \"Check_out\" : \"2022-04-25\",\r\n    \"Price\" : \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local-host}}/{{common source}}/book/mybooking",
+							"host": [
+								"{{local-host}}"
+							],
+							"path": [
+								"{{common source}}",
+								"book",
+								"mybooking"
+							]
+						},
+						"description": "check list booking of me"
+					},
+					"response": [
+						{
+							"name": "list booking empty",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\" : \"6\",\r\n    \"User_id\" : \"4\",\r\n    \"Hotel_id\" : \"1\",\r\n    \"Check_in\" : \"2022-03-30\",\r\n    \"Check_out\" : \"2022-04-25\",\r\n    \"Price\" : \"123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local-host}}/{{common source}}/book/mybooking",
+									"host": [
+										"{{local-host}}"
+									],
+									"path": [
+										"{{common source}}",
+										"book",
+										"mybooking"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "25"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"19-+rmBs3l6JjKGUF18B+C9dTyG6bs\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 27 Apr 2022 20:57:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Booking history not found"
+						},
+						{
+							"name": "my list booking not empty",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\" : \"6\",\r\n    \"User_id\" : \"4\",\r\n    \"Hotel_id\" : \"1\",\r\n    \"Check_in\" : \"2022-03-30\",\r\n    \"Check_out\" : \"2022-04-25\",\r\n    \"Price\" : \"123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local-host}}/{{common source}}/book/mybooking",
+									"host": [
+										"{{local-host}}"
+									],
+									"path": [
+										"{{common source}}",
+										"book",
+										"mybooking"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "465"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1d1-IvAtYEuniAr1WvpgzT+tH5kTgmY\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 27 Apr 2022 20:58:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"User_id\": 2,\n        \"Hotel_id\": 1,\n        \"Check_in\": \"2022-03-23T00:00:00.000Z\",\n        \"Check_out\": \"2022-03-25T00:00:00.000Z\",\n        \"Price\": 123,\n        \"createdAt\": \"2022-04-20T00:49:34.372Z\",\n        \"updatedAt\": \"2022-04-20T00:49:34.372Z\",\n        \"ClientId\": null,\n        \"HotelId\": null\n    },\n    {\n        \"id\": 2,\n        \"User_id\": 2,\n        \"Hotel_id\": 2,\n        \"Check_in\": \"2022-03-23T00:00:00.000Z\",\n        \"Check_out\": \"2022-03-25T00:00:00.000Z\",\n        \"Price\": 123,\n        \"createdAt\": \"2022-04-20T00:49:43.417Z\",\n        \"updatedAt\": \"2022-04-20T00:49:43.417Z\",\n        \"ClientId\": null,\n        \"HotelId\": null\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Create new booking",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNjUxMDg5NjQ4fQ.G7YF_lp6PIABQ3awr8DO9I8U9OkXnVtHh5TTCKvtBDM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : \"7\",\r\n    \"User_id\" : \"4\",\r\n    \"Hotel_id\" : \"1\",\r\n    \"Check_in\" : \"2019-12-21\",\r\n    \"Check_out\" : \"2019-12-25\",\r\n    \"Price\" : \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local-host}}/{{common source}}/book/create",
+							"host": [
+								"{{local-host}}"
+							],
+							"path": [
+								"{{common source}}",
+								"book",
+								"create"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successful create new booking",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\" : \"7\",\r\n    \"User_id\" : \"4\",\r\n    \"Hotel_id\" : \"1\",\r\n    \"Check_in\" : \"2019-12-21\",\r\n    \"Check_out\" : \"2019-12-25\",\r\n    \"Price\" : \"123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local-host}}/{{common source}}/book/create",
+									"host": [
+										"{{local-host}}"
+									],
+									"path": [
+										"{{common source}}",
+										"book",
+										"create"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "208"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"d0-rdNwM5j6kIIKJDDju9vx8/evGpM\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 27 Apr 2022 20:05:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"7\",\n    \"User_id\": \"4\",\n    \"Hotel_id\": \"1\",\n    \"Check_in\": \"2019-12-21T00:00:00.000Z\",\n    \"Check_out\": \"2019-12-25T00:00:00.000Z\",\n    \"Price\": \"123\",\n    \"updatedAt\": \"2022-04-27T20:05:17.460Z\",\n    \"createdAt\": \"2022-04-27T20:05:17.460Z\"\n}"
+						},
+						{
+							"name": "Error create new booking",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\" : \"7\",\r\n    \"User_id\" : \"4\",\r\n    \"Hotel_id\" : \"1\",\r\n    \"Check_in\" : \"2019-12-21\",\r\n    \"Check_out\" : \"2019-12-25\",\r\n    \"Price\" : \"123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local-host}}/{{common source}}/book/create",
+									"host": [
+										"{{local-host}}"
+									],
+									"path": [
+										"{{common source}}",
+										"book",
+										"create"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "60"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3c-rabkin1Ou6drck3TlKzjLYVar0s\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 27 Apr 2022 20:59:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"SequelizeUniqueConstraintError: Validation error\"\n}"
+						}
+					]
+				}
+			],
+			"description": "check information of me"
+		},
+		{
+			"name": "hotel",
+			"item": [
+				{
+					"name": "Add hotel",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : \"4\",\r\n    \"Name\" : \"C\",\r\n    \"Adress\" : \"Mockva\",\r\n    \"Assess\" :\"5\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local-host}}/{{common source}}/hotels/create",
+							"host": [
+								"{{local-host}}"
+							],
+							"path": [
+								"{{common source}}",
+								"hotels",
+								"create"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "successful create hotel",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\" : \"4\",\r\n    \"Name\" : \"C\",\r\n    \"Adress\" : \"Mockva\",\r\n    \"Assess\" :\"5\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local-host}}/{{common source}}/hotels/create",
+									"host": [
+										"{{local-host}}"
+									],
+									"path": [
+										"{{common source}}",
+										"hotels",
+										"create"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "130"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"82-PqGNfPUzapilOmBQ8nEletT5Cnc\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 27 Apr 2022 19:25:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"4\",\n    \"Name\": \"C\",\n    \"Adress\": \"Mockva\",\n    \"Assess\": \"5\",\n    \"updatedAt\": \"2022-04-27T19:25:22.506Z\",\n    \"createdAt\": \"2022-04-27T19:25:22.506Z\"\n}"
+						}
+					]
+				},
+				{
+					"name": "get info 1 hotel",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNjUwNDU1ODE0fQ.qoYO-3_ljxtCWYlh7QNvjm0E1OUO5l37ZZnanFbhoHY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Name\" : \"CD\",\r\n    \"Adress\" : \"hanoiABcity\",\r\n    \"Assess\" : \"3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local-host}}/{{common source}}/hotels/hotel/B",
+							"host": [
+								"{{local-host}}"
+							],
+							"path": [
+								"{{common source}}",
+								"hotels",
+								"hotel",
+								"B"
+							]
+						},
+						"description": "get information of one hotel"
+					},
+					"response": []
+				},
+				{
+					"name": "get-all-infor-hotel",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local-host}}/{{common source}}/hotels/listhotel",
+							"host": [
+								"{{local-host}}"
+							],
+							"path": [
+								"{{common source}}",
+								"hotels",
+								"listhotel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update-infor-hotel",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Name\" : \"A\",\r\n    \"Adress\" : \"Canada\",\r\n    \"Assess\" :\"5\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local-host}}/{{common source}}/hotels/update/1",
+							"host": [
+								"{{local-host}}"
+							],
+							"path": [
+								"{{common source}}",
+								"hotels",
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "successful-update-infor-hotel",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"Name\" : \"A\",\r\n    \"Adress\" : \"Canada\",\r\n    \"Assess\" :\"5\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local-host}}/{{common source}}/hotels/update/1",
+									"host": [
+										"{{local-host}}"
+									],
+									"path": [
+										"{{common source}}",
+										"hotels",
+										"update",
+										"1"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "128"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"80-U5wQJr6WsU/SG3Bzz1FmKuBPITU\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 27 Apr 2022 19:24:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"Name\": \"A\",\n    \"Adress\": \"Canada\",\n    \"Assess\": \"5\",\n    \"createdAt\": \"2022-04-20T00:48:43.586Z\",\n    \"updatedAt\": \"2022-04-27T19:24:08.664Z\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update-infor-hotel Copy",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{local-host}}/{{common source}}/hotels/delete/4",
+							"host": [
+								"{{local-host}}"
+							],
+							"path": [
+								"{{common source}}",
+								"hotels",
+								"delete",
+								"4"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successfull delete hotel",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{local-host}}/{{common source}}/hotels/delete/4",
+									"host": [
+										"{{local-host}}"
+									],
+									"path": [
+										"{{common source}}",
+										"hotels",
+										"delete",
+										"4"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "10"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a-cbL3IZlPYEWqplkdiNfLWDgNiRI\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 27 Apr 2022 19:26:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Was delete"
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "LAB-stu",
+			"value": "http://localhost:8000/"
+		},
+		{
+			"key": "local-host",
+			"value": "http://localhost:8000"
+		},
+		{
+			"key": ":{{source}}",
+			"value": "/api/v1/hotels"
+		},
+		{
+			"key": "common source",
+			"value": "api/v1"
+		}
+	]
+}
