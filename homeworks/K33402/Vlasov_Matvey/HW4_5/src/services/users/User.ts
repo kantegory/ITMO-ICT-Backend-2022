@@ -49,7 +49,11 @@ class UserService {
 
     async delete(id: number) : Promise<DeleteResult> {
         try {
-            return await this.repository.delete({ 'id' : id })
+            const res = await this.repository.delete({ 'id' : id })
+            if (res.affected == 0) {
+                throw new Error(`User with id ${id} not found`)
+            }
+            return res
         } catch (e: any) {
             throw new Error(e)
         }

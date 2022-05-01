@@ -9,6 +9,12 @@ class BookingController {
         this.bookingService = new BookingService()
     }
 
+    private sendError(response: any, error: any) {
+        let statusCode = 400
+        if (error.message.includes('not found')) statusCode = 404
+        response.status(statusCode).send({ "error": error.message })
+    }
+
     create = async (request: any, response: any) => {
         try {
             const { body } = request
@@ -17,7 +23,7 @@ class BookingController {
 
             response.status(201).send(res)
         } catch (error: any) {
-            response.status(400).send({ "error": error.message })
+            this.sendError(response, error)
         }
     }
 
@@ -27,7 +33,7 @@ class BookingController {
 
             response.send(res)
         } catch (error: any) {
-            response.status(404).send({ "error": error.message })
+            this.sendError(response, error)
         }
     }
 
@@ -39,7 +45,7 @@ class BookingController {
 
             response.send(res)
         } catch (error: any) {
-            response.status(404).send({ "error": error.message })
+            this.sendError(response, error)
         }
     }
 
@@ -49,7 +55,7 @@ class BookingController {
 
             response.send(res)
         } catch (error: any) {
-            response.status(404).send({ "error": error.message })
+            this.sendError(response, error)
         }
     }
 
@@ -59,7 +65,7 @@ class BookingController {
 
             response.send(res)
         } catch (error: any) {
-            response.status(404).send({ "error": error.message })
+            this.sendError(response, error)
         }
     }
 }
