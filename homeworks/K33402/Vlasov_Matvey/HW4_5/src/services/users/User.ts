@@ -60,7 +60,11 @@ class UserService {
     }
 
     async getList() : Promise<User[]> {
-        return await this.repository.find()
+        return await this.repository.find({
+            order: {
+                'id': 'ASC',
+            }
+        })
     }
 
     async checkPassword(email: string, password: string) : Promise<any> {

@@ -51,7 +51,11 @@ class PropertyService {
     }
 
     async getList() : Promise<Property[]> {
-        return await this.repository.find()
+        return await this.repository.find({
+            order: {
+                'id': 'ASC',
+            }
+        })
     }
 }
 

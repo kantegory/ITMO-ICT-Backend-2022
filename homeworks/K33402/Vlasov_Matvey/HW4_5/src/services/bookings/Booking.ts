@@ -57,7 +57,10 @@ class BookingService {
 
     async getList() : Promise<Booking[]> {
         return await this.repository.find({
-            relations: ['tenant', 'property']
+            relations: ['tenant', 'property'],
+            order: {
+                'id': 'ASC',
+            }
         })
     }
 }
