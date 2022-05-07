@@ -1,0 +1,312 @@
+{
+    "swagger": "2.0.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "REST API",
+        "description": ""
+    },
+    "host": "localhost:8000",
+    "basePath": "/v1",
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/user/:lastName": {
+            "get": {
+                "description": "GET-эндпоинт для получения информации о текущем пользователе",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        },
+                    "400": {
+                        "description": "Not authorized"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/register": {
+            "post": {
+                "description": "POST-эндпоинт для регистрации пользователя",
+                "parameters": [
+                    {
+                        "name": "obj",
+                        "in": "body",
+                        "description": "Данные пользователя",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CreateUser"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid parameter"
+                    }
+                }
+            }
+        },        
+        "/auth/login": {
+            "post": {
+                "description": "POST-эндпоинт для авторизации пользователя",
+                "parameters": [
+                    {
+                        "name": "obj",
+                        "in": "body",
+                        "description": "Данные пользователя",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Login"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid parameter"
+                    }
+                }
+            }
+        },        
+        "/event/list": {
+            "get": {
+                "description": "GET-эндпоинт для получения информации о мероприятиях",
+                "parameters": [
+                    {
+                        "name": "obj",
+                        "in": "body",
+                        "description": "Данные мероприятия",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Event"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/Event"
+                        }
+                    }
+                }
+            }
+        },
+        "/event/create": {
+            "post": {
+                "description": "POST-эндпоинт для создания мероприятий",
+                "parameters": [
+                    {
+                        "name": "obj",
+                        "in": "body",
+                        "description": "Данные мероприятия",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Event"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/Event"
+                        }
+                    },
+                    "400": {
+                        "description": "Missing required data"
+                    }
+                }
+            }
+        },        
+        "/attendance/create": {
+            "post": {
+                "description": "POST-эндпоинт для участвования в мероприятия",
+                "parameters": [
+                    {
+                        "name": "obj",
+                        "in": "body",
+                        "description": "ID пользователя и мероприятия",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Attendance"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/Attendance"
+                        }
+                    },
+                    "400": {
+                        "description": "Missing required data"
+                    }
+                }
+            }
+        },        
+        "/attendance/list": {
+            "get": {
+                "description": "GET-эндпоинт для получения мероприятий которые Вы участвуете",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/Attendance"
+                        }
+                    }
+                }
+            }
+        }  
+    },
+    "definitions": {
+        "CreateUser": {
+            "type": "object",
+            "properties": {
+                "firstName": {
+                    "type": "string",
+                    "example": "John"
+                },
+                "lastName": {
+                    "type": "string",
+                    "example": "Doe"
+                },
+                "email": {
+                    "type": "number",
+                    "example": "example@example.com"
+                },
+                "password": {
+                    "type": "string",
+                    "example": "abcd123"
+                }
+            },
+            "required": [
+                "firstName",
+                "email",
+                "lastName",
+                "password"
+            ]
+        },
+        "User": {
+            "type": "object",
+            "properties": {
+                "uuid": {
+                    "type": "string",
+                    "example": "af92ccdd-8fb2-414f-9bec-08837232af10"
+                },
+                "firstName": {
+                    "type": "string",
+                    "example": "John"
+                },
+                "lastName": {
+                    "type": "string",
+                    "example": "Doe"
+                },
+                "email": {
+                    "type": "number",
+                    "example": "example@example.com"
+                },
+                "password": {
+                    "type": "string",
+                    "example": "abcd123"
+                }
+            },
+            "required": [
+                "firstName",
+                "email",
+                "lastName",
+                "password"
+            ]
+        },
+        "Event": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "example": "John Doe"
+                },
+                "description": {
+                    "type": "string",
+                    "example": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing diam donec adipiscing tristique."
+                },
+                "location": {
+                    "type": "string",
+                    "example": "Saint Petersburg"
+                },
+                "time": {
+                    "type": "time",
+                    "example": "12:00:00"
+                },
+                "date": {
+                    "type": "date",
+                    "example": "2022-12-07"
+                }
+            },
+            "required": [
+                "name",
+                "description",
+                "location",
+                "time",
+                "date"
+            ]
+        },
+        "Attendance": {
+            "type": "object",
+            "properties": {
+                "uuid": {
+                    "type": "string",
+                    "example": "af92ccdd-8fb2-414f-9bec-08837232af10"
+                },
+                "UserId": {
+                    "type": "string",
+                    "example": "af92ccdd-8fb2-414f-9bec-08837232af10"
+                },
+                "EventId": {
+                    "type": "string",
+                    "example": "af92ccdd-8fb2-414f-9bec-08837232af10"
+                }
+            },
+            "required": [
+                "UserId",
+                "EventId"
+            ]
+        },
+        "Login": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "number",
+                    "example": "example@example.com"
+                },
+                "password": {
+                    "type": "string",
+                    "example": "abcd123"
+                }
+            },
+            "required": [
+                "email",
+                "password"
+            ]
+        }
+    }
+}

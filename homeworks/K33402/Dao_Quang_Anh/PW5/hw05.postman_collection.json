@@ -1,0 +1,889 @@
+{
+	"info": {
+		"_postman_id": "c1d0d9f6-b3d7-4f2b-b7a0-b4c9ebd9445a",
+		"name": "hw05",
+		"description": "Event API documentation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User registration",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\" : \"another\",\r\n    \"lastName\" : \"user\",\r\n    \"email\" : \"user123@gmail.com\",\r\n    \"password\" : \"12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/v1/auth/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"auth",
+						"register"
+					]
+				},
+				"description": "Endpoint for registration of new users"
+			},
+			"response": [
+				{
+					"name": "201 Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\" : \"another\",\r\n    \"lastName\" : \"testuser\",\r\n    \"email\" : \"auser@gmail.com\",\r\n    \"password\" : \"12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/v1/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "212"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"d4-4x/ZVEbbraqPZ9dWr7qm8W2Lbuw\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 07 May 2022 13:18:29 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"firstName\": \"another\",\n    \"lastName\": \"testuser\",\n    \"email\": \"auser@gmail.com\",\n    \"password\": \"12345\",\n    \"id\": \"5b7140f2-74de-47b8-b2cd-93712380da5c\",\n    \"updatedAt\": \"2022-05-07T13:18:29.475Z\",\n    \"createdAt\": \"2022-05-07T13:18:29.475Z\"\n}"
+				},
+				{
+					"name": "400 Invalid parameters",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\" : \"another\",\r\n    \"lastName\" : \"testuser\",\r\n    \"email\" : \"auser@gmail.com\",\r\n    \"password\" : \"12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/v1/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "52"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"34-Zi8AlTin4Np/ULtB0Bc9ihRSNfo\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 07 May 2022 13:24:50 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"User with specified email already exists\"\n}"
+				}
+			]
+		},
+		{
+			"name": "User authorization",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{    \r\n    \"email\" : \"auser@gmail.com\",\r\n    \"password\" : \"12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{PROTOCOL}}://{{HOST}}/{{API_PREFIX}}/{{AUTH_PATH}}/login",
+					"protocol": "{{PROTOCOL}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"{{API_PREFIX}}",
+						"{{AUTH_PATH}}",
+						"login"
+					]
+				},
+				"description": "Endpoint for authorization"
+			},
+			"response": [
+				{
+					"name": "200 Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{    \r\n    \"email\" : \"auser@gmail.com\",\r\n    \"password\" : \"12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/v1/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "182"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"b6-GYyOQT+XPsHUys6Ddp3DKcUELk8\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 07 May 2022 13:37:09 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViNzE0MGYyLTc0ZGUtNDdiOC1iMmNkLTkzNzEyMzgwZGE1YyIsImlhdCI6MTY1MTkzMDYyOX0.KPbO1H3eJb1ybTuOnoE9NlPjBUfkhF0gevjaQWvVUls\"\n}"
+				},
+				{
+					"name": "401 Invalid email or password",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{    \r\n    \"email\" : \"auser@gmail.com\",\r\n    \"password\" : \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{PROTOCOL}}://{{HOST}}/{{API_PREFIX}}/{{AUTH_PATH}}/login",
+							"protocol": "{{PROTOCOL}}",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"{{API_PREFIX}}",
+								"{{AUTH_PATH}}",
+								"login"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "92"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"5c-oeoDbrHWPLiXvUIj77L0H8MxwhI\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 07 May 2022 13:37:34 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Cannot destructure property 'user' of '(intermediate value)' as it is undefined.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Event organization",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{        \r\n        \"name\": \"some event\",\r\n        \"description\": \"sevent\",\r\n        \"location\": \"St.Petersburg\",\r\n        \"time\": \"17:09:00\",\r\n        \"date\": \"2022-04-24T00:00:00.000Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/v1/event/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"event",
+						"create"
+					]
+				},
+				"description": "Endpoint for organizing new events"
+			},
+			"response": [
+				{
+					"name": "200 Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{        \r\n        \"name\": \"some event\",\r\n        \"description\": \"sevent\",\r\n        \"location\": \"St.Petersburg\",\r\n        \"time\": \"17:09:00\",\r\n        \"date\": \"2022-04-24T00:00:00.000Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/v1/event/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"event",
+								"create"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "289"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"121-+7/RVmbY44CyUJV9slCD9NUT9rI\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 07 May 2022 13:50:40 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"record\": {\n        \"name\": \"some event\",\n        \"description\": \"sevent\",\n        \"location\": \"St.Petersburg\",\n        \"time\": \"17:09:00\",\n        \"date\": \"2022-04-24T00:00:00.000Z\",\n        \"id\": \"17a5fe5d-1cca-4a04-860c-03d32b0064cb\",\n        \"updatedAt\": \"2022-05-07T13:50:40.232Z\",\n        \"createdAt\": \"2022-05-07T13:50:40.232Z\"\n    },\n    \"msg\": \"Successfully create user\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Event attendance",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViNzE0MGYyLTc0ZGUtNDdiOC1iMmNkLTkzNzEyMzgwZGE1YyIsImlhdCI6MTY1MTkzMDkyMH0.l7bPbHOgD66KIhy_xkL-IVZskOsdJ-4mnSmA34yKi2Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"UserId\":\"5b7140f2-74de-47b8-b2cd-93712380da5c\",\r\n    \"EventId\":\"e886c8ca-486c-4e13-9455-9aa0f2c7372a\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/v1/attendance/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"attendance",
+						"create"
+					]
+				},
+				"description": "Endpoint for joining event as a user"
+			},
+			"response": [
+				{
+					"name": "200 Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"UserId\":\"5b7140f2-74de-47b8-b2cd-93712380da5c\",\r\n    \"EventId\":\"e886c8ca-486c-4e13-9455-9aa0f2c7372a\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/v1/attendance/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"attendance",
+								"create"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "270"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"10e-3HnAAZ4HfL1ujDI/40GV6GL4Iww\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 07 May 2022 13:42:31 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"record\": {\n        \"UserId\": \"5b7140f2-74de-47b8-b2cd-93712380da5c\",\n        \"EventId\": \"e886c8ca-486c-4e13-9455-9aa0f2c7372a\",\n        \"id\": \"04f71a19-f2d5-4e24-9265-94380fca0670\",\n        \"updatedAt\": \"2022-05-07T13:42:31.306Z\",\n        \"createdAt\": \"2022-05-07T13:42:31.306Z\"\n    },\n    \"msg\": \"Successfully attend this event\"\n}"
+				},
+				{
+					"name": "401 Unauthorized",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"UserId\":\"5b7140f2-74de-47b8-b2cd-93712380da5c\",\r\n    \"EventId\":\"e886c8ca-486c-4e13-9455-9aa0f2c7372a\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/v1/attendance/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"attendance",
+								"create"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 07 May 2022 13:43:27 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						},
+						{
+							"key": "Content-Length",
+							"value": "12"
+						}
+					],
+					"cookie": [],
+					"body": "Unauthorized"
+				}
+			]
+		},
+		{
+			"name": "Attendance list",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViNzE0MGYyLTc0ZGUtNDdiOC1iMmNkLTkzNzEyMzgwZGE1YyIsImlhdCI6MTY1MTkzMDYyOX0.KPbO1H3eJb1ybTuOnoE9NlPjBUfkhF0gevjaQWvVUls",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/v1/attendance/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"attendance",
+						"list"
+					]
+				},
+				"description": "Endpoint for getting list of events joined by a user"
+			},
+			"response": [
+				{
+					"name": "401 Unauthorized",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/v1/attendance/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"attendance",
+								"list"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 07 May 2022 13:43:53 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						},
+						{
+							"key": "Content-Length",
+							"value": "12"
+						}
+					],
+					"cookie": [],
+					"body": "Unauthorized"
+				},
+				{
+					"name": "200 Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/v1/attendance/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"attendance",
+								"list"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "222"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"de-MyYABNKO/SAMxuMSsRlWQEGswCg\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 07 May 2022 13:44:59 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": \"04f71a19-f2d5-4e24-9265-94380fca0670\",\n        \"UserId\": \"5b7140f2-74de-47b8-b2cd-93712380da5c\",\n        \"EventId\": \"e886c8ca-486c-4e13-9455-9aa0f2c7372a\",\n        \"createdAt\": \"2022-05-07T13:42:31.306Z\",\n        \"updatedAt\": \"2022-05-07T13:42:31.306Z\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Event lists",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{        \r\n        \"name\": \"some event\",\r\n        \"description\": \"sevent\",\r\n        \"location\": \"St.Petersburg\",\r\n        \"time\": \"17:09:00\",\r\n        \"date\": \"2022-04-24T00:00:00.000Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/v1/event/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"event",
+						"list"
+					]
+				},
+				"description": "Endpoint for getiing lists of events"
+			},
+			"response": [
+				{
+					"name": "200 Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{        \r\n        \"name\": \"some event\",\r\n        \"description\": \"sevent\",\r\n        \"location\": \"St.Petersburg\",\r\n        \"time\": \"17:09:00\",\r\n        \"date\": \"2022-04-24T00:00:00.000Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/v1/event/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"event",
+								"list"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "990"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"3de-+Wx21asVIO49tQoe5MgpJklCpxM\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 07 May 2022 13:51:07 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": \"e886c8ca-486c-4e13-9455-9aa0f2c7372a\",\n        \"name\": \"event\",\n        \"description\": \"an event\",\n        \"location\": \"St.Petersburg\",\n        \"time\": \"12:00:00\",\n        \"date\": \"2022-04-17T00:00:00.000Z\",\n        \"createdAt\": \"2022-04-21T17:08:44.402Z\",\n        \"updatedAt\": \"2022-04-21T17:08:44.402Z\"\n    },\n    {\n        \"id\": \"7d7a2b85-51d0-46e4-816a-334debea6564\",\n        \"name\": \"event tneve\",\n        \"description\": \"another event\",\n        \"location\": \"St.Petersburg\",\n        \"time\": \"15:00:00\",\n        \"date\": \"2022-04-18T00:00:00.000Z\",\n        \"createdAt\": \"2022-04-21T17:09:50.075Z\",\n        \"updatedAt\": \"2022-04-21T17:09:50.075Z\"\n    },\n    {\n        \"id\": \"369bf501-d685-4332-a984-c14ce20b35fc\",\n        \"name\": \"some event\",\n        \"description\": \"sevent\",\n        \"location\": \"St.Petersburg\",\n        \"time\": \"17:09:00\",\n        \"date\": \"2022-04-24T00:00:00.000Z\",\n        \"createdAt\": \"2022-05-07T13:48:38.669Z\",\n        \"updatedAt\": \"2022-05-07T13:48:38.669Z\"\n    },\n    {\n        \"id\": \"17a5fe5d-1cca-4a04-860c-03d32b0064cb\",\n        \"name\": \"some event\",\n        \"description\": \"sevent\",\n        \"location\": \"St.Petersburg\",\n        \"time\": \"17:09:00\",\n        \"date\": \"2022-04-24T00:00:00.000Z\",\n        \"createdAt\": \"2022-05-07T13:50:40.232Z\",\n        \"updatedAt\": \"2022-05-07T13:50:40.232Z\"\n    }\n]"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "PROTOCOL",
+			"value": "http"
+		},
+		{
+			"key": "HOST",
+			"value": "localhost:8000"
+		},
+		{
+			"key": "API_PREFIX",
+			"value": "v1",
+			"type": "string"
+		},
+		{
+			"key": "AUTH_PATH",
+			"value": "auth"
+		}
+	]
+}
