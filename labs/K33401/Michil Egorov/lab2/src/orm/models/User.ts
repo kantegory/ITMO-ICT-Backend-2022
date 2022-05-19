@@ -1,5 +1,6 @@
-import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from "typeorm";
+import {Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn} from "typeorm";
 import {Portfolio} from "./Portfolio";
+import { AuthToken } from "./Token";
 
 @Entity('User1')
 export class User {
@@ -14,4 +15,7 @@ export class User {
 
     @OneToMany(() => Portfolio, (portfolio) => portfolio.user)
     portfolios: Portfolio[];
+
+    @OneToOne(() => AuthToken, (token) => token.user)
+    authToken: AuthToken
 }

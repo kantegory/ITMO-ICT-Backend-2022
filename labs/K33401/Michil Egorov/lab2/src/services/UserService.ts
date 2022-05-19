@@ -12,6 +12,16 @@ class UserService {
         });
     }
 
+    public async getByEmail(email: string): Promise<User> {
+        return await getConnection().getRepository(User).findOne({ where: { email: email } }).then((user) => {
+            if (!user) {
+                throw new Error(`User (email=${email}) does not exist`);
+            }
+
+            return user;
+        });
+    }
+
     public async create(userData: {email: string, password: string}): Promise<User> {
         const userRepo = getConnection().getRepository(User);
 
