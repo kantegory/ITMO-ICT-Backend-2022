@@ -16,7 +16,7 @@ class UserService {
         const userRepo = getConnection().getRepository(User);
 
         await userRepo.findOne({ where: { email: userData.email } }).then((user) => {
-            if (user) {
+            if (user !== null) {
                 throw new Error('User with such email already exists');
             }
         });
