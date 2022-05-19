@@ -1,4 +1,4 @@
-import {Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm";
+import {Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm";
 import {User} from "./User";
 import {PortfolioStock} from "./PortfolioStock";
 import {Stock} from "./Stock";
@@ -8,6 +8,9 @@ export class Portfolio {
     @PrimaryGeneratedColumn()
     id: number;
 
+    @Column()
+    balance: number
+    
     @ManyToOne(() => User, (user) => user.portfolios)
     user: User;
 
