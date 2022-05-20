@@ -47,20 +47,20 @@
 [Презентация "Основы TypeScript, работа с Makefile"](https://docs.google.com/presentation/d/11LDwQ0tV_YmnsBNXtNYqB2yoEwfEK8UkzYIH6r0G3GI/edit?usp=sharing)
 [Презентация "Основы TypeScript, Sequelize + TypeScript"](https://docs.google.com/presentation/d/14uSAQEZj6Lk-VC5rmvT0Gi1XWO1EX24g3ljL1u4KECg/edit?usp=sharing)
 
-[Статья по основам синтаксиса на Хабре](https://habr.com/ru/company/nix/blog/301002/)
-[Статья на Nuances of Programming](https://nuancesprog.ru/p/14210/)
-[Карманная книжка по TS](https://typescript-handbook.ru/docs/ts-1/)
-[Видео от Хекслет про утилиту make](https://www.youtube.com/watch?v=pK9mF5aK05Q)
-[Makefile для самых маленьких, но это больше про C](https://habr.com/ru/post/155201/)
-[Введение в make: история](http://pushorigin.ru/bash/make)
+[Статья по основам синтаксиса на Хабре](https://habr.com/ru/company/nix/blog/301002/)  
+[Статья на Nuances of Programming](https://nuancesprog.ru/p/14210/)  
+[Карманная книжка по TS](https://typescript-handbook.ru/docs/ts-1/)  
+[Видео от Хекслет про утилиту make](https://www.youtube.com/watch?v=pK9mF5aK05Q)  
+[Makefile для самых маленьких, но это больше про C](https://habr.com/ru/post/155201/)  
+[Введение в make: история](http://pushorigin.ru/bash/make)  
 
 [Пример, который делали на паре](https://github.com/kantegory/mentoring/tree/master/15_express_typescript_example)
 
 Источники по поводу использования typescript в ORM:
 
-[Документация пакета sequelize-typescript](https://www.npmjs.com/package/sequelize-typescript)
-[Мануал по использованию typescript внутри sequelize](https://sequelize.org/master/manual/typescript.html)
-[Документация TypeORM](https://typeorm.io/) (можно использовать в качестве альтернативы Sequelize)
+[Документация пакета sequelize-typescript](https://www.npmjs.com/package/sequelize-typescript)  
+[Мануал по использованию typescript внутри sequelize](https://sequelize.org/master/manual/typescript.html)  
+[Документация TypeORM](https://typeorm.io/) (можно использовать в качестве альтернативы Sequelize)  
 
 **ЛР1** (срок: 08.04.2022, 23:59)
 
@@ -85,6 +85,8 @@
 
 # 2. Тестирование, разработка и документирование RESTful API
 
+## 2.1 REST, RESTful, SOAP, GraphQL
+
 [Презентация: REST, RESTful, SOAP, GraphQL](https://docs.google.com/presentation/d/1ybKVSHdytRT0kugKoyy5t19WOaevwJBxrx7u1hg33NE/edit?usp=sharing)  
 [Видео](https://www.youtube.com/watch?v=we4NVJtY_4E)
 
@@ -94,7 +96,8 @@
 
 По выбранному варианту необходимо будет реализовать RESTful API средствами express + typescript (используя ранее написанный boilerplate).
 
-Доступные варианты:
+<details>
+  <summary>Доступные варианты</summary>
 
 1) Платформа для проведения онлайн-хакатонов (пример: https://devpost.com)
 
@@ -167,5 +170,38 @@
 - Личный кабинет пользователя
 
 - Страница для поиска с возможностью фильтрации
+</details>
 
-# 3. Развёртывание, микросервисы, CI/CD
+## 2.2 Тестирование, документация
+
+[Презентация](https://docs.google.com/presentation/d/1VDH4LND0R4vn0WBGt96XdJfZEH3GxEESnGS0X3KPT9Q/edit?usp=sharing)
+
+**ДЗ4** (срок: 20.05)
+
+Документирование API из ЛР2 средствами Swagger/Postman
+
+**ДЗ5** (срок 20.05)
+
+Тестирование API из ЛР2 средствами Postman
+
+# 3. DI, IoC, Развёртывание, микросервисы, CI/CD
+
+## 3.1 DI, IoC
+
+[Презентация по DI, IoC](https://docs.google.com/presentation/d/1yXC0oczjMlvYeFOKedzOLcct_C1FoLJl1kLXeXAu5DE/edit?usp=sharing)
+
+## 3.2 Микросервисы
+
+[Презентация по микросервисам](https://docs.google.com/presentation/d/1pwV0WHDG2QoV5GK067dd1nbq4_RDQUambryIfVjWQnw/edit?usp=sharing)
+
+**ЛР3** (срок: 05.06.2022)
+
+Необходимо реализовать отдельный микросервис, выполняющий какую-либо содержательную функцию из всего арсенала функций вашего приложения.
+
+## 3.3 Docker, docker compose, docker swarm
+
+[Презентация по docker](https://docs.google.com/presentation/d/1QhqPb2nmiwmzZ_e6pcAHAGHRHlep1i04OEmE8PsKRxA/edit?usp=sharing)
+
+**ЛР4** (срок: 05.06.2022)
+
+Необходимо упаковать ваше приложение в docker-контейнеры и обеспечить сетевое взаимодействие между различными частями вашего приложения. Делать это можно как с помощью docker-compose так и с помощью docker swarm. При разумном использовании swirl вы получите дополнительные баллы.
