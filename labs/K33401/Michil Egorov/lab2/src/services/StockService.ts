@@ -1,6 +1,6 @@
 import { Stock } from "../orm/models/Stock"
 import { StockHistory } from "../orm/models/StockHistory";
-import {getConnection} from "typeorm";
+import {getConnection, MoreThan} from "typeorm";
 
 
 class StockService {
@@ -47,6 +47,23 @@ class StockService {
         });
 
         return entityRepo.save(stockData);
+    }
+
+    public async delete(id: number): Promise<void> {
+        const entity = await this.getById(id);
+        await getConnection().getRepository(Stock).remove(entity);
+    }
+
+    public async list(at_least: number): Promise<Stock[]> {
+        return await getConnection().getRepository(Stock).find({
+            where: { created_at: MoreThan(at_least)}
+        });
+    }
+
+    public async update(stockData: {id: number, name: string, description: string}): Promise<Stock> {
+        return await getConnection().getRepository(Stock).save({
+            ...stockData
+        });
     }
 }
 

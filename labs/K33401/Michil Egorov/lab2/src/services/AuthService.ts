@@ -24,6 +24,17 @@ class AuthService {
             });
         })
     }
+
+    public async changeToken(userData: {email: string, password: string}) : Promise<AuthToken> {
+        const token = await this.auth(userData);
+        token.token = (Math.random() + 1).toString(36).substring(7);
+        return getConnection().getRepository(AuthToken).save(token);
+    }
+
+    public async delete(userData: {email: string, password: string}): Promise<void> {
+        const entity = await this.auth(userData);
+        await getConnection().getRepository(AuthToken).remove(entity);
+    }
 }
 
 export default AuthService

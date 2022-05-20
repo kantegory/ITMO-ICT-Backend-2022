@@ -34,6 +34,23 @@ class UserService {
         // todo hash pass
         return userRepo.save(userData);
     }
+
+    public async delete(id: number): Promise<void> {
+        const user = await this.getById(id);
+        await getConnection().getRepository(User).remove(user);
+    }
+
+    public async list(): Promise<User[]> {
+        return await getConnection().getRepository(User).find();
+    }
+
+    public async update(userData: {email: string, password: string}): Promise<User> {
+        const user = await this.getByEmail(userData.email);
+        return await getConnection().getRepository(User).save({
+            id: user.id,
+            ...userData
+        });
+    }
 }
 
 export default UserService

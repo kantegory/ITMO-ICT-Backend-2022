@@ -8,7 +8,16 @@ const controller = new UserController()
 router.route("/:id")
     .get(controller.get)
 
-router.route("")
+router.route("/")
+    .get(controller.list)
+
+router.route("/")
     .post(controller.create)
+
+router.route("/:id")
+    .delete(controller.delete)
+
+router.route("/:id")
+    .update(controller.update)
 
 export default router

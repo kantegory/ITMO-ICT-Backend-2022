@@ -3,7 +3,6 @@ import { PortfolioStock } from "../orm/models/PortfolioStock";
 import UserService from "./UserService";
 import StockService from "./StockService";
 import {getConnection} from "typeorm";
-import { Stock } from "../orm/models/Stock";
 
 
 class PortfolioService {
@@ -46,6 +45,26 @@ class PortfolioService {
 
     public async sellStock(dealInfo: {portfolio_id: number, stock_id: number}): Promise<PortfolioStock> {
         return await this.manipulateStock({...dealInfo, isSold: true});
+    }
+
+    public async delete(id: number): Promise<void> {
+        const entity = await this.getById(id);
+        await getConnection().getRepository(Portfolio).remove(entity);
+    }
+
+    public async list(): Promise<Portfolio[]> {
+        return await getConnection().getRepository(Portfolio).find();
+    }
+
+    public async update(portfolioData: {id: number, balance: number, user_id: number}): Promise<Portfolio> {
+        const user = await new UserService().getById(portfolioData.user_id);
+        const portfolio = await this.getById(portfolioData.id);
+
+        return await getConnection().getRepository(Portfolio).save({
+            id: portfolioData.id,
+            balance: portfolioData.balance | portfolio.balance,
+            user: user,
+        });
     }
 }
 

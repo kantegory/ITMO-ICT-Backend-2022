@@ -15,6 +15,9 @@ export class Stock {
     description: string;
 
     @Column()
+    created_at: number
+
+    @Column()
     lastPrice: number;
 
     @OneToMany(() => StockHistory, (stockHistory) => stockHistory.stock)
