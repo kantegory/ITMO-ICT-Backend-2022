@@ -18,6 +18,11 @@ class UserRoomController {
         }
         let { roomId } = req.body;
 
+        if (!roomId) {
+            res.status(400).send("roomId - не дано");
+        }
+
+
         const roomRepository = AppDataSource.getRepository(Room);
         let room: Room;
         try {
@@ -27,7 +32,7 @@ class UserRoomController {
             return
         }
 
-        if (!room.user) {
+        if (!room?.user?.id) {
             room.user = user;
         } else {
             res.status(404).send("Room already use");
@@ -57,6 +62,11 @@ class UserRoomController {
             res.status(404).send("User not found");
             return
         }
+        if (!user.rooms.find(el => el.id == roomId)) {
+            res.status(404).send("Room not found");
+            return
+        }
+
         user.rooms = user.rooms.filter(el => el.id !== Number(roomId))
 
         try {

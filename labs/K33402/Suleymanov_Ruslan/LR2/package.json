@@ -26,6 +26,8 @@
     "make": "^0.8.1",
     "reflect-metadata": "^0.1.13",
     "sqlite3": "^5.0.8",
+    "swagger-jsdoc": "^6.2.1",
+    "swagger-ui-express": "^4.4.0",
     "ts-node-dev": "^1.1.8",
     "typeorm": "^0.3.6",
     "validator": "^13.7.0"

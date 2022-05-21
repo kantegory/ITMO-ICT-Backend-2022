@@ -10,8 +10,7 @@ export const checkJwt = (req: Request, res: Response, next: NextFunction) => {
         jwtPayload = <any>jwt.verify(token, config.jwtSecret);
         res.locals.jwtPayload = jwtPayload;
     } catch (error) {
-        console.log('не авторизован')
-        res.status(401).send();
+        res.status(401).send('не авторизован');
         return;
     }
     const { userId, username } = jwtPayload;

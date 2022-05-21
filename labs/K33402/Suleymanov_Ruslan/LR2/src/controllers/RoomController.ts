@@ -22,8 +22,11 @@ class RoomController{
                 }, relations: ["user"]
             }
         );
-
-        res.send(rooms);
+        if (rooms.length) {
+            res.send(rooms);
+        } else {
+            res.send('Не найдено результатов');
+        }
     };
 
     static getOneRoom = async (req: Request, res: Response) => {
@@ -40,6 +43,14 @@ class RoomController{
 
     static newRoom = async (req: Request, res: Response) => {
         let { name, hotelName, price, countPerson, city, date } = req.body;
+        const roomRep = AppDataSource.getRepository(Room);
+
+        try {
+            await roomRep.findOneOrFail({where: {name: name}});
+            res.status(400).send("Комната с таким именем уже существует");
+            return;
+        } catch (error) {}
+
         let room = new Room();
 
         room.name = name;
@@ -55,8 +66,6 @@ class RoomController{
             return;
         }
 
-
-        const roomRep = AppDataSource.getRepository(Room);
         try {
             await roomRep.save(room);
         } catch (e) {

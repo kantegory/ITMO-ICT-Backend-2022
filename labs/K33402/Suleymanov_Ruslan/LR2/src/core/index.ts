@@ -6,6 +6,8 @@ import cors from "cors";
 import { createServer, Server } from "http"
 import routes from "../routes"
 
+const swaggerUi = require('swagger-ui-express');
+
 class App {
     public port: number
     public host: string
@@ -19,6 +21,7 @@ class App {
 
         this.app = App.createApp()
         this.server = this.createServer()
+
     }
 
     private static createApp(): express.Application {
@@ -28,6 +31,9 @@ class App {
         app.use(bodyParser.json());
         app.use('/', routes)
 
+        const swaggerDoc = require('../swagger.json')
+        app.use('/docs', swaggerUi.serve)
+        app.use('/docs', swaggerUi.setup(swaggerDoc))
         return app
     }
 

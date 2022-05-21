@@ -11,10 +11,10 @@ export const checkRole = (roles: Array<string>) => {
         try {
             user = await userRepository.findOneOrFail({where: {id: id}});
         } catch (id) {
-            res.status(401).send();
+            res.status(401).send('Не найден пользователь');
             return;
         }
         if (roles.indexOf(user.role) > -1) next();
-        else res.status(401).send();
+        else res.status(401).send('Недоступно');
     };
 };

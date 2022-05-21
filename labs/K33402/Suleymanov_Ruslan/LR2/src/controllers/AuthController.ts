@@ -11,7 +11,8 @@ class AuthController {
 
         let { username, password } = req.body;
         if (!(username && password)) {
-            res.status(400).send();
+            res.status(400).send('Нет данных');
+            return;
         }
 
         const userRepository = AppDataSource.getRepository(User);
@@ -19,12 +20,12 @@ class AuthController {
         try {
             user = await userRepository.findOneOrFail({ where: { username } });
         } catch (error) {
-            res.status(401).send();
+            res.status(401).send('Юзер не найден');
             return;
         }
 
         if (!user.checkIfUnencryptedPasswordIsValid(password)) {
-            res.status(401).send();
+            res.status(401).send('Не правильный пароль');
             return;
         }
 
@@ -69,7 +70,12 @@ class AuthController {
 
         const { oldPassword, newPassword } = req.body;
         if (!(oldPassword && newPassword)) {
-            res.status(400).send();
+            res.status(400).send('Нет данных');
+            return;
+        }
+        if (typeof oldPassword !== "string" || typeof newPassword !== "string") {
+            res.status(400).send('Не правильный формат данных');
+            return;
         }
 
         const userRepository = AppDataSource.getRepository(User);
@@ -77,12 +83,12 @@ class AuthController {
         try {
             user = await userRepository.findOneOrFail({where: {id: id}});
         } catch (id) {
-            res.status(401).send();
+            res.status(401).send('Нет пользователя');
             return;
         }
 
         if (!user.checkIfUnencryptedPasswordIsValid(oldPassword)) {
-            res.status(401).send();
+            res.status(401).send('Не правильный пароль');
             return;
         }
 
@@ -95,7 +101,7 @@ class AuthController {
         user.hashPassword();
         await userRepository.save(user);
 
-        res.status(204).send();
+        res.status(200).send('Успешная смена пароля');
     };
 }
 export default AuthController;
