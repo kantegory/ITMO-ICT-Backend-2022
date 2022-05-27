@@ -1,4 +1,4 @@
-import {Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm";
+import {Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm";
 import {User} from "./User";
 import {PortfolioStock} from "./PortfolioStock";
 import {Stock} from "./Stock";
@@ -9,11 +9,18 @@ export class Portfolio {
     id: number;
 
     @Column()
+    name: string
+
+    @Column({type: 'int'})
+    user_id: number
+    
+    @Column({default: 0})
     balance: number
     
-    @ManyToOne(() => User, (user) => user.portfolios)
+    @ManyToOne(() => User, (user) => user.portfolios, {onDelete: "CASCADE"})
+    @JoinColumn({name: 'user_id'})
     user: User;
 
-    @OneToMany(() => PortfolioStock, (ps) => ps.portfolio)
+    @OneToMany(() => PortfolioStock, (ps) => ps.portfolio, {onDelete: "CASCADE"})
     stocks: PortfolioStock[];
 }

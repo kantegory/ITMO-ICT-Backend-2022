@@ -24,25 +24,12 @@ class StockController {
     list = async (request: any, response: any) => {
         try {
             const stocks = await this.stockService.list(
-                request.params.at_least | 0
+                new Date(request.params.at_least | 0)
             )
-            response.send(stocks)
+            response.send({stocks: stocks})
         } catch (error: any) {
             response.status(404).send({
                 "error": error.message
-            })
-        }
-    }
-
-    getStockHistory = async (request: any, response: any) => {
-        try {
-            const stocks = await this.stockService.getStockHistory(
-                +request.params.id
-            )
-            response.send(stocks)
-        } catch (error: any) {
-            response.status(404).send({
-                "error": error.message 
             })
         }
     }
@@ -53,6 +40,19 @@ class StockController {
                 request.body
             )
             response.send(stock)
+        } catch (error: any) {
+            response.status(404).send({
+                "error": error.message 
+            })
+        }
+    }
+
+    getStockHistory = async (request: any, response: any) => {
+        try {
+            const stocks = await this.stockService.getStockHistory(
+                +request.params.id
+            )
+            response.send({stocks: stocks})
         } catch (error: any) {
             response.status(404).send({
                 "error": error.message 

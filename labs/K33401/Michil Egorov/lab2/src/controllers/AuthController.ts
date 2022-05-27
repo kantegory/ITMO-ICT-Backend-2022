@@ -11,7 +11,7 @@ class AuthController {
     auth = async (request: any, response: any) => {
         try {
             const token = await this.entityService.auth(request.body)
-            response.send(token)
+            response.send({token: token.token})
         } catch (error: any) {
             response.status(404).send({
                 "error": error.message 
@@ -21,8 +21,8 @@ class AuthController {
 
     changeToken = async (request: any, response: any) => {
         try {
-            const token = await this.entityService.auth(request.body)
-            response.send(token)
+            const token = await this.entityService.changeToken(request.body)
+            response.send({token: token.token})
         } catch (error: any) {
             response.status(404).send({
                 "error": error.message 

@@ -1,6 +1,7 @@
 import { getConnection } from "typeorm"
 import { AuthToken } from "../orm/models/Token";
 import UserService from "./UserService"
+const uuid = require("uuid");
 
 
 class AuthService {
@@ -13,21 +14,21 @@ class AuthService {
 
         const tokenRepo = getConnection().getRepository(AuthToken);
         
-        return await tokenRepo.findOne({where: {user: user}}).then(async (token) => {
+        return await tokenRepo.findOne({where: {userId: user.id}}).then(async (token) => {
             if(token) {
                 return token;
             }
 
             return tokenRepo.save({
                 user: user,
-                token: (Math.random() + 1).toString(36).substring(7)
+                token: uuid.v4()
             });
         })
     }
 
     public async changeToken(userData: {email: string, password: string}) : Promise<AuthToken> {
         const token = await this.auth(userData);
-        token.token = (Math.random() + 1).toString(36).substring(7);
+        token.token = uuid.v4();
         return getConnection().getRepository(AuthToken).save(token);
     }
 

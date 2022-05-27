@@ -24,10 +24,36 @@ class PortfolioController {
     list = async (request: any, response: any) => {
         try {
             const portfolios = await this.entityService.list()
-            response.send(portfolios)
+            response.send({portfolios: portfolios})
         } catch (error: any) {
             response.status(404).send({
                 "error": error.message
+            })
+        }
+    }
+
+    create = async (request: any, response: any) => {
+        try {
+            const stock = await this.entityService.create(
+                request.body
+            )
+            response.send(stock)
+        } catch (error: any) {
+            response.status(404).send({
+                "error": error.message 
+            })
+        }
+    }
+
+    exchangeMoney = async (request: any, response: any) => {
+        try {
+            const portfolio = await this.entityService.exchange(
+                request.body
+            )
+            response.send(portfolio)
+        } catch (error: any) {
+            response.status(404).send({
+                "error": error.message 
             })
         }
     }
@@ -58,18 +84,6 @@ class PortfolioController {
         }
     }
 
-    create = async (request: any, response: any) => {
-        try {
-            const stock = await this.entityService.create(
-                request.body
-            )
-            response.send(stock)
-        } catch (error: any) {
-            response.status(404).send({
-                "error": error.message 
-            })
-        }
-    }
 
     delete = async (request: any, response: any) => {
         try {

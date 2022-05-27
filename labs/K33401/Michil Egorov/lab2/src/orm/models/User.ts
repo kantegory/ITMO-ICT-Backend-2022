@@ -7,15 +7,15 @@ export class User {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
+    @Column({ unique: true })
     email: string;
 
     @Column()
     password: string;
 
-    @OneToMany(() => Portfolio, (portfolio) => portfolio.user)
+    @OneToMany(() => Portfolio, (portfolio) => portfolio.user, {onDelete: "CASCADE"})
     portfolios: Portfolio[];
 
-    @OneToOne(() => AuthToken, (token) => token.user)
+    @OneToOne(() => AuthToken, (token) => token.user, {onDelete: "CASCADE"})
     authToken: AuthToken
 }

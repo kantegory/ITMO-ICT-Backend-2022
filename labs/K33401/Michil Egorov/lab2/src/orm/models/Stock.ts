@@ -14,15 +14,15 @@ export class Stock {
     @Column()
     description: string;
 
-    @Column()
-    created_at: number
+    @Column({type: 'timestamp'})
+    created_at: Date;
 
     @Column()
     lastPrice: number;
 
-    @OneToMany(() => StockHistory, (stockHistory) => stockHistory.stock)
+    @OneToMany(() => StockHistory, (stockHistory) => stockHistory.stock, {onDelete: "CASCADE"})
     history: StockHistory[];
 
-    @OneToMany(() => PortfolioStock, (ps) => ps.stock)
+    @OneToMany(() => PortfolioStock, (ps) => ps.stock, {onDelete: "CASCADE"})
     portfolios: PortfolioStock[];
 }

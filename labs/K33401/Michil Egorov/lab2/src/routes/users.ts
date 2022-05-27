@@ -18,6 +18,6 @@ router.route("/:id")
     .delete(controller.delete)
 
 router.route("/:id")
-    .post(controller.update)
+    .patch(controller.update)
 
 export default router

@@ -4,6 +4,15 @@ import {getConnection, MoreThan} from "typeorm";
 
 
 class StockService {
+    private async addHistory(stock) : Promise<StockHistory> {
+        const historyRepo = getConnection().getRepository(StockHistory);
+        return await historyRepo.save({
+            stock: stock,
+            price: stock.lastPrice,
+            timestamp: new Date()
+        })
+    }
+
     public async getById(id: number): Promise<Stock> {
         return await getConnection().getRepository(Stock).findOne({ where: { id: id } }).then((stock) => {
             if (!stock) {
@@ -14,30 +23,21 @@ class StockService {
         });
     }
 
-    public async getStockHistory(id: number) : Promise<StockHistory[]> {
-        return await getConnection().getRepository(StockHistory).find({where: {id: id}}).then((stocks) => {
-            stocks.sort((a, b) => a.price - b.price);
+    public async getStockHistory(stock_id: number) : Promise<StockHistory[]> {
+        return await getConnection().getRepository(StockHistory).find({where: {stock_id: stock_id}}).then((stocks) => {
             return stocks;
         });
     }
 
     public async updatePrice(stockData: {id: number, newPrice: number}) {
-        const historyRepo = getConnection().getRepository(StockHistory);
-
-        const stock = await this.getById(stockData.id);
-        
-        await historyRepo.save({
-            stock: stock,
-            price: stock.lastPrice,
-            timestamp: +new Date()
-        })
-
+        const stock = await this.getById(stockData.id);        
         stock.lastPrice = stockData.newPrice;
 
+        this.addHistory(stock);
         return await getConnection().getRepository(Stock).save(stock);
     }
 
-    public async create(stockData: {name: string, description: string}): Promise<Stock> {
+    public async create(stockData: {name: string, description: string, lastPrice: number}): Promise<Stock> {
         const entityRepo = getConnection().getRepository(Stock);
 
         await entityRepo.findOne({ where: { name: stockData.name } }).then((stock) => {
@@ -45,8 +45,12 @@ class StockService {
                 throw new Error('Stock with such name already exists');
             }
         });
-
-        return entityRepo.save(stockData);
+        
+        const created_at = new Date();
+        const stock = await entityRepo.save({...stockData, created_at: created_at});
+        this.addHistory(stock);
+        
+        return stock;
     }
 
     public async delete(id: number): Promise<void> {
@@ -54,7 +58,7 @@ class StockService {
         await getConnection().getRepository(Stock).remove(entity);
     }
 
-    public async list(at_least: number): Promise<Stock[]> {
+    public async list(at_least: Date): Promise<Stock[]> {
         return await getConnection().getRepository(Stock).find({
             where: { created_at: MoreThan(at_least)}
         });

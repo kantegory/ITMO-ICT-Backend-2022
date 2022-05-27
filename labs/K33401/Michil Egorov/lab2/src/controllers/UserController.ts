@@ -24,7 +24,7 @@ class UserController {
     list = async (request: any, response: any) => {
         try {
             const users = await this.userService.list()
-            response.send(users)
+            response.send({users: users})
         } catch (error: any) {
             response.status(404).send({
                 "error": error.message
@@ -45,10 +45,7 @@ class UserController {
 
     delete = async (request: any, response: any) => {
         try {
-            const user = await this.userService.delete({
-                id: +request.params.id,
-                ...request.body,
-            })
+            const token = await this.userService.delete(+request.params.id)
             response.send({status: 'ok'});
         } catch (error: any) {
             response.status(404).send({

@@ -1,4 +1,4 @@
-import {Column, Entity, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
+import {Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
 import {Portfolio} from "./Portfolio";
 import {Stock} from "./Stock";
 
@@ -7,18 +7,26 @@ export class PortfolioStock {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @ManyToOne(() => Portfolio, (portfolio) => portfolio.stocks)
+    @Column({ type: 'int' })
+    portfolio_id: number
+
+    @ManyToOne(() => Portfolio, (portfolio) => portfolio.stocks, {onDelete: "CASCADE"})
+    @JoinColumn({name: 'portfolio_id'})
     portfolio: Portfolio;
 
-    @ManyToOne(() => Stock, (stock) => stock.portfolios)
+    @Column({ type: 'int' })
+    stock_id: number
+
+    @ManyToOne(() => Stock, (stock) => stock.portfolios, {onDelete: "CASCADE"})
+    @JoinColumn({name: 'stock_id'})
     stock: Stock;
 
-    @Column()
-    timestamp: number;
+    @Column({type: 'timestamp'})
+    timestamp: Date;
 
     @Column()
     price: number;
 
-    @Column()
-    isSold: boolean;
+    @Column({default: 0})
+    amount: number;
 }

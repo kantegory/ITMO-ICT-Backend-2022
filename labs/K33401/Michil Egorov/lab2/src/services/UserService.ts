@@ -44,12 +44,17 @@ class UserService {
         return await getConnection().getRepository(User).find();
     }
 
-    public async update(userData: {email: string, password: string}): Promise<User> {
-        const user = await this.getByEmail(userData.email);
-        return await getConnection().getRepository(User).save({
-            id: user.id,
-            ...userData
-        });
+    public async update(userData: {id: number, email: string, password: string}): Promise<User> {
+        const user = await this.getById(userData.id);
+        try {
+            await this.getByEmail(userData.email);
+            throw new Error('email is already taken')
+        } catch {
+            return await getConnection().getRepository(User).save({
+                id: user.id,
+                ...userData
+            });
+        }
     }
 }
 

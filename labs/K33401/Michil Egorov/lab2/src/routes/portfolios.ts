@@ -11,13 +11,19 @@ router.route("/:id")
 router.route("/")
   .get(controller.list)
 
+router.route("/")
+  .post(controller.create)
+
+router.route("/exchange")
+  .post(controller.exchangeMoney)
+
 router.route("/buy")
   .post(controller.buy)
 
 router.route("/sell")
   .post(controller.sell)
 
-router.route("/")
+router.route("/:id")
   .delete(controller.delete)
 
 router.route("/:id")
