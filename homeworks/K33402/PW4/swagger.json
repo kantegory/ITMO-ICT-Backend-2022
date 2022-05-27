@@ -1,0 +1,309 @@
+{
+    "swagger": "2.0.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "REST API",
+        "description": ""
+    },
+    "host": "localhost:8000",
+    "basePath": "/api/v1",
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "tags": [
+        {
+            "name": "auth",
+            "description": "Операция в auth"
+        },
+        {
+            "name": "users",
+            "description": "Получить информацию пользователе"
+        }
+    ],
+    "paths": {
+        "/api/v1/auth/register": {
+            "post": {
+                "tags": [
+                    "auth"
+                  ],
+                "description": "POST-эндпоинт для регистрации пользователя",
+                "parameters": [
+                    {
+                        "name": "obj",
+                        "in": "body",
+                        "description": "Данные пользователя",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UserModel"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Пользователь успешно зарегистрирован",
+                        "schema": {
+                            "$ref": "#/definitions/CreatedUserModel"
+                        }
+                    },
+                    "400": {
+                        "description": "Неверный параметр",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorRegister"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/login": {
+            "post": {
+                "tags": [
+                    "auth"
+                  ],
+                "description": "POST-эндпоинт для авторизоваться пользователя",
+                "parameters": [
+                    {
+                        "name": "obj",
+                        "in": "body",
+                        "description": "Данные пользователя",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UserModel"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Успешный вход",
+                        "schema": {
+                            "$ref": "#/definitions/Get-accessToken"
+                        }
+                    },
+                    "400": {
+                        "description": "Неверный параметр",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorLogin"
+                        }
+                    }
+                }
+            }
+        },
+        "api/v1/users/me" : {
+            "get" : {
+                "tags": [
+                    "users"
+                  ],
+                "description": "GET-получить личную информацию пользователя",
+                "parameters": [
+                    {
+                        "name": "obj",
+                        "in": "body",
+                        "description": "Данные пользователя",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Get-accessToken"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Успешный поиск ",
+                        "schema": {
+                            "$ref": "#/definitions/CreatedUserModel"
+                        }
+                    }
+                }
+            }
+        },
+        "api/v1/users/book/mybooking" : {
+            "get" : {
+                "tags": [
+                    "users"
+                  ],
+                "description": "GET-получить личную информацию пользователя",
+                "parameters": [
+                    {
+                        "name": "obj",
+                        "in": "body",
+                        "description": "Данные пользователя",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Get-accessToken"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Успешный поиск ",
+                        "schema": {
+                            "$ref": "#/definitions/CreatedUserModel"
+                        }
+                    },
+                    "404": {
+                        "description": "История бронирований не найдена",
+                        "schema": {
+                            "$ref": "#/definitions/Errorfoundbooking"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "ErrorRegister": 
+        {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "string",
+                    "default": "User with specified email already exists"
+                }
+            }
+        },
+        "ErrorLogin": 
+        {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "string",
+                    "default": "Wrong email or password"
+                }
+            }
+        },
+        "Errorfoundbooking": 
+        {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "string",
+                    "default": "Booking history not found"
+                }
+            }
+        },
+        "UserModel": {
+            "type": "object",
+            "properties": {
+                "id" : {
+                    "type" : "number",
+                    "example": "1"
+                },
+                "firstname": {
+                    "type": "string",
+                    "example": "tuan"
+                },
+                "lasttname": {
+                    "type": "string",
+                    "example": "tuan"
+                },
+                "email": {
+                    "type": "string",
+                    "example": "test@gmail.com"
+                },
+                "password": {
+                    "type": "string",
+                    "example": "12345"
+                }
+            },
+            "required": [
+                "id",
+                "firstname",
+                "lastname",
+                "email",
+                "password"
+            ]
+        },
+        "CreatedUserModel": 
+        {
+            "type": "object",
+            "properties": {
+                "id" : {
+                    "type" : "number",
+                    "example": "1"
+                },
+                "firstname": {
+                    "type": "string",
+                    "example": "tuan"
+                },
+                "lasttname": {
+                    "type": "string",
+                    "example": "tuan"
+                },
+                "email": {
+                    "type": "string",
+                    "example": "test@gmail.com"
+                },
+                "password": {
+                    "type": "string",
+                    "example": "12345"
+                },
+                "updateAt" : {
+                    "type": "string",
+                    "example": "2022-04-27T16:50:45.417Z"
+                },
+                "createAt" : {
+                    "type": "string",
+                    "example": "2022-04-27T16:50:45.417Z"
+                }
+            }
+        },
+        "Get-accessToken": 
+        {
+            "type": "object",
+            "properties": {
+                "accessToken" : {
+                    "type" : "string",
+                    "example": "jyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNjUxMDgzOTMwfQ.ADr_tSgYA8kJTyYycaSkEYTqo3u1oCP8pp6hBh0up-k"
+                }
+            }
+        },
+        "Infor-login": 
+        {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "example": "test@gmail.com"
+                },
+                "password": {
+                    "type": "string",
+                    "example": "12345"
+                }
+            }
+        },
+        "Infor-booking": 
+        {
+            "type": "object",
+            "properties": {
+                "id" : {
+                    "type" : "number",
+                    "example": "1"
+                },
+                "User_id": {
+                    "type": "number",
+                    "example": "1"
+                },
+                "Hotel_id": {
+                    "type": "number",
+                    "example": "2"
+                },
+                "Check_in": {
+                    "type": "date",
+                    "example": "2022-04-20"
+                },
+                "Check_out": {
+                    "type": "date",
+                    "example": "2022-04-21"
+                },
+                "Price" : {
+                    "type": "number",
+                    "example" : "999"
+                }
+            }
+        }
+    }
+}
