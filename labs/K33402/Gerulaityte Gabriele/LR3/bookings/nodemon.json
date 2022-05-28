@@ -1,0 +1,6 @@
+{
+  "watch": ["src/**", "tsconfig.json"],
+  "verbose": false,
+  "ext": "ts",
+  "exec": "npm run build && node dist/index.js"
+}
