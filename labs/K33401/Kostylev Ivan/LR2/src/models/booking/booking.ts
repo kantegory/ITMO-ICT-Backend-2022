@@ -1,5 +1,7 @@
 import { DataTypes, Model, Optional } from 'sequelize';
 import { sequelize } from '..';
+import User from '../user/user';
+import Room from '../room/room';
 
 interface BookingAttributes {
   userId: number;
@@ -32,5 +34,21 @@ const Booking = sequelize.define<BookingInstance>(
     }
   }
 );
+
+Booking.hasOne(User, {
+  foreignKey: 'userId',
+  onDelete: 'RESTRICT',
+  onUpdate: 'RESTRICT'
+})
+
+User.belongsTo(Booking)
+
+Booking.hasOne(Room, {
+  foreignKey: 'roomId',
+  onDelete: 'RESTRICT',
+  onUpdate: 'RESTRICT'
+})
+
+Room.belongsTo(Booking)
 
 export default Booking

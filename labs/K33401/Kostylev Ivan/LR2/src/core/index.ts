@@ -1,6 +1,6 @@
 import express from 'express'
 import { createServer, Server } from "http"
-import routes from "../routes/v1/index"
+import routes from "../routes/v1/users/index"
 import bodyParser from "body-parser"
 
 class App {

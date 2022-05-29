@@ -1,4 +1,4 @@
-import UserService from "../../services/index";
+import UserService from "../../services/user";
 
 class UserController {
 
@@ -20,7 +20,16 @@ class UserController {
         } catch (error: any) {
             response.status(400).send({ "error_msg": error.message })
         }
+    }
 
+    updateUser = async (request: any, response: any) => {
+        const { newUserInfo } = request
+        try {
+            const user = await this.userService.updateUserInfo(newUserInfo)
+            response.status(200).send(user.toJSON());
+        } catch (error: any) {
+            response.status(404).send({ "error_msg": error.message })
+        }
     }
 
     getAll = async (request: any, response: any) => {
@@ -35,9 +44,9 @@ class UserController {
     getById = async (request: any, response: any) => {
         try {
             const user = await this.userService.getById(Number(request.params.id))
-            response.send(user)
+            response.status(200).send(user)
         } catch (error: any) {
-            response.status(200).status(404).send({ "error": error.message })
+            response.status(404).send({ "error": error.message })
         }
     }
 

@@ -1,5 +1,6 @@
 import { DataTypes, Model, Optional } from 'sequelize';
 import { sequelize } from '..';
+import Hotel from '../hotel/hotel'
 
 enum RoomType {
     ECONOMY = "economy",
@@ -43,5 +44,13 @@ const Room = sequelize.define<RoomInstance>(
         }
     }
 );
+
+Room.hasMany(Hotel, {
+    foreignKey: 'hotelId',
+    onDelete: 'RESTRICT',
+    onUpdate: 'RESTRICT'
+})
+
+Hotel.belongsTo(Room)
 
 export default Room

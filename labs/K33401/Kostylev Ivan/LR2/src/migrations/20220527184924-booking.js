@@ -13,7 +13,6 @@ module.exports = {
         references: {
           model: {
             tableName: 'Users',
-            schema: 'User'
           },
           key: 'id'
         },
@@ -24,7 +23,6 @@ module.exports = {
         references: {
           model: {
             tableName: 'Rooms',
-            schema: 'Room'
           },
           key: 'id'
         },

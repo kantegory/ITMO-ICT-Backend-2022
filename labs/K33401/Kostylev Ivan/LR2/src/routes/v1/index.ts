@@ -1,22 +1,12 @@
-import express from "express";
-import UserController from "../../controllers/users/index";
+import express from "express"
+import userRoutes from "./users/index"
+import roomRoutes from "./rooms/index"
+import hotelRoutes from "./hotels/index"
 
 const router: express.Router = express.Router()
 
-const controller = new UserController()
-
-router.route('/').get(controller.getHello)
-
-router.route('/users/new/')
-    .post(controller.createUser)
-
-router.route('/users')
-    .get(controller.getAll)
-
-router.route('/users/:id')
-    .get(controller.getById)
-
-router.route('/users/age/:age')
-    .get(controller.getByAge)
+router.use('/users', userRoutes)
+router.use('/rooms', roomRoutes)
+router.use('/hotel', hotelRoutes)
 
 export default router
