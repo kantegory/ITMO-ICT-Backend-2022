@@ -1,5 +1,5 @@
-import RoomService from '../../services/room';
-import { RoomOperationError } from '../../errors/index'
+import RoomService from '../services/room';
+import { RoomOperationError } from '../errors/index'
 
 class RoomController {
 

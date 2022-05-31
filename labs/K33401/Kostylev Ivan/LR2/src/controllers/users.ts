@@ -1,4 +1,6 @@
-import UserService from "../../services/user";
+import UserService from "../services/user";
+import jwt from "jsonwebtoken";
+import { jwtOptions } from "../middleware/password";
 
 class UserController {
 
@@ -20,6 +22,10 @@ class UserController {
         } catch (error: any) {
             response.status(400).send({ "error_msg": error.message })
         }
+    }
+
+    getAboutUser = async (request: any, response: any) => {
+        response.send(request.user)
     }
 
     updateUser = async (request: any, response: any) => {
@@ -47,6 +53,24 @@ class UserController {
             response.status(200).send(user)
         } catch (error: any) {
             response.status(404).send({ "error": error.message })
+        }
+    }
+
+    login = async (request: any, response: any) => {
+        const { username, password } = request.body
+        if (username && password) {
+            const service = new UserService()
+            let user = await service.getByUsername(username)
+            if (!user) {
+                response.status(404).json({ msg: 'no_such_user_found', user })
+            }
+            if (user.password === password) {
+                let payload = { id: user.id }
+                let token = jwt.sign(payload, jwtOptions.secretOrKey)
+                response.json({ msg: 'ok', token: token })
+            } else {
+                response.status(401).json({ msg: 'Password is incorrect' })
+            }
         }
     }
 

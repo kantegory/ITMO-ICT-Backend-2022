@@ -1,17 +1,17 @@
 import express from "express";
-import RoomController from "../../../controllers/rooms/index";
+import RoomController from "../../../controllers";
 
 const router: express.Router = express.Router()
 
 const controller = new RoomController()
 
-router.route('/new/')
+router.route('/new')
     .post(controller.createRoom)
 
-router.route('/')
+router.route('/all')
     .get(controller.getAll)
 
-router.route('/:id')
+router.route('/id/:id')
     .get(controller.getById)
 
 router.route('/town/:town')

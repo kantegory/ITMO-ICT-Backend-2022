@@ -1,5 +1,5 @@
-import HotelService from '../../services/hotel';
-import {HotelOperationError} from '../../errors/index'
+import HotelService from '../services/hotel';
+import {HotelOperationError} from '../errors/index'
 
 class HotelController {
 
@@ -10,7 +10,7 @@ class HotelController {
     }
 
     createHotel = async (request: any, response: any) => {
-        const { body } = request.body
+        const { body } = request
         try {
             const hotel = await this.service.create(body)
             response.status(201).send(hotel)

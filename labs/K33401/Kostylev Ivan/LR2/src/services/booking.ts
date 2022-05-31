@@ -1,4 +1,5 @@
-import Booking from '../models/booking/booking'
+import Booking from '../models/booking'
+import User from '../models/user'
 import { BookingError } from '../errors/index'
 
 class BookingService {
@@ -14,7 +15,7 @@ class BookingService {
     }
 
     async getByUserId(id: number) {
-        const bookings = await Booking.findAll({where : {userId: id}})
+        const bookings = await Booking.findAll({ include: User, where : {userId: id}})
         if (bookings[0]) return bookings
 
         throw new BookingError('user_not_found')

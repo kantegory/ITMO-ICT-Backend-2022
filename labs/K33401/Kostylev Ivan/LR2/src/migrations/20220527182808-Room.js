@@ -8,9 +8,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      number: {
-        type: Sequelize.INTEGER,
-      },
       hotelId: {
         type: Sequelize.INTEGER,
         references: {
@@ -33,6 +30,14 @@ module.exports = {
       price: {
         type: Sequelize.DOUBLE,
       },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      }
     });
   },
   async down(queryInterface, Sequelize) {

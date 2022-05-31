@@ -1,5 +1,5 @@
-import Hotel from '../models/hotel/hotel'
-import Room from '../models/room/room'
+import Hotel from '../models/hotel'
+import Room from '../models/room'
 import { HotelOperationError } from '../errors/index'
 
 class HotelService {
@@ -60,7 +60,6 @@ class HotelService {
         const hotel = await Hotel.findByPk(id)
 
         if (hotel != undefined) {
-            await Room.destroy({ where: { hotelId: id } })
             return await hotel.destroy()
         }
 

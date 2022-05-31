@@ -1,25 +1,33 @@
 import express from "express";
-import UserController from "../../../controllers/users/index";
+import UserController from "../../../controllers/users";
+import BookingController from "../../../controllers/bookings"
+import passport from "../../../middleware/password";
 
 const router: express.Router = express.Router()
 
 const controller = new UserController()
+const bookingController = new BookingController()
 
-router.route('/').get(controller.getHello)
 
-router.route('/new/')
+router.route('/login')
+    .post(controller.login)
+
+router.route('/new')
     .post(controller.createUser)
 
-router.route('/')
+router.route('/all')
     .get(controller.getAll)
 
-router.route('/:id')
-    .get(controller.getById)
+router.route('/profile')
+    .get(passport.authenticate('jwt', { session: false }), controller.getAboutUser)
 
-router.route('users/:id')
-    .put(controller.updateUser)
+router.route('/id/:id')
+    .get(passport.authenticate('jwt', { session: false }), controller.getById)
 
-router.route('/age/:age')
-    .get(controller.getByAge)
+router.route('/bookings/:id')
+    .get(passport.authenticate('jwt', { session: false }), bookingController.getByUserId)
+
+router.route('/update/:id')
+    .put(passport.authenticate('jwt', { session: false }), controller.updateUser)
 
 export default router

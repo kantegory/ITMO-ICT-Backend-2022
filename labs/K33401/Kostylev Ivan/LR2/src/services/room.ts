@@ -1,5 +1,5 @@
-import Room from '../models/room/room'
-import Hotel from '../models/hotel/hotel'
+import Room from '../models/room'
+import Hotel from '../models/hotel'
 import { Op } from 'sequelize'
 import { RoomOperationError } from '../errors/index'
 
@@ -37,7 +37,8 @@ class RoomService {
     }
 
     async getByTown(town: string) {
-        return (await Room.findAll({ include : Hotel }))
+        const hotels = await Hotel.findAll({ include : Room, where : {town:town}})
+        if (hotels[0]) return hotels
     
         throw new RoomOperationError('no_rooms_with_such_town')
     }

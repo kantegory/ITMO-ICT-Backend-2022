@@ -1,6 +1,6 @@
 import { UserOperationError } from "../errors/index";
-import User from "../models/user/user"
-import UserInstance from "../models/user/user"
+import User from "../models/user"
+import UserInstance from "../models/user"
 
 class UserService {
 
@@ -37,6 +37,24 @@ class UserService {
         })
         if (user) return user
         throw new UserOperationError('user_not_found')
+    }
+
+    async getByEmail(email: string) {
+        const user = await User.findOne({where: {email: email}})
+        if (user) return user
+        throw new UserOperationError('user_not_found')
+    }
+
+    async getByUsername(username: string) {
+        const user = await User.findOne({where: {username: username}})
+        if (user) return user
+        throw new UserOperationError('user_not_found')
+    }
+
+    async checkPassword(username: string, password: string) {
+        const user = await User.findOne({where: {username: username}})
+        if (user != undefined) return { user: user, checkPassword: user.password == password }
+        return {user: user, checkPassword: false}
     }
 
     async updateUserInfo(newUserInfo: any) {

@@ -1,6 +1,6 @@
 import { DataTypes, Model, Optional } from 'sequelize';
-import { sequelize } from '..';
-import Hotel from '../hotel/hotel'
+import { sequelize } from '.';
+import Hotel from './hotel'
 
 enum RoomType {
     ECONOMY = "economy",
@@ -9,29 +9,25 @@ enum RoomType {
 }
 
 interface RoomAttributes {
-    number: number;
-    hotelId: number;
     roomNumber: string;
+    hotelId: number;
     capacity: number;
     class: RoomType;
     price: number
 }
 interface RoomCreationAttributes
-    extends Optional<RoomAttributes, 'number'> { }
+    extends Optional<RoomAttributes, 'roomNumber'> { }
 
 interface RoomInstance extends Model<RoomAttributes, RoomCreationAttributes>, RoomAttributes {}
 
 const Room = sequelize.define<RoomInstance>(
     'Rooms',
     {
-        number: {
-            type: DataTypes.INTEGER,
+        roomNumber: {
+            type: DataTypes.STRING,
         },
         hotelId: {
             type: DataTypes.INTEGER,
-        },
-        roomNumber: {
-            type: DataTypes.STRING,
         },
         capacity: {
             type: DataTypes.INTEGER,
@@ -45,12 +41,12 @@ const Room = sequelize.define<RoomInstance>(
     }
 );
 
-Room.hasMany(Hotel, {
+Hotel.hasMany(Room, {
     foreignKey: 'hotelId',
     onDelete: 'RESTRICT',
     onUpdate: 'RESTRICT'
 })
 
-Hotel.belongsTo(Room)
+Room.belongsTo(Hotel)
 
 export default Room
