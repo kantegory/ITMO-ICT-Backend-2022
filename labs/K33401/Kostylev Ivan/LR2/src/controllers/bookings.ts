@@ -17,7 +17,15 @@ class BookingController {
         } catch (error: any) {
             response.status(400).send({ "error_msg": error.message })
         }
+    }
 
+    getAll = async (request: any, response: any) => {
+        try {
+            const bookings = await this.service.getAll()
+            response.status(200).send(bookings)
+        } catch (error: any) {
+            response.status(400).send({ "error_msg": error.message })
+        }
     }
 
     getByUserId = async (request: any, response: any) => {

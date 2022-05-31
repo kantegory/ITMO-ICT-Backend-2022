@@ -8,6 +8,9 @@ const controller = new BookingController()
 router.route('/new')
     .post(controller.createBooking)
 
+router.route('/all')
+    .get(controller.getAll)
+
 router.route('/:id')
     .delete(controller.deleteBookingById)
 
