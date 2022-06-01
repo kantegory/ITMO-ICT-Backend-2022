@@ -1,0 +1,561 @@
+{
+    "swagger": "2.0.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "REST API",
+        "description": "Online cinema API"
+    },
+    "host": "localhost:8333",
+    "basePath": "/v1",
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/users": {
+            "post": {
+                "description": "POST-эндпоинт добавления пользователя в систему",
+                "parameters": [
+                    {
+                        "name": "obj",
+                        "in": "body",
+                        "description": "Данные пользователя",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UserModel"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Пользователь успешно зарегистрирован",
+                        "schema": {
+                            "$ref": "#/definitions/UserModel"
+                        }
+                    },
+                    "400": {
+                        "description": "Некорректный синтаксис запроса",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                }
+            },
+            "get": {
+                "description": "GET-эндпоинт просмотра зарегистрированных пользователей",
+                "responses": {
+                    "200": {
+                        "description": "Список пользователей",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/UserModel"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/id/:id": {
+            "get": {
+                "description": "GET-эндпоинт для нахождения пользователя по id",
+                "responses": {
+                    "200": {
+                        "description": "Пользователь",
+                        "schema": {
+                            "$ref": "#/definitions/UserModel"
+                        }
+                    },
+                    "404": {
+                        "description": "Пользователь не найден",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID пользователя",
+                        "required": true,
+                        "type": "number"
+                    }
+                ]
+            }
+        },
+        "/users/:id": {
+            "put": {
+                "description": "PUT-эндпоинт для изменения данных пользователя по id",
+                "responses": {
+                    "201": {
+                        "description": "Данные изменены",
+                        "schema": {
+                            "$ref": "#/definitions/UserModel"
+                        }
+                    },
+                    "404": {
+                        "description": "Пользователь не найден",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "DELETE-эндпоинт для удаления пользователя по id",
+                "responses": {
+                    "200": {
+                        "description": "Данные изменены",
+                        "schema": {
+                            "$ref": "#/definitions/UserModel"
+                        }
+                    },
+                    "404": {
+                        "description": "Пользователь не найден",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                }
+            },
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "ID пользователя",
+                    "required": true,
+                    "type": "number"
+                }
+            ]
+        },
+        "/users/email/:email": {
+            "get": {
+                "description": "GET-эндпоинт для нахождения пользователя по email",
+                "responses": {
+                    "200": {
+                        "description": "Пользователь",
+                        "schema": {
+                            "$ref": "#/definitions/UserModel"
+                        }
+                    },
+                    "404": {
+                        "description": "Пользователь не найден",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "path",
+                        "description": "email пользователя",
+                        "required": true,
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        "/users/auth": {
+            "post": {
+                "description": "POST-эндпоинт для регистрации и авторизации пользователя по токену",
+                "responses": {
+                    "201": {
+                        "description": "Пользователь создан",
+                        "schema": {
+                            "$ref": "#/definitions/UserModel"
+                        }
+                    },
+                    "400": {
+                        "description": "Некорректный синтаксис запроса",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "obj",
+                        "in": "body",
+                        "description": "Данные пользователя",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UserModel"
+                        }
+                    }
+                ]
+            }
+        },
+        "/users/log": {
+            "post": {
+                "description": "POST-эндпоинт для авторизации пользователя по токену",
+                "responses": {
+                    "200": {
+                        "description": "Пользователь вошел в профиль",
+                        "schema": {
+                            "$ref": "#/definitions/UserModel"
+                        }
+                    },
+                    "400": {
+                        "description": "Некорректный синтаксис запроса",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "obj",
+                        "in": "body",
+                        "description": "Данные пользователя",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UserModel"
+                        }
+                    }
+                ]
+            }
+        },
+        "/users/logout": {
+            "get": {
+                "description": "GET-эндпоинт выхода пользователя из аккаунта",
+                "responses": {
+                    "200": {
+                        "description": "Сообщение о том, что пользователь вышел из аккаунта",
+                        "schema": {
+                            "type":"string"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/profile": {
+            "get": {
+                "description": "GET-эндпоинт для отображения данных текущего пользователя",
+                "responses": {
+                    "200": {
+                        "description": "Данные о пользователя",
+                        "schema": {
+                            "$ref": "#/definitions/UserModel"
+                        }
+                    },
+                    "404": {
+                        "description": "Никто не авторизован",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/films": {
+            "post": {
+                "description": "POST-эндпоинт добавления фильма в систему",
+                "parameters": [
+                    {
+                        "name": "obj",
+                        "in": "body",
+                        "description": "Данные фильма",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/FilmModel"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Фильм успешно добавлен",
+                        "schema": {
+                            "$ref": "#/definitions/FilmModel"
+                        }
+                    },
+                    "400": {
+                        "description": "Некорректный синтаксис запроса",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                }
+            },
+            "get": {
+                "description": "GET-эндпоинт просмотра добавленных фильмов",
+                "responses": {
+                    "200": {
+                        "description": "Список фильмов",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/FilmModel"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/films/id/:id":  {
+            "get": {
+                "description": "GET-эндпоинт для нахождения фильма по id",
+                "responses": {
+                    "200": {
+                        "description": "Фильм",
+                        "schema": {
+                            "$ref": "#/definitions/FilmModel"
+                        }
+                    },
+                    "404": {
+                        "description": "Фильм не найден",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID фильма",
+                        "required": true,
+                        "type": "number"
+                    }
+                ]
+            }
+        },
+        "/films/country/:country":  {
+            "get": {
+                "description": "GET-эндпоинт для нахождения фильма по стране-производителю",
+                "responses": {
+                    "200": {
+                        "description": "Фильм",
+                        "schema": {
+                            "$ref": "#/definitions/FilmModel"
+                        }
+                    },
+                    "404": {
+                        "description": "Фильм не найден",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "country",
+                        "in": "path",
+                        "description": "Страна фильма",
+                        "required": true,
+                        "type": "number"
+                    }
+                ]
+            }
+        },
+        "/films/genre/:genre":  {
+            "get": {
+                "description": "GET-эндпоинт для нахождения фильма по жанру",
+                "responses": {
+                    "200": {
+                        "description": "Фильм",
+                        "schema": {
+                            "$ref": "#/definitions/FilmModel"
+                        }
+                    },
+                    "404": {
+                        "description": "Фильм не найден",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "genre",
+                        "in": "path",
+                        "description": "Жанр фильма",
+                        "required": true,
+                        "type": "number"
+                    }
+                ]
+            }
+        },
+        "/films/title/:title": {
+            "get": {
+                "description": "GET-эндпоинт для нахождения фильма по названию",
+                "responses": {
+                    "200": {
+                        "description": "Фильм",
+                        "schema": {
+                            "$ref": "#/definitions/FilmModel"
+                        }
+                    },
+                    "404": {
+                        "description": "Фильм не найден",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "title",
+                        "in": "path",
+                        "description": "Название фильма",
+                        "required": true,
+                        "type": "number"
+                    }
+                ]
+            }
+        },
+        "/films/:id": {
+            "put": {
+                "description": "PUT-эндпоинт для изменения данных фильма по id",
+                "responses": {
+                    "201": {
+                        "description": "Данные изменены",
+                        "schema": {
+                            "$ref": "#/definitions/FilmModel"
+                        }
+                    },
+                    "404": {
+                        "description": "Фильм не найден",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "DELETE-эндпоинт для удаления фильма по id",
+                "responses": {
+                    "200": {
+                        "description": "Данные изменены",
+                        "schema": {
+                            "$ref": "#/definitions/FilmModel"
+                        }
+                    },
+                    "404": {
+                        "description": "Фильм не найден",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                }
+            },
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "ID фильма",
+                    "required": true,
+                    "type": "number"
+                }
+            ]
+        }
+    },
+    "definitions": {
+        "UserModel": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "example": 1
+                },
+                "firstName": {
+                    "type": "string",
+                    "example": "John"
+                },
+                "lastName": {
+                    "type": "string",
+                    "example": "Doe"
+                },
+                "email": {
+                    "type": "string",
+                    "example": "example@example.com"
+                },
+                "password": {
+                    "type": "string",
+                    "example": "gh123Ti"
+                },
+                "age": {
+                    "type": "number",
+                    "example": 18
+                },
+                "country": {
+                    "type": "string",
+                    "example": "USA"
+                }
+            },
+            "required": [
+                "id",
+                "firstName",
+                "lastName",
+                "email",
+                "password",
+                "age",
+                "country"
+            ]
+        },
+        "ErrorModel": {
+            "type": "object",
+            "required": [
+                "message",
+                "code"
+            ],
+            "properties": {
+                "message": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "integer",
+                    "minimum": 100,
+                    "maximum": 600
+                }
+            }
+        },
+        "FilmModel":{
+            "type":"object",
+            "properties":{
+                "id": {
+                    "type": "number",
+                    "example": 1
+                },
+                "title": {
+                    "type": "string",
+                    "example": "John"
+                },
+                "country": {
+                    "type": "string",
+                    "example": "USA"
+                },
+                "duration": {
+                    "type": "number",
+                    "example": 100
+                },
+                "genre": {
+                    "type": "string",
+                    "example": "Comedy"
+                },
+                "age": {
+                    "type": "number",
+                    "example": 18
+                },
+                "description": {
+                    "type": "string",
+                    "example": "John was here."
+                }
+            },
+            "required": [
+                "id",
+                "title",
+                "country",
+                "duration",
+                "genre",
+                "age"
+            ]
+        }
+    }
+}

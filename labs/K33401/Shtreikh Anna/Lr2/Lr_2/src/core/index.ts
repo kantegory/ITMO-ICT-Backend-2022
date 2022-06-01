@@ -37,6 +37,11 @@ class App {
       app.use('/v1', routes)
       app.use('/v1', userRoutes)
       app.use('/v1', filmRoutes)
+
+      const swaggerUi = require('swagger-ui-express')
+      const swaggerDoc = require('../swagger.json')
+      app.use('/docs', swaggerUi.serve)
+      app.use('/docs', swaggerUi.setup(swaggerDoc))
       return app
     }
   

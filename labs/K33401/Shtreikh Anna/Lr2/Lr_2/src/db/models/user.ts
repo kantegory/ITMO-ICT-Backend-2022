@@ -32,7 +32,7 @@ const User = sequelize.define<UserInstance>(
             unique: true,
         },
         firstName: {
-            allowNull: true,
+            allowNull: false,
             type: DataTypes.TEXT,
         },
         lastName: {
@@ -40,7 +40,7 @@ const User = sequelize.define<UserInstance>(
             type: DataTypes.TEXT,
         },
         email: {
-            allowNull: true,
+            allowNull: false,
             type: DataTypes.TEXT,
         },
         password: {
@@ -49,11 +49,11 @@ const User = sequelize.define<UserInstance>(
         },
         age: {
             type: DataTypes.INTEGER,
-            allowNull: true,
+            allowNull: false,
         },
         country: {
             type: DataTypes.TEXT,
-            allowNull: true,
+            allowNull: false,
         }
     }
 );
