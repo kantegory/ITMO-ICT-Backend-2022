@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  other:
+    build: 
+      dockerfile: Dockerfile
+      context: ./other
+    ports:
+      - '8000:8000'
+  login:
+    build: 
+      dockerfile: Dockerfile
+      context: ./login
+    ports:
+      - '8080:8080'
