@@ -13,12 +13,23 @@ services:
     expose:
       - 5432
 
-  backend:
-    container_name: lr3_express
-    build: .
+  booking_backend:
+    container_name: lr3_booking_express
+    build: ./booking
     command: bash -c "npm run migration:run && npm run start"
     volumes:
-      - .:/app
+      - ./booking:/app
+    ports:
+      - "4001:4000"
+    depends_on:
+      - db
+
+  hotels_backend:
+    container_name: lr3_hotels_express
+    build: ./hotels
+    command: bash -c "npm run migration:run && npm run start"
+    volumes:
+      - ./hotels:/app
     ports:
       - "4000:4000"
     depends_on:
