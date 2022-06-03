@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\flight-service",
+    "\\flight-service\\controller",
+    "\\flight-service\\dist\\controller",
+    "\\flight-service\\dist\\middleware",
+    "\\flight-service\\middleware",
+    "\\flight-service\\models",
+    "\\flight-service\\routes",
+    "\\flight-service\\seeders",
+    "\\flight-service\\services"
+  ],
+  "SelectedNode": "\\flight-service\\services\\Flight.ts",
+  "PreviewInSolutionExplorer": false
+}
