@@ -1,20 +1,9 @@
 import express from "express"
-import PostController from "../controllers/PostController"
+const proxy = require('http-proxy-middleware')
+const apiProxy = proxy('/*', {target: 'http://my-axolotl:8081/'})
 
 const router = express.Router()
 
-const controller = new PostController()
-
-router.route("/:id")
-  .get(controller.get)
-
-router.route("/")
-  .get(controller.get)
-
-router.route("/")
-  .post(controller.post)
-
-router.route("/favorites")
-  .post(controller.addFavorite)
+router.use(apiProxy)
 
 export default router

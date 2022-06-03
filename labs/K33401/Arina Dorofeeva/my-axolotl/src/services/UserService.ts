@@ -2,7 +2,7 @@ import jsonwebtoken from "jsonwebtoken"
 import bcrypt from "bcrypt"
 import User from "../models/User"
 import type { UserShape } from "../models/User"
-import type { JwtResponse } from "../controllers/UserController"
+import type { JwtResponse } from "../models/shapes"
 
 class UserService {
   public get(id: number): Promise<User> {
