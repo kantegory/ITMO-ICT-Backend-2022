@@ -1,0 +1,11 @@
+server {
+    listen 80;
+
+    location /booking/ {
+        proxy_pass http://lr3_booking_1:8001/;
+    }
+
+    location / {
+        proxy_pass http://lr3_main_1:8000/;
+    }
+}
