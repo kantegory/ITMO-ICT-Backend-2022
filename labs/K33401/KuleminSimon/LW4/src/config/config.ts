@@ -1,0 +1,25 @@
+module.exports = {
+  "development": {
+    "username": null,
+    "password": null,
+    "database": "database_development",
+    "host": "172.17.0.0",
+    "port": "33060",
+    "dialect": "sqlite",
+    "storage": "db.sqlite"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "sqlite"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "sqlite"
+  }
+}

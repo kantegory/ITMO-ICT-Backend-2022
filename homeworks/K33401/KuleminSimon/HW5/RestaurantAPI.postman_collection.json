@@ -1,0 +1,1730 @@
+{
+	"info": {
+		"_postman_id": "8824c96d-d59c-4991-8ec6-87aafec6b6b5",
+		"name": "RestaurantAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Add",
+					"item": [
+						{
+							"name": "201 Успешное создание",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"sheesh\",\r\n    \"password\": \"simon123456\",\r\n    \"email\": \"simon@icloud.com\",\r\n    \"hometown\": \"Moscow\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/v1/users/add",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"v1",
+										"users",
+										"add"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "201 Успешное создание",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"username\": \"sheesh\",\r\n    \"password\": \"simon123456\",\r\n    \"email\": \"simon@icloud.com\",\r\n    \"hometown\": \"Moscow\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:9000/v1/users/add",
+											"host": [
+												"localhost"
+											],
+											"port": "9000",
+											"path": [
+												"v1",
+												"users",
+												"add"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "178"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"b2-3cydiB8U2oikZTGLAJDastyzluU\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 25 Apr 2022 20:39:28 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 3,\n    \"username\": \"sheesh\",\n    \"password\": \"simon123456\",\n    \"email\": \"simon@icloud.com\",\n    \"hometown\": \"Moscow\",\n    \"updatedAt\": \"2022-04-25T20:39:28.026Z\",\n    \"createdAt\": \"2022-04-25T20:39:28.026Z\"\n}"
+								}
+							]
+						},
+						{
+							"name": "400 Username is not unique",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"notsimon\",\r\n    \"password\": \"simon123456\",\r\n    \"hometown\": \"Moscow\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/v1/users/add",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"v1",
+										"users",
+										"add"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "400 Username is not unique",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"username\": \"notsimon\",\r\n    \"password\": \"simon123456\",\r\n    \"hometown\": \"Moscow\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:9000/v1/users/add",
+											"host": [
+												"localhost"
+											],
+											"port": "9000",
+											"path": [
+												"v1",
+												"users",
+												"add"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "35"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"23-dMOcSs8vZ/uesN0cuPdC8EaSTAE\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 25 Apr 2022 20:39:47 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"username must be unique\"\n}"
+								}
+							]
+						},
+						{
+							"name": "400 Wrong info",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"password\": \"simon123456\",\r\n    \"email\": \"simon@icloud.com\",\r\n    \"hometown\": \"Moscow\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/v1/users/add",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"v1",
+										"users",
+										"add"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "400 Wrong info",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"password\": \"simon123456\",\r\n    \"email\": \"simon@icloud.com\",\r\n    \"hometown\": \"Moscow\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:9000/v1/users/add",
+											"host": [
+												"localhost"
+											],
+											"port": "9000",
+											"path": [
+												"v1",
+												"users",
+												"add"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "12"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"c-JnZd1I71IoPUNf09NWwa0Sf5l6o\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 25 Apr 2022 20:40:51 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"item": [
+						{
+							"name": "200 Успешный вход",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"simon\",\r\n    \"password\": \"simon123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/v1/users/login",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"v1",
+										"users",
+										"login"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 Успешный вход",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"username\": \"simon\",\r\n    \"password\": \"simon123456\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:9000/v1/users/login",
+											"host": [
+												"localhost"
+											],
+											"port": "9000",
+											"path": [
+												"v1",
+												"users",
+												"login"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "149"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"95-PtGHjV1L95DG5x6nYIQIJQ7t8T4\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 25 Apr 2022 20:41:10 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNpbW9uIiwiaWF0IjoxNjUwOTE5MjcwfQ.J7PKPn6SEY5UAUtk5h9sSJmfMaBh1uaZcP5p7HfQYbc\"\n}"
+								}
+							]
+						},
+						{
+							"name": "400 Ошибка при входе",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"simonnn\",\r\n    \"password\": \"simon123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/v1/users/login",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"v1",
+										"users",
+										"login"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "400 Ошибка при входе",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"username\": \"simonnn\",\r\n    \"password\": \"simon123456\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:9000/v1/users/login",
+											"host": [
+												"localhost"
+											],
+											"port": "9000",
+											"path": [
+												"v1",
+												"users",
+												"login"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "40"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"28-cOlKLjTYWtljz186ymy+nmzvc6c\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 25 Apr 2022 20:41:28 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"Incorrect login or password!\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Me",
+					"item": [
+						{
+							"name": "200 Информация о пользователе",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNpbW9uIiwiaWF0IjoxNjUwOTE5MjcwfQ.J7PKPn6SEY5UAUtk5h9sSJmfMaBh1uaZcP5p7HfQYbc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:9000/v1/users/me",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"v1",
+										"users",
+										"me"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 Информация о пользователе",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:9000/v1/users/me",
+											"host": [
+												"localhost"
+											],
+											"port": "9000",
+											"path": [
+												"v1",
+												"users",
+												"me"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "177"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"b1-WkZtBn6m8lLk98/ijZYWEDOkFY0\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 25 Apr 2022 20:41:51 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 1,\n    \"username\": \"simon\",\n    \"password\": \"simon123456\",\n    \"email\": \"simon@icloud.com\",\n    \"hometown\": \"Moscow\",\n    \"createdAt\": \"2022-04-25T17:41:02.760Z\",\n    \"updatedAt\": \"2022-04-25T17:41:02.760Z\"\n}"
+								}
+							]
+						},
+						{
+							"name": "401 Неавторизованный пользователь",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:9000/v1/users/me",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"v1",
+										"users",
+										"me"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "401 Неавторизованный пользователь",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:9000/v1/users/me",
+											"host": [
+												"localhost"
+											],
+											"port": "9000",
+											"path": [
+												"v1",
+												"users",
+												"me"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 25 Apr 2022 20:42:01 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Content-Length",
+											"value": "12"
+										}
+									],
+									"cookie": [],
+									"body": "Unauthorized"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Id",
+					"item": [
+						{
+							"name": "200 Получен пользователь с введенным ID",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNpbW9uIiwiaWF0IjoxNjUwOTE5MjcwfQ.J7PKPn6SEY5UAUtk5h9sSJmfMaBh1uaZcP5p7HfQYbc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:9000/v1/users/id/2",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"v1",
+										"users",
+										"id",
+										"2"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 Получен пользователь с введенным ID",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:9000/v1/users/id/2",
+											"host": [
+												"localhost"
+											],
+											"port": "9000",
+											"path": [
+												"v1",
+												"users",
+												"id",
+												"2"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "180"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"b4-7TRKxEQUEW2TPwkIbknywDf+Rhw\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 25 Apr 2022 20:42:43 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 2,\n    \"username\": \"notsimon\",\n    \"password\": \"simon123456\",\n    \"email\": \"simon@icloud.com\",\n    \"hometown\": \"Moscow\",\n    \"createdAt\": \"2022-04-25T17:41:46.483Z\",\n    \"updatedAt\": \"2022-04-25T17:41:46.483Z\"\n}"
+								}
+							]
+						},
+						{
+							"name": "401 Неавторизованный пользователь",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:9000/v1/users/id/1",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"v1",
+										"users",
+										"id",
+										"1"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "401 Неавторизованный пользователь",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:9000/v1/users/id/1",
+											"host": [
+												"localhost"
+											],
+											"port": "9000",
+											"path": [
+												"v1",
+												"users",
+												"id",
+												"1"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 25 Apr 2022 20:42:49 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Content-Length",
+											"value": "12"
+										}
+									],
+									"cookie": [],
+									"body": "Unauthorized"
+								}
+							]
+						},
+						{
+							"name": "404 Пользователь не найден",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNpbW9uIiwiaWF0IjoxNjUwOTE5MjcwfQ.J7PKPn6SEY5UAUtk5h9sSJmfMaBh1uaZcP5p7HfQYbc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:9000/v1/users/id/5",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"v1",
+										"users",
+										"id",
+										"5"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "404 Пользователь не найден",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:9000/v1/users/id/5",
+											"host": [
+												"localhost"
+											],
+											"port": "9000",
+											"path": [
+												"v1",
+												"users",
+												"id",
+												"5"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "39"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"27-gtrjYcU8jkyjrRmQAdcLne+hTjQ\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 25 Apr 2022 20:43:04 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"User with this id not found\"\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Restaurants",
+			"item": [
+				{
+					"name": "Add",
+					"item": [
+						{
+							"name": "200 Создан ресторан",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNpbW9uIiwiaWF0IjoxNjUwOTE5MjcwfQ.J7PKPn6SEY5UAUtk5h9sSJmfMaBh1uaZcP5p7HfQYbc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Mansarda\",\r\n    \"address\": \"Red Square\",\r\n    \"cuisine\": \"European\",\r\n    \"average_bill\": \"300\",\r\n    \"rating\": \"5\",\r\n    \"info\": \"Some advert\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/v1/restaurants/add",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"v1",
+										"restaurants",
+										"add"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 Создан ресторан",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"Mansarda\",\r\n    \"address\": \"Red Square\",\r\n    \"cuisine\": \"European\",\r\n    \"average_bill\": \"300\",\r\n    \"rating\": \"5\",\r\n    \"info\": \"Some advert\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:9000/v1/restaurants/add",
+											"host": [
+												"localhost"
+											],
+											"port": "9000",
+											"path": [
+												"v1",
+												"restaurants",
+												"add"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "203"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"cb-XRXlVO0efRc1Ezn4FByLQAWDx8U\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 25 Apr 2022 20:46:45 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 2,\n    \"name\": \"Mansarda\",\n    \"address\": \"Red Square\",\n    \"cuisine\": \"European\",\n    \"average_bill\": \"300\",\n    \"rating\": \"5\",\n    \"info\": \"Some advert\",\n    \"updatedAt\": \"2022-04-25T20:46:45.126Z\",\n    \"createdAt\": \"2022-04-25T20:46:45.126Z\"\n}"
+								}
+							]
+						},
+						{
+							"name": "400 Wrong info",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNpbW9uIiwiaWF0IjoxNjUwOTE5MjcwfQ.J7PKPn6SEY5UAUtk5h9sSJmfMaBh1uaZcP5p7HfQYbc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"address\": \"Red Square\",\r\n    \"cuisine\": \"European\",\r\n    \"average_bill\": \"300\",\r\n    \"rating\": \"5\",\r\n    \"info\": \"Some advert\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/v1/restaurants/add",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"v1",
+										"restaurants",
+										"add"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "400 Wrong info",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"address\": \"Red Square\",\r\n    \"cuisine\": \"European\",\r\n    \"average_bill\": \"300\",\r\n    \"rating\": \"5\",\r\n    \"info\": \"Some advert\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:9000/v1/restaurants/add",
+											"host": [
+												"localhost"
+											],
+											"port": "9000",
+											"path": [
+												"v1",
+												"restaurants",
+												"add"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "12"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"c-JnZd1I71IoPUNf09NWwa0Sf5l6o\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 25 Apr 2022 20:47:01 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"\"\n}"
+								}
+							]
+						},
+						{
+							"name": "401 Неавторизованный пользователь",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Mak\",\r\n    \"address\": \"Red Square\",\r\n    \"cuisine\": \"European\",\r\n    \"average_bill\": \"300\",\r\n    \"rating\": \"5\",\r\n    \"info\": \"Some advert\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/v1/restaurants/add",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"v1",
+										"restaurants",
+										"add"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "401 Неавторизованный пользователь",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"Mak\",\r\n    \"address\": \"Red Square\",\r\n    \"cuisine\": \"European\",\r\n    \"average_bill\": \"300\",\r\n    \"rating\": \"5\",\r\n    \"info\": \"Some advert\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:9000/v1/restaurants/add",
+											"host": [
+												"localhost"
+											],
+											"port": "9000",
+											"path": [
+												"v1",
+												"restaurants",
+												"add"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 25 Apr 2022 20:47:51 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Content-Length",
+											"value": "12"
+										}
+									],
+									"cookie": [],
+									"body": "Unauthorized"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Restaurants",
+					"item": [
+						{
+							"name": "200 Получен список ресторанов",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNpbW9uIiwiaWF0IjoxNjUwOTE5MjcwfQ.J7PKPn6SEY5UAUtk5h9sSJmfMaBh1uaZcP5p7HfQYbc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:9000/v1/restaurants/restaurants",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"v1",
+										"restaurants",
+										"restaurants"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 Получен список ресторанов",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:9000/v1/restaurants/restaurants",
+											"host": [
+												"localhost"
+											],
+											"port": "9000",
+											"path": [
+												"v1",
+												"restaurants",
+												"restaurants"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "396"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"18c-P0oA8tFrheGRHeNanhMUoutCJRI\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 25 Apr 2022 20:48:43 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Mak\",\n        \"address\": \"Red Square\",\n        \"cuisine\": \"European\",\n        \"average_bill\": 300,\n        \"rating\": 5,\n        \"info\": \"Some advert\",\n        \"createdAt\": \"2022-04-25T19:50:53.059Z\",\n        \"updatedAt\": \"2022-04-25T19:50:53.059Z\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Mansarda\",\n        \"address\": \"Red Square\",\n        \"cuisine\": \"European\",\n        \"average_bill\": 300,\n        \"rating\": 5,\n        \"info\": \"Some advert\",\n        \"createdAt\": \"2022-04-25T20:46:45.126Z\",\n        \"updatedAt\": \"2022-04-25T20:46:45.126Z\"\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "401 Неавторизованный пользователь",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:9000/v1/restaurants/restaurants",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"v1",
+										"restaurants",
+										"restaurants"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "401 Неавторизованный пользователь",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:9000/v1/restaurants/restaurants",
+											"host": [
+												"localhost"
+											],
+											"port": "9000",
+											"path": [
+												"v1",
+												"restaurants",
+												"restaurants"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 25 Apr 2022 20:49:06 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Content-Length",
+											"value": "12"
+										}
+									],
+									"cookie": [],
+									"body": "Unauthorized"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Bookings",
+			"item": [
+				{
+					"name": "Add",
+					"item": [
+						{
+							"name": "200 Создана бронь",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNpbW9uIiwiaWF0IjoxNjUwOTE5MjcwfQ.J7PKPn6SEY5UAUtk5h9sSJmfMaBh1uaZcP5p7HfQYbc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"simon\",\r\n    \"restaurant_name\": \"Mansarda\",\r\n    \"time\": \"2022-04-25T17:19:46.749Z\",\r\n    \"amount_of_people\": \"10\",\r\n    \"info\": \"hi\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/v1/bookings/add",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"v1",
+										"bookings",
+										"add"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 Создана бронь",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"username\": \"simon\",\r\n    \"restaurant_name\": \"Mansarda\",\r\n    \"time\": \"2022-04-25T17:19:46.749Z\",\r\n    \"amount_of_people\": \"10\",\r\n    \"info\": \"hi\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:9000/v1/bookings/add",
+											"host": [
+												"localhost"
+											],
+											"port": "9000",
+											"path": [
+												"v1",
+												"bookings",
+												"add"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "204"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"cc-sWd1hpek1QUzQ0uShgsXbkzJkis\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 25 Apr 2022 20:50:32 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 2,\n    \"username\": \"simon\",\n    \"restaurant_name\": \"Mansarda\",\n    \"time\": \"2022-04-25T17:19:46.749Z\",\n    \"amount_of_people\": \"10\",\n    \"info\": \"hi\",\n    \"updatedAt\": \"2022-04-25T20:50:32.910Z\",\n    \"createdAt\": \"2022-04-25T20:50:32.910Z\"\n}"
+								}
+							]
+						},
+						{
+							"name": "401 Неавторизованный пользователь",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"simon\",\r\n    \"restaurant_name\": \"Mak\",\r\n    \"time\": \"2022-04-25T17:19:46.749Z\",\r\n    \"amount_of_people\": \"10\",\r\n    \"info\": \"hi\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/v1/bookings/add",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"v1",
+										"bookings",
+										"add"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "401 Неавторизованный пользователь",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"username\": \"simon\",\r\n    \"restaurant_name\": \"Mak\",\r\n    \"time\": \"2022-04-25T17:19:46.749Z\",\r\n    \"amount_of_people\": \"10\",\r\n    \"info\": \"hi\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:9000/v1/bookings/add",
+											"host": [
+												"localhost"
+											],
+											"port": "9000",
+											"path": [
+												"v1",
+												"bookings",
+												"add"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 25 Apr 2022 20:51:00 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Content-Length",
+											"value": "12"
+										}
+									],
+									"cookie": [],
+									"body": "Unauthorized"
+								}
+							]
+						},
+						{
+							"name": "400 Wrong info",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNpbW9uIiwiaWF0IjoxNjUwOTE4MTY4fQ.nQzoW3DSEqbDLD8WYO2DPcPcIGAgxXYHmKXrlElutBM",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"restaurant_name\": \"Mak\",\r\n    \"time\": \"2022-04-25T17:19:46.749Z\",\r\n    \"amount_of_people\": \"10\",\r\n    \"info\": \"hi\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:9000/v1/bookings/add",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"v1",
+										"bookings",
+										"add"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "400 Wrong info",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"restaurant_name\": \"Mak\",\r\n    \"time\": \"2022-04-25T17:19:46.749Z\",\r\n    \"amount_of_people\": \"10\",\r\n    \"info\": \"hi\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:9000/v1/bookings/add",
+											"host": [
+												"localhost"
+											],
+											"port": "9000",
+											"path": [
+												"v1",
+												"bookings",
+												"add"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "12"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"c-JnZd1I71IoPUNf09NWwa0Sf5l6o\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 25 Apr 2022 20:51:06 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Bookings",
+					"item": [
+						{
+							"name": "200 Получен список броней",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNpbW9uIiwiaWF0IjoxNjUwOTE4MTY4fQ.nQzoW3DSEqbDLD8WYO2DPcPcIGAgxXYHmKXrlElutBM",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:9000/v1/bookings/bookings",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"v1",
+										"bookings",
+										"bookings"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "200 Получен список броней",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:9000/v1/bookings/bookings",
+											"host": [
+												"localhost"
+											],
+											"port": "9000",
+											"path": [
+												"v1",
+												"bookings",
+												"bookings"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "402"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"192-2E+0EChhOYlnFflV9V2TnKAII/M\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 25 Apr 2022 20:51:28 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": 1,\n        \"username\": \"simon\",\n        \"restaurant_name\": \"Mak\",\n        \"time\": \"2022-04-25T17:19:46.749Z\",\n        \"amount_of_people\": 10,\n        \"info\": \"hi\",\n        \"createdAt\": \"2022-04-25T20:19:52.139Z\",\n        \"updatedAt\": \"2022-04-25T20:19:52.139Z\"\n    },\n    {\n        \"id\": 2,\n        \"username\": \"simon\",\n        \"restaurant_name\": \"Mansarda\",\n        \"time\": \"2022-04-25T17:19:46.749Z\",\n        \"amount_of_people\": 10,\n        \"info\": \"hi\",\n        \"createdAt\": \"2022-04-25T20:50:32.910Z\",\n        \"updatedAt\": \"2022-04-25T20:50:32.910Z\"\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "401 Неавторизованный пользователь",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:9000/v1/bookings/bookings",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"v1",
+										"bookings",
+										"bookings"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "401 Неавторизованный пользователь",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:9000/v1/bookings/bookings",
+											"host": [
+												"localhost"
+											],
+											"port": "9000",
+											"path": [
+												"v1",
+												"bookings",
+												"bookings"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 25 Apr 2022 20:51:36 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Content-Length",
+											"value": "12"
+										}
+									],
+									"cookie": [],
+									"body": "Unauthorized"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}

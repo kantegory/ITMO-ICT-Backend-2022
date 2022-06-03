@@ -1,0 +1,470 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "REST API",
+    "description": "Homework №4"
+  },
+  "host": "localhost:8000",
+  "basePath": "/v1",
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/users/add": {
+      "post": {
+        "description": "POST-эндпоинд для регистрации пользователя",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Данные пользователя",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserModel"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Пользователь успешно создан",
+            "schema": {
+              "$ref": "#/definitions/CreatedUserModel"
+            }
+          },
+          "400": {
+            "description": "Операция не выполнения",
+            "schema": {
+              "$ref": "#/definitions/InvalidResponse"
+            }
+          }
+        }
+      }
+    },
+    "/users/login": {
+      "post": {
+        "description": "POST-эндпоинд для регистрации пользователя",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Имя пользователя и пароль",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserLogin"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Пользователь успешно вошел",
+            "schema": {
+              "$ref": "#/definitions/AccessToken"
+            }
+          },
+          "400": {
+            "description": "Попытка входа неуспешная",
+            "schema": {
+              "$ref": "#/definitions/Unauthorized"
+            }
+          }
+        }
+      }
+    },
+    "/users/me": {
+      "get": {
+        "description": "Информация о текущем пользователе",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Получена информация о текущем пользователе",
+            "schema": {
+              "$ref": "#/definitions/CreatedUserModel"
+            }
+          },
+          "401": {
+            "description": "Пользователь не авторизован",
+            "schema": {
+              "$ref": "#/definitions/Unauthorized"
+            }
+          }
+        }
+      }
+    },
+    "/users/id/{id}": {
+      "get": {
+        "description": "Получить пользователя по id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "user id that needed to be shown",
+            "required": true,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Информация о пользователе с введенным id",
+            "schema": {
+              "$ref": "#/definitions/CreatedUserModel"
+            }
+          },
+          "401": {
+            "description": "Пользователь не авторизован",
+            "schema": {
+              "$ref": "#/definitions/Unauthorized"
+            }
+          }
+        }
+      }
+    },
+    "/restaurants/add": {
+      "post": {
+        "description": "Добавление ресторана",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Данные о ресторане",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RestaurantModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ресторан создан",
+            "schema": {
+              "$ref": "#/definitions/CreatedRestaurantModel"
+            }
+          },
+          "400": {
+            "description": "Операция не выполнения",
+            "schema": {
+              "$ref": "#/definitions/InvalidResponse"
+            }
+          },
+          "401": {
+            "description": "Пользователь не авторизован",
+            "schema": {
+              "$ref": "#/definitions/Unauthorized"
+            }
+          }
+        }
+      }
+    },
+    "/restaurants/restaurants": {
+      "get": {
+        "description": "Получения списка ресторанов",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Получен список ресторанов",
+            "schema": {
+              "$ref": "#/definitions/ListOfRestaurants"
+            }
+          },
+          "401": {
+            "description": "Пользователь не авторизован",
+            "schema": {
+              "$ref": "#/definitions/Unauthorized"
+            }
+          }
+        }
+      }
+    },
+    "/bookings/add": {
+      "post": {
+        "description": "Добавление брони",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Данные о брони",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BookingModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ресторан создан",
+            "schema": {
+              "$ref": "#/definitions/CreatedBookingModel"
+            }
+          },
+          "400": {
+            "description": "Операция не выполнения",
+            "schema": {
+              "$ref": "#/definitions/InvalidResponse"
+            }
+          },
+          "401": {
+            "description": "Пользователь не авторизован",
+            "schema": {
+              "$ref": "#/definitions/Unauthorized"
+            }
+          }
+        }
+      }
+    },
+    "/bookings/bookings": {
+      "get": {
+        "description": "Получения списка броней",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Получен список броней",
+            "schema": {
+              "$ref": "#/definitions/ListOfBookings"
+            }
+          },
+          "401": {
+            "description": "Пользователь не авторизован",
+            "schema": {
+              "$ref": "#/definitions/Unauthorized"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "UserModel": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string",
+          "example": "simon"
+        },
+        "password": {
+          "type": "string",
+          "example": "simon_password"
+        },
+        "email": {
+          "type": "string",
+          "example": "simon@icloud.com"
+        },
+        "hometown": {
+          "type": "string",
+          "example": "Moscow"
+        }
+      }
+    },
+    "CreatedUserModel": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "example": "1"
+        },
+        "username": {
+          "type": "string",
+          "example": "simon"
+        },
+        "password": {
+          "type": "string",
+          "example": "simon_password"
+        },
+        "email": {
+          "type": "string",
+          "example": "simon@icloud.com"
+        },
+        "hometown": {
+          "type": "string",
+          "example": "Moscow"
+        },
+        "updatedAt": {
+          "type": "string",
+          "example": "2022-04-25T17:19:46.749Z"
+        },
+        "createdAt": {
+          "type": "string",
+          "example": "2022-04-25T17:19:46.749Z"
+        }
+      }
+    },
+    "UserLogin": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string",
+          "example": "simon"
+        },
+        "password": {
+          "type": "string",
+          "example": "simon_password"
+        }
+      }
+    },
+    "InvalidResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string",
+          "example": "username must be unique"
+        }
+      }
+    },
+    "AccessToken": {
+      "type": "object",
+      "properties": {
+        "accessToken": {
+          "type": "string",
+          "example": "ehehehehehehsheeeeeeeeeeeeeesh12345654"
+        }
+      }
+    },
+    "RestaurantModel": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Mak"
+        },
+        "address": {
+          "type": "string",
+          "example": "Red Square"
+        },
+        "cuisine": {
+          "type": "string",
+          "example": "European"
+        },
+        "average_bill": {
+          "type": "number",
+          "example": "300"
+        },
+        "rating": {
+          "type": "number",
+          "example": "5.0"
+        },
+        "info": {
+          "type": "string",
+          "example": "Best restaurant ever!"
+        }
+      }
+    },
+    "CreatedRestaurantModel": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "example": "1"
+        },
+        "name": {
+          "type": "string",
+          "example": "Mak"
+        },
+        "address": {
+          "type": "string",
+          "example": "Red Square"
+        },
+        "cuisine": {
+          "type": "string",
+          "example": "European"
+        },
+        "average_bill": {
+          "type": "number",
+          "example": "300"
+        },
+        "rating": {
+          "type": "number",
+          "example": "5.0"
+        },
+        "info": {
+          "type": "string",
+          "example": "Best restaurant ever!"
+        },
+        "updatedAt": {
+          "type": "string",
+          "example": "2022-04-25T17:19:46.749Z"
+        },
+        "createdAt": {
+          "type": "string",
+          "example": "2022-04-25T17:19:46.749Z"
+        }
+      }
+    },
+    "ListOfRestaurants": {
+      "type": "array"
+    },
+    "BookingModel": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string",
+          "example": "simon"
+        },
+        "restaurant_name": {
+          "type": "string",
+          "example": "Mak"
+        },
+        "time": {
+          "type": "string",
+          "example": "2022-04-25T17:19:46.749Z"
+        },
+        "amount_of_people": {
+          "type": "number",
+          "example": "10"
+        },
+        "info": {
+          "type": "string",
+          "example": "I need the best seat in your restaurant!"
+        }
+      }
+    },
+    "CreatedBookingModel": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "example": "1"
+        },
+        "username": {
+          "type": "string",
+          "example": "simon"
+        },
+        "restaurant_name": {
+          "type": "string",
+          "example": "Mak"
+        },
+        "time": {
+          "type": "string",
+          "example": "2022-04-25T17:19:46.749Z"
+        },
+        "amount_of_people": {
+          "type": "number",
+          "example": "10"
+        },
+        "info": {
+          "type": "string",
+          "example": "I need the best seat in your restaurant!"
+        },
+        "updatedAt": {
+          "type": "string",
+          "example": "2022-04-25T17:19:46.749Z"
+        },
+        "createdAt": {
+          "type": "string",
+          "example": "2022-04-25T17:19:46.749Z"
+        }
+      }
+    },
+    "ListOfBookings": {
+      "type": "array"
+    },
+    "Unauthorized": {
+      "type": "string",
+      "example": "Unauthorized"
+    }
+  }
+}
