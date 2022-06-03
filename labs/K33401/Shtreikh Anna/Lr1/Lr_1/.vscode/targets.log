@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Fri Jun 03 13:23:43 2022
+# Make data base, printed on Wed Jun 01 22:58:42 2022
 
 # Variables
 
@@ -25,9 +25,9 @@ VBOX_MSI_INSTALL_PATH = C:\Program Files\Oracle\VirtualBox\
 # environment
 LOCALAPPDATA = C:\Users\������������\AppData\Local
 # environment
-VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-a5920ab4-5f4d-404b-9d07-1138c3bfe3cf-sock
+VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-29c5d844-e4ba-4b52-b006-0fede045bbf2-sock
 # environment
-VSCODE_CWD = C:\Users\������������\AppData\Local\Programs\Microsoft VS Code
+VSCODE_CWD = C:\WINDOWS\system32
 # environment
 CHOCOLATEYINSTALL = C:\ProgramData\chocolatey
 # environment
@@ -41,8 +41,9 @@ MAKE_COMMAND := C:/ProgramData/chocolatey/lib/make/tools/install/bin/make.exe
 # automatic
 @D = $(patsubst %/,%,$(patsubst %\,%,$(dir $@)))
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_14940_SITZICROLLLGTXNE
-# environment
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_5676_ADJKREFDZCDEPWZC
+# environm 
+ent
 FPS_BROWSER_USER_PROFILE_STRING = Default
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
@@ -73,7 +74,7 @@ MAKEFLAGS = pqrR
 # environment
 ONEDRIVE = C:\Users\������������\OneDrive
 # makefile
-CURDIR := c:/Users/������������/Documents/����/������/ITMO-ICT-Backend-2022/labs/K33401/Shtreikh Anna/Lr2/Lr_2
+CURDIR := c:/Users/������������/Documents/����/������/ITMO-ICT-Backend-2022/labs/K33401/Shtreikh Anna/Lr1/Lr_1
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
@@ -97,7 +98,7 @@ MAKEFILE_LIST := Makefile
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 14940
+VSCODE_PID = 5676
 # automatic
 ?D = $(patsubst %/,%,$(patsubst %\,%,$(dir $?)))
 # automatic
@@ -121,8 +122,7 @@ MAKECMDGOALS := all
 # environment
 DRIVERDATA = C:\Windows\System32\Drivers\DriverData
 # environment
-COMSPEC = C:\WINDOWS\system32\cmd. 
-exe
+COMSPEC = C:\WINDOWS\system32\cmd.exe
 # environment
 WINDIR = C:\WINDOWS
 # environment
@@ -226,9 +226,9 @@ PROCESSOR_IDENTIFIER = Intel64 Family 6 Model 142 Stepping 11, GenuineIntel
 
 # Directories
 
-# . (key c:/Users/������������/Documents/����/������/ITMO-ICT-Backend-2022/labs/K33401/Shtreikh Anna/Lr2/Lr_2, mtime 1654113261): 18 files, no impossibilities.
+# . (key c:/Users/������������/Documents/����/������/ITMO-ICT-Backend-2022/labs/K33401/Shtreikh Anna/Lr1/Lr_1, mtime 1654107528): 17 files, no impossibilities.
 
-# 18 files, no impossibilities in 1 directories.
+# 17 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -255,7 +255,7 @@ lint:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-05-13 00:16:17
+#  Last modified 2022-04-15 19:54:56
 #  File has been updated.
 #  Successfully updated.
 
@@ -302,7 +302,8 @@ migrate:
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
-#  File has not been updated.
+# 
+  File has not been updated.
 #  recipe to execute (from 'Makefile', line 21):
 	npx sequelize-cli db:migrate  
 
@@ -319,12 +320,12 @@ migrate:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 28 / storage = 245 B / avg = 8 B
-# current buf: size = 8174 B / used = 245 B / count = 28 / avg = 8 B
+# strcache buffers: 1 (0) / strings = 27 / storage = 240 B / avg = 8 B
+# current buf: size = 8174 B / used = 240 B / count = 27 / avg = 8 B
 
-# strcache performance: lookups = 55 / hit rate = 49%
+# strcache performance: lookups = 54 / hit rate = 50%
 # hash-table stats:
-# Load=28/8192=0%, Rehash=0, Collisions=0/55=0%
-# Finished Make data base on Fri Jun 03 13:23:43 2022
+# Load=27/8192=0%, Rehash=0, Collisions=0/54=0%
+# Finished Make data base on Wed Jun 01 22:58:42 2022
 
  

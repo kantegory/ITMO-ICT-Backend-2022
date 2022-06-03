@@ -31,6 +31,7 @@ class App {
       });
       app.use('/v1', routes)
       app.use('/v1', userRoutes)
+
       return app
     }
   

@@ -47,8 +47,6 @@ class App {
   
   private createServer(): Server {
       const server = createServer(this.app)
-      
-  
       return server
   }
 

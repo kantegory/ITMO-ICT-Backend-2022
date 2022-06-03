@@ -38,6 +38,7 @@
     "node-fetch": "^2.6.1",
     "sequelize": "^6.18.0",
     "sqlite3": "^5.0.2",
+    "swagger-jsdoc": "5.0.1",
     "swagger-json": "^2.0.0",
     "swagger-ui-express": "^4.4.0"
   }

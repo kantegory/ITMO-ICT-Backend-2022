@@ -1,0 +1,6 @@
+make.exe --dry-run --always-make --keep-going --print-directory
+make: Entering directory 'c:/Users/������������/Documents/����/������/ITMO-ICT-Backend-2022/labs/K33401/Shtreikh Anna/Lr1/Lr_1'
+npm i
+npm run build
+make: Leaving directory 'c:/Users/������������/Documents/����/������/ITMO-ICT-Backend-2022/labs/K33401/Shtreikh Anna/Lr1/Lr_1'
+ 
