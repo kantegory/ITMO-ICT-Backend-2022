@@ -1,0 +1,39 @@
+version: '2.2'
+
+services:
+  db:
+    image: postgres:14
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    env_file:
+      - .env
+    expose:
+      - 5432
+  backend:
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: ./docker/backend/Dockerfile
+    entrypoint: /app/docker/backend/entrypoint.sh
+    expose:
+      - 3000
+    depends_on:
+      - db
+  nginx: 
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: ./docker/nginx/Dockerfile
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./docker/nginx/development:/etc/nginx/conf.d
+    depends_on: 
+      - backend
+volumes:
+  pg-data:
