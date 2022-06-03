@@ -3,7 +3,8 @@ module.exports = {
     "username": null,
     "password": null,
     "database": "database_development",
-    "host": null,
+    "host": "172.17.0.0",
+    "port": "33060",
     "dialect": "sqlite",
     "storage": "db.sqlite"
   },

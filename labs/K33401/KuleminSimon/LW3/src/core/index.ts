@@ -10,7 +10,7 @@ class App {
     private app: express.Application
     private server: Server
 
-    constructor(port = 9000, host = "localhost") {
+    constructor(port = 10000, host = "localhost") {
         this.port = port
         this.host = host
 

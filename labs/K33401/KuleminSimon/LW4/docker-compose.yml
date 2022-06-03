@@ -1,0 +1,15 @@
+version: "3.3"
+
+services:
+  web:
+    image: restaurants
+    restart: always
+    ports:
+      - "9000:9000"
+  mySql:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: true
+    ports:
+      - "33060:33060"
