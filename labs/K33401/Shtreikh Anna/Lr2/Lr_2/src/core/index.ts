@@ -2,6 +2,9 @@ import express from  'express'
 import {createServer, Server } from "http"
 import routes from "../routes/example/index"
 import userRoutes from "../routes/userRoutes"
+import filmRoutes from "../routes/filmRoutes"
+import cookieParser from 'cookie-parser';  
+import bodyParser from "body-parser";
 
 class App {
   public port: number
@@ -29,15 +32,21 @@ class App {
           res.status(500);
         res.render('error');
       });
+      app.use(cookieParser());
+      app.use(bodyParser.json())
       app.use('/v1', routes)
       app.use('/v1', userRoutes)
+      app.use('/v1', filmRoutes)
 
+      const swaggerUi = require('swagger-ui-express')
+      const swaggerDoc = require('../swagger.json')
+      app.use('/docs', swaggerUi.serve)
+      app.use('/docs', swaggerUi.setup(swaggerDoc))
       return app
     }
   
   private createServer(): Server {
       const server = createServer(this.app)
-  
       return server
   }
 
