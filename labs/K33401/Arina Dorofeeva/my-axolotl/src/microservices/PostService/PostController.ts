@@ -1,11 +1,9 @@
-import AppError, { handleGenericError } from "../errors"
-import PostService from "../services/PostService"
-import type { PostShape } from "../models/Post"
-import type { Request, Response } from "express"
-import Post from "../models/Post"
-
-type ResponseOrError<T> = Response<T | AppError>
-type JwtResponse = { jwt: string, jwtExpires: Date }
+import { handleGenericError } from "../../errors"
+import PostService from "./PostService"
+import type { PostShape } from "../../models/Post"
+import type { Request } from "express"
+import Post from "../../models/Post"
+import { ResponseOrError } from "../../models/shapes"
 
 class PostController {
   private postService: PostService
@@ -65,4 +63,3 @@ class PostController {
 }
 
 export default PostController
-export type { JwtResponse }

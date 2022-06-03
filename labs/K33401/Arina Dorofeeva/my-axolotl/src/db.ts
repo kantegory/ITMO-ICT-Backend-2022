@@ -12,7 +12,7 @@ type AssociableModelDict = { [key: string]: typeof AssociableModel }
 
 class AssociableSequelize extends Sequelize {
   declare associableModels: AssociableModelDict
-  declare associate: () => void
+  declare associate?: () => void
 }
 
 const sequelize = new Sequelize({
@@ -25,9 +25,11 @@ const sequelize = new Sequelize({
 }) as AssociableSequelize
 
 sequelize.associableModels = {}
-sequelize.associate = () =>
+sequelize.associate = () => {
   Object.values(sequelize.associableModels)
     .forEach((m: typeof AssociableModel) => m.associate(sequelize.associableModels))
+  delete sequelize.associate
+}
 
 export default sequelize
 export { AssociableModel }

@@ -15,7 +15,7 @@ const cookieParser = (req: Request, res: Response, next: NextFunction) => {
 const cookieAuther = (req: Request, res: Response, next: NextFunction) => {
   const parts = req.path.split("/")
   const target = parts[parts.length - 1]
-  if (target === "bundle.js" || target === "auth" || req.method === "POST" && target === "user")) {
+  if (target === "bundle.js" || target === "auth" || (req.method === "POST" && target === "user")) {
     return next()
   }
   const token = req.cookies?.jwt

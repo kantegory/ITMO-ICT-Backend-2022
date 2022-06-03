@@ -2,6 +2,11 @@ import { DataTypes } from "@sequelize/core"
 import bcrypt from "bcrypt"
 import sequelize, { AssociableModel } from "../db"
 import type { UserShape } from "./shapes"
+// hack - need to load model to associate
+// even if the model is not used in a given service
+import Post from "./Post"
+const hack = Post
+
 
 class User extends AssociableModel implements UserShape {
   declare id: number
@@ -38,6 +43,7 @@ User.init(
 sequelize.associableModels["User"] = User
 
 User.associate = (models) => {
+  console.log(models)
   User.belongsToMany(models["Post"], { through: "Favorites" })
 }
 

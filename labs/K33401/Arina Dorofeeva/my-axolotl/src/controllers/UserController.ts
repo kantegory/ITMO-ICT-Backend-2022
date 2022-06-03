@@ -2,9 +2,7 @@ import AppError, { handleGenericError } from "../errors"
 import UserService from "../services/UserService"
 import type { UserShape } from "../models/User"
 import type { Request, Response } from "express"
-
-type ResponseOrError<T> = Response<T | AppError>
-type JwtResponse = { jwt: string, jwtExpires: Date }
+import { JwtResponse, ResponseOrError } from "../models/shapes"
 
 class UserController {
   private userService: UserService
@@ -48,4 +46,3 @@ class UserController {
 }
 
 export default UserController
-export type { JwtResponse }

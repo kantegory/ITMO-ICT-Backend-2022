@@ -1,6 +1,10 @@
 import { DataTypes } from "@sequelize/core"
 import sequelize, { AssociableModel } from "../db"
 import type { PostShape } from "./shapes"
+// hack - need to load model to associate
+// even if the model is not used in a given service
+import User from "./User"
+const hack = User
 
 class Post extends AssociableModel implements PostShape {
   declare id: number

@@ -15,11 +15,13 @@ const { DB_NAME, PORT } = process.env
 
 sequelize
   .authenticate()
-  .then(() => console.log(`Connected to database ${ DB_NAME }.`))
-sequelize.associate()
-sequelize
-  .sync()
-  .then(() => console.log(`Models have been synced to database ${ DB_NAME }.`))
+  .then(() => {
+    console.log(`Connected to database ${ DB_NAME }.`)
+    sequelize.associate?.()
+    sequelize
+      .sync()
+      .then(() => console.log(`Models have been synced to database ${ DB_NAME }.`))
+  })
 
 const app = Express()
 

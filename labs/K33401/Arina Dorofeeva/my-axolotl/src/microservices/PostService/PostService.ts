@@ -1,6 +1,6 @@
-import Post from "../models/Post"
-import type { PostShape } from "../models/Post"
-import User from "../models/User"
+import Post from "../../models/Post"
+import type { PostShape } from "../../models/Post"
+import User from "../../models/User"
 
 class PostService {
   public get(id?: number): Promise<Post> | Promise<Post[]> {

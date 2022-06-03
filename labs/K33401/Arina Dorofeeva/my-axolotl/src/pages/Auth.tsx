@@ -1,6 +1,6 @@
 import { css } from "@emotion/react"
 import { useState } from "react"
-import { JwtResponse } from "../controllers/UserController"
+import { JwtResponse } from "../models/shapes"
 import { UserShape } from "../models/User"
 import { api } from "../util/frontend"
 
