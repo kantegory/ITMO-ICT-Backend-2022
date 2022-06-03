@@ -34,7 +34,7 @@
   },
   "scripts": {
     "tsc": "tsc",
-    "start": "set debug=* && ts-node-dev --respawn --transpile-only ./src/index.ts",
+    "start": "ts-node-dev --respawn --transpile-only ./src/index.ts",
     "prod": "node ./dist/index.js",
     "typeorm": "typeorm-ts-node-commonjs",
     "migration": "yarn typeorm migration:run -d ./src/dataSource/data-source.ts",

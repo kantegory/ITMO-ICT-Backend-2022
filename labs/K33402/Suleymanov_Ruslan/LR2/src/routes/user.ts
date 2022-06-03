@@ -48,7 +48,7 @@ router.delete(
     UserRoomController.deleteRoom
 );
 
-//Delete room user
+//Add room user
 router.post(
     "/room/",
     [checkJwt],

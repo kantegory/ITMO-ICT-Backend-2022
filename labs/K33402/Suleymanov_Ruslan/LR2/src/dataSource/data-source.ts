@@ -8,7 +8,7 @@ export const AppDataSource = new DataSource({
     migrationsRun: true,
     logging: true,
     name: 'default',
-    entities: ['src/models/**/*{.ts,.js}'],
-    migrations: ['src/migrations/**/*{.ts,.js}'],
-    subscribers: ['src/subscriber/**/*{.ts,.js}'],
+    entities: ['../models/**/*{.ts,.js}'],
+    migrations: ['../migrations/**/*{.ts,.js}'],
+    subscribers: ['../subscriber/**/*{.ts,.js}'],
 })

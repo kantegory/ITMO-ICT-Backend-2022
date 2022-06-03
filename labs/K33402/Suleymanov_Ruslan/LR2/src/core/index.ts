@@ -2,6 +2,7 @@ import express from "express";
 import * as bodyParser from "body-parser";
 import helmet from "helmet";
 import cors from "cors";
+import swaggerDoc from "../swagger.json";
 
 import { createServer, Server } from "http"
 import routes from "../routes"
@@ -31,7 +32,6 @@ class App {
         app.use(bodyParser.json());
         app.use('/', routes)
 
-        const swaggerDoc = require('../swagger.json')
         app.use('/docs', swaggerUi.serve)
         app.use('/docs', swaggerUi.setup(swaggerDoc))
         return app
