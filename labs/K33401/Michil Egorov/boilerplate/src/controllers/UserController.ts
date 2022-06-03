@@ -11,7 +11,7 @@ class UserController {
     get = async (request: any, response: any) => {
         try {
             const user = await this.userService.getById(
-                +request.params.id
+                Number(request.params.id)
             )
             response.send(user)
         } catch (error: any) {
