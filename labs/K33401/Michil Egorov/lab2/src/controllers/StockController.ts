@@ -52,7 +52,7 @@ class StockController {
             const stocks = await this.stockService.getStockHistory(
                 +request.params.id
             )
-            response.send({stocks: stocks})
+            response.send({stocks})
         } catch (error: any) {
             response.status(404).send({
                 "error": error.message 

@@ -88,7 +88,6 @@ class PortfolioService {
             await this.getPortfolioRepo().save(portfolio);
         });
 
-
         return await this.getById(dealInfo.portfolio_id);
     }
 

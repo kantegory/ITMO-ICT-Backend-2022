@@ -2,7 +2,7 @@ import {Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn} from "typeo
 import {Portfolio} from "./Portfolio";
 import { AuthToken } from "./Token";
 
-@Entity('User1')
+@Entity('User')
 export class User {
     @PrimaryGeneratedColumn()
     id: number;
