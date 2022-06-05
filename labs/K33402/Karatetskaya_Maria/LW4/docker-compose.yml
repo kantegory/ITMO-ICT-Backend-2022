@@ -1,0 +1,30 @@
+version: "3.9"
+
+networks:
+  default:
+    driver: bridge
+
+services:
+  auth:
+    build: auth-service 
+    expose:
+      - "3000"
+    ports:
+      - "3000:3000"
+  flight:
+    build: flight-service
+    ports:
+      - "3001:3001"
+  ticket:
+    build: ticket-service
+    ports:
+      - "3002:3002"
+
+  gateway:
+    build: gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - "auth"
+      - "flight"
+      - "ticket"
