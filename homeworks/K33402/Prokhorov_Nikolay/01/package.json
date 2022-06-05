@@ -1,0 +1,15 @@
+{
+  "name": "homework-01",
+  "version": "0.0.0",
+  "description": "Some cool package",
+  "main": "index.js",
+  "scripts": {
+    "test": "node -v",
+	"rme": "npm uninstall express"
+  },
+  "author": "Nikolay Prokhorov",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
