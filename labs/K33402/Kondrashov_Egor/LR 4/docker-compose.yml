@@ -1,0 +1,25 @@
+version: "3.8"
+
+volumes:
+  db_data: {}
+
+services:
+  db:
+    image: postgres:14
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    env_file:
+      - .env
+    expose:
+      - 5432
+
+  backend:
+    container_name: lr3_express
+    build: .
+    command: bash -c "npm run migration:run && npm run start"
+    volumes:
+      - .:/app
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
