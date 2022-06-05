@@ -1,0 +1,471 @@
+{
+  "swagger": "2.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "REST API",
+    "description": ""
+  },
+  "host": "localhost:8000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/auth/login": {
+      "post": {
+        "tags": ["Auth"],
+        "description": "POST-эндпоинт для авторизации пользователя",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Данные пользователя",
+            "required": true,
+            "schema": {
+              "properties": {
+                "username": {
+                  "type": "string",
+                  "example": "JohnDoe"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "123321321"
+                }
+              },
+              "required": [
+                "username",
+                "password"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Пользователь успешно зарегистрирован",
+            "schema": {
+              "properties": {
+                "token": {
+                  "type": "string",
+                  "example": "123321321.23123213213.123123321213"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Пользователь не найден"
+          }
+        }
+      }
+    },
+    "/auth/registration": {
+      "post": {
+        "tags": ["Auth"],
+        "description": "POST-эндпоинт для регистрации пользователя",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Данные пользователя",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserModel"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Юзер создан"
+            },
+          "400": {
+            "description": "validate error"
+            },
+          "409": {
+            "description": "username already in use"
+            }
+          }
+        }
+      },
+    "/auth/change-password": {
+      "post": {
+        "tags": ["Auth"],
+        "description": "POST-эндпоинт для смены пароля пользователя",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Данные пользователя",
+            "required": true,
+            "schema": {
+              "properties": {
+                "oldPassword": {
+                  "type": "string",
+                  "example": "JohnDoe"
+                },
+                "newPassword": {
+                  "type": "string",
+                  "example": "JohnDoe2"
+                }
+              },
+              "required": [
+                "oldPassword",
+                "newPassword"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Пароль успешно сменен"
+          }
+        }
+      }
+    },
+    "/user/": {
+      "post": {
+        "tags": ["User"],
+        "description": "POST-эндпоинт для создания юзера админом",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Данные пользователя",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserModel"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Пользователь успешно зарегистрирован",
+            "schema": {
+              "$ref": "#/definitions/CreatedUserModel"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["User"],
+        "description": "GET-эндпоинт для получения всех юзеров",
+        "responses": {
+          "201": {
+            "description": "Все пользователи",
+            "schema": {
+              "$ref": "#/definitions/CreatedUserModel"
+            }
+          }
+        }
+      }
+    },
+    "/user/me": {
+      "get": {
+        "tags": ["User"],
+        "description": "GET-эндпоинт для получения данных о текущем юзере",
+        "responses": {
+          "201": {
+            "description": "Пользователь успешно зарегистрирован",
+            "schema": {
+              "$ref": "#/definitions/CreatedUserModel"
+            }
+          }
+        }
+      }
+    },
+    "/user/{id}": {
+      "delete": {
+        "tags": ["User"],
+        "description": "DELETE-эндпоинт для удаления пользователя админом",
+        "responses": {
+          "201": {
+            "description": "Пользователь успешно удален"
+          }
+        }
+      },
+      "patch": {
+        "tags": ["User"],
+        "description": "PATH-эндпоинт для изменения пользователя Админом",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Измененные данные пользователя",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserModel"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Пользователь успешно зарегистрирован",
+            "schema": {
+              "$ref": "#/definitions/CreatedUserModel"
+            }
+          }
+        }
+      }
+    },
+
+    "/user/room/": {
+      "post": {
+        "tags": ["UserRoom"],
+        "description": "POST-эндпоинт для бронирования комнаты",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Данные пользователя",
+            "required": true,
+            "schema": {
+              "properties": {
+                "roomId": {
+                  "type": "number",
+                  "example": "1"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Успешно добавлено"
+          }
+        }
+      }
+    },
+    "/user/room/{id}": {
+      "delete": {
+        "tags": ["UserRoom"],
+        "description": "delete-эндпоинт для отмены бронирования",
+        "responses": {
+          "201": {
+            "description": "Успешно удалено"
+          }
+        }
+      }
+    },
+
+    "/room/": {
+      "post": {
+        "tags": ["Room"],
+        "description": "POST-эндпоинт для создание комнаты админом",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Данные для поиска",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreatedRoomModel"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Комната создана",
+            "schema": {
+              "$ref": "#/definitions/CreatedRoomModel"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["Room"],
+        "description": "get-эндпоинт для получения всех комнат",
+
+        "parameters": [
+          {
+            "name": "city",
+            "in": "path",
+            "description": "Данные для поиска",
+            "required": true
+          },
+          {
+            "name": "date",
+            "in": "path",
+            "description": "Данные для поиска",
+            "required": true
+          },
+          {
+            "name": "count",
+            "in": "path",
+            "description": "Данные для поиска",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Маасив комнат",
+            "schema": {
+              "$ref": "#/definitions/CreatedRoomModel"
+            }
+          }
+        }
+      }
+    },
+    "/room/{id}": {
+      "get": {
+        "tags": ["Room"],
+        "description": "get-эндпоинт для получения комнаты по id",
+        "responses": {
+          "201": {
+            "description": "Комната по id",
+            "schema": {
+              "$ref": "#/definitions/CreatedRoomModel"
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": ["Room"],
+        "description": "patch-эндпоинт для изменения данных комнаты админом",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Данные комнаты",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RoomModel"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Пользователь успешно зарегистрирован",
+            "schema": {
+              "$ref": "#/definitions/CreatedUserModel"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Room"],
+        "description": "delete-эндпоинт для удаления комнаты админом",
+        "responses": {
+          "201": {
+            "description": "Комната удалена"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "UserModel": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string",
+          "example": "JohnDoe"
+        },
+        "password": {
+          "type": "string",
+          "example": "123321321"
+        },
+        "role": {
+          "type": "string",
+          "example": "USER"
+        }
+      },
+      "required": [
+        "username",
+        "password",
+        "role"
+      ]
+    },
+    "RoomModel": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "JohnDoe"
+        },
+        "hotelName": {
+          "type": "string",
+          "example": "JohnDoe"
+        },
+        "price": {
+          "type": "number",
+          "example": "2"
+        },
+        "countPerson": {
+          "type": "number",
+          "example": "2"
+        },
+        "city": {
+          "type": "string",
+          "example": "Санкт-петербург"
+        },
+        "date": {
+          "type": "string",
+          "example": "2022-12-12"
+        }
+      },
+      "required": [
+        "username",
+        "password",
+        "role"
+      ]
+    },
+    "CreatedUserModel": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "example": "1"
+        },
+        "name": {
+          "type": "string",
+          "example": "John Doe"
+        },
+        "role": {
+          "type": "string",
+          "example": "user"
+        },
+        "room": {
+          "type": "array",
+          "example": []
+        }
+      }
+    },
+    "CreatedRoomModel": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "example": "1"
+        },
+        "name": {
+          "type": "string",
+          "example": "Комната 1"
+        },
+        "hotelName": {
+          "type": "string",
+          "example": "рояль"
+        },
+        "price": {
+          "type": "number",
+          "example": 2321
+        },
+        "city": {
+          "type": "string",
+          "example": "Санкт-петербург"
+        },
+        "countPerson": {
+          "type": "number",
+          "example": "2"
+        },
+        "date": {
+          "type": "string",
+          "example": "2022-12-12"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  booking:
+    build: ./booking
+    ports:
+      - '8001:8001'
+
+  main:
+    build: ./main
+    ports:
+      - '8000:8000'
+
+  nginx:
+    image: nginx:alpine
+    depends_on:
+      - booking
+      - main
+    volumes:
+      - ./nginx.conf.template:/etc/nginx/templates/default.conf.template
+    ports:
+      - '8080:80'
