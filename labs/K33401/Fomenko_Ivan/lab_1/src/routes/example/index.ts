@@ -8,5 +8,6 @@ const exampleController = new ExampleController()
 router
     .route('/')
     .get(exampleController.get)
+    .post(exampleController.post)
 
 export default router
