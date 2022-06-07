@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  auth:
+    build: 
+      context: ./auth
+    ports:
+      - '8180:8180'
+    restart: always
+  base:
+    build: 
+      context: ./base
+    ports:
+      - '8080:8080'
+    restart: always
+  
