@@ -1,4 +1,5 @@
-import { Table, Column, Model, Unique, AllowNull, BeforeCreate, BeforeUpdate } from 'sequelize-typescript'
+import { Table, Column, Model, Unique, AllowNull, BeforeCreate, BeforeUpdate, HasMany, Min, Max } from 'sequelize-typescript'
+import Booking from '../booking/Booking'
 
 @Table
 class Hotel extends Model {
@@ -6,13 +7,18 @@ class Hotel extends Model {
     name: string
 
     @Column
-    surname: string
+    town: string
+
+    @Min(10)
+    @Max(1000)
+    @Column
+    capacity: number
 
     @Column
-    email: string
+    type: string
 
-    @Column
-    age: string
+    @HasMany(() => Booking)
+    booking: Booking[]
 }
 
 export default Hotel

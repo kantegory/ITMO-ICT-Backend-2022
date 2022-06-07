@@ -1,7 +1,7 @@
 import User from '../../models/user/User'
 import sequelize from '../../providers/db'
 
-class DefaultService {
+class UserService {
     private repo = sequelize.getRepository(User)
 
     add(name: string, surname:string, email:string, age: string) {
@@ -13,4 +13,4 @@ class DefaultService {
     }
 }
 
-export default DefaultService
+export default UserService

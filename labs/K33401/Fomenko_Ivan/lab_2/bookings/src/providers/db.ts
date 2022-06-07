@@ -10,6 +10,7 @@ const sequelize = new Sequelize({
   password: '',
   storage: ':memory:',
   models: [User, Hotel, Booking],
+  repositoryMode: true,
   logging: console.log,
 })
 
