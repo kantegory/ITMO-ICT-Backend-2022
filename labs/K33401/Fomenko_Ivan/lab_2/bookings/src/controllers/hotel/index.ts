@@ -5,8 +5,13 @@ class HotelController {
 
     get = async (request: any, response: any) => {
         try{
-            const data = await this.service.get()
-            response.send(data)
+            if(request.query.town) {
+                const data = await this.service.getWithParameters(request.query.town, request.query.type)
+                response.send(data)
+            } else {
+                const data = await this.service.getAll()
+                response.send(data)
+            }
         } catch(error: any){
             response.status(400).send(error.message)
         }
@@ -14,9 +19,9 @@ class HotelController {
 
     post = async (request: any, response: any) => {
         try{
-            const user = request.body
-            await this.service.add(user.name, user.surname, user.email, user.age)
-            response.send('Successfully added user')
+            const hotel = request.body
+            await this.service.add(hotel.name, hotel.town, hotel.capacity, hotel.type)
+            response.send('Successfully added hotel')
         } catch(error: any){
             response.status(400).send(error.message)
         }

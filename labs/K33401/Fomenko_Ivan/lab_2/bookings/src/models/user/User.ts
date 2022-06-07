@@ -1,4 +1,5 @@
-import { Table, Column, Model, Unique, AllowNull, BeforeCreate, BeforeUpdate } from 'sequelize-typescript'
+import { Table, Column, Model, Unique, AllowNull, BeforeCreate, BeforeUpdate, Min, HasMany } from 'sequelize-typescript'
+import Booking from '../booking/Booking'
 
 @Table
 class User extends Model {
@@ -12,7 +13,14 @@ class User extends Model {
     email: string
 
     @Column
-    age: string
+    password: string
+
+    @Min(0)
+    @Column
+    age: number
+
+    @HasMany(() => Booking)
+    booking: Booking[]
 }
 
 export default User
