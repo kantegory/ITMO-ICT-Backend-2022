@@ -1,15 +1,15 @@
 import Booking from '../../models/booking/Booking'
-import sequelize from '../../providers/db'
+import {sequelize} from '../../providers/db'
 
 class BookingService {
     private repo = sequelize.getRepository(Booking)
 
-    add(name: string, surname:string, email:string, age: string) {
-        this.repo.create({name: name, surname: surname, email: email, age: age})
+    add(arrival: Date, departure:Date, visitors:number, userId:number, hotelId:number) {
+        this.repo.create({arrival: arrival, departure: departure, visitors: visitors, userId: userId, hotelId:hotelId})
     }
 
-    get(){
-        return this.repo.findAll()
+    getBookings(useroId: number){
+        return this.repo.findAll({where: {userId: useroId}})
     }
 }
 

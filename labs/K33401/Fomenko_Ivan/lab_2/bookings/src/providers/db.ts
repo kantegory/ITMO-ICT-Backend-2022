@@ -3,7 +3,7 @@ import User from '../models/user/User'
 import Booking from '../models/booking/Booking'
 import Hotel from '../models/hotel/Hotel'
 
-const sequelize = new Sequelize({
+export const sequelize = new Sequelize({
   database: 'some_db',
   dialect: 'sqlite',
   username: 'root',
@@ -13,5 +13,3 @@ const sequelize = new Sequelize({
   repositoryMode: true,
   logging: console.log,
 })
-
-export default sequelize

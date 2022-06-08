@@ -1,12 +1,13 @@
 {
     "compilerOptions": {
-      "target": "es6",
+      "target": "es2016",
       "module": "commonjs",
-      "outDir": "./dist",
       "strict": true,
       "esModuleInterop": true,
+      "forceConsistentCasingInFileNames": true,
       "strictPropertyInitialization": false,
       "experimentalDecorators": true,
+      "skipLibCheck": true,
       "emitDecoratorMetadata": true
     }
 }

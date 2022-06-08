@@ -6,7 +6,7 @@ const router: express.Router = express.Router()
 const authController = new AuthController()
 
 router
-    .route('/')
+    .route('/auth')
     .post(authController.post)
 
 export default router

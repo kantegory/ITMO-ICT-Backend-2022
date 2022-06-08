@@ -1,5 +1,5 @@
 import Hotel from '../../models/hotel/Hotel'
-import sequelize from '../../providers/db'
+import {sequelize} from '../../providers/db'
 
 class HotelService {
     private repo = sequelize.getRepository(Hotel)
@@ -12,9 +12,9 @@ class HotelService {
         return this.repo.findAll()
     }
 
-    getWithParameters(hotel_name: string, hotel_type: string){
+    getWithParameters(hotel_town: string, hotel_type: string){
         const { Op } = require("sequelize")
-        return this.repo.findAll({where: {name: hotel_name, type: hotel_type, capacity: {[Op.gte]: 1}}})
+        return this.repo.findAll({where: {town: hotel_town, type: hotel_type, capacity: {[Op.gte]: 1}}})
     }
 }
 

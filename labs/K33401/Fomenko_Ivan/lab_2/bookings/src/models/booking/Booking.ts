@@ -1,18 +1,34 @@
-import { Table, Column, Model, Unique, AllowNull, BeforeCreate, BeforeUpdate } from 'sequelize-typescript'
+import { Table, Column, Model, Unique, AllowNull, BeforeCreate, BeforeUpdate, IsDate, Min, ForeignKey, BelongsTo } from 'sequelize-typescript'
+import Hotel from '../hotel/Hotel'
+import User from '../user/User'
 
 @Table
 class Booking extends Model {
+    @IsDate
     @Column
-    name: string
+    arrival: Date
 
+    @IsDate
     @Column
-    surname: string
+    departure: Date
 
+    @Min(1)
     @Column
-    email: string
+    visitors: number
 
+    @ForeignKey(() => User)
     @Column
-    age: string
+    userId: number
+
+    @BelongsTo(() => User)
+    user: User
+
+    @ForeignKey(() => Hotel)
+    @Column
+    hotelId: number
+
+    @BelongsTo(() => Hotel)
+    hotel: Hotel
 }
 
 export default Booking

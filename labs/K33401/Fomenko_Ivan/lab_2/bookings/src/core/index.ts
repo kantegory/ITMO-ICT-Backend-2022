@@ -1,7 +1,7 @@
 import express from "express"
 import { createServer, Server } from "http"
-import routes from "../routes/example/index"
-import sequelize from "../providers/db"
+import routes from "../routes/index"
+import {sequelize} from "../providers/db"
 import bodyParser from "body-parser"
 
 class App {

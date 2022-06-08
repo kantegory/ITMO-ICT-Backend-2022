@@ -1,6 +1,6 @@
 import { where } from 'sequelize/types'
 import User from '../../models/user/User'
-import sequelize from '../../providers/db'
+import {sequelize} from '../../providers/db'
 
 class UserService {
     private repo = sequelize.getRepository(User)
@@ -15,6 +15,10 @@ class UserService {
 
     getByEmail(user_email: string){
         return this.repo.findOne({where : {email: user_email}})
+    }
+
+    getById(user_id: number){
+        return this.repo.findOne({where: {id: user_id}})
     }
 }
 
