@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue Jun 07 11:13:41 2022
+# Make data base, printed on Wed Jun 08 23:49:36 2022
 
 # Variables
 
@@ -25,7 +25,7 @@ VBOX_MSI_INSTALL_PATH = C:\Program Files\Oracle\VirtualBox\
 # environment
 LOCALAPPDATA = C:\Users\������������\AppData\Local
 # environment
-VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-241c8f02-bec1-40fe-9a97-9017f09a5a18-sock
+VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-3461a4ca-e331-4046-8da5-012f961990f8-sock
 # environment
 VSCODE_CWD = C:\Users\������������\AppData\Local\Programs\Microsoft VS Code
 # environment
@@ -41,7 +41,7 @@ MAKE_COMMAND := C:/ProgramData/chocolatey/lib/make/tools/install/bin/make.exe
 # automatic
 @D = $(patsubst %/,%,$(patsubst %\,%,$(dir $@)))
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_15116_RTAXDQRVVMPQKXSV
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_9432_RUCDPMGNGDMJBYNF
 # environment
 FPS_BROWSER_USER_PROFILE_STRING = Default
 # environment
@@ -73,7 +73,7 @@ MAKEFLAGS = pqrR
 # environment
 ONEDRIVE = C:\Users\������������\OneDrive
 # makefile
-CURDIR := c:/Users/������������/Documents/����/������/ITMO-ICT-Backend-2022/labs/K33401/Shtreikh Anna/Lr2/Lr_2
+CURDIR := c:/Users/������������/Documents/����/������/ITMO-ICT-Backend-2022/labs/K33401/Shtreikh Anna/Lr2/Lr_2/films
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
@@ -90,14 +90,14 @@ MFLAGS = -pqrR
 COMMONPROGRAMW6432 = C:\Program Files\Common Files
 # automatic
 +D = $(patsubst %/,%,$(patsubst %\,%,$(dir $+)))
-# makefile
-MAKEFILE_LIST := 
+# makefile (from 'Makefile', line 1)
+MAKEFILE_LIST := Makefile
 # automatic
 @F = $(notdir $@)
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 15116
+VSCODE_PID = 9432
 # automatic
 ?D = $(patsubst %/,%,$(patsubst %\,%,$(dir $?)))
 # automatic
@@ -123,8 +123,7 @@ DRIVERDATA = C:\Windows\System32\Drivers\DriverData
 # environment
 COMSPEC = C:\WINDOWS\system32\cmd.exe
 # environment
-WINDIR = C:\WIND 
-OWS
+WINDIR = C:\WINDOWS
 # environment
 MAKELEVEL := 0
 # default
@@ -139,7 +138,8 @@ MAKEFILES :=
 ^F = $(notdir $^)
 # environment
 PYCHARM = C:\Program Files\JetBrains\PyCharm 2019.3.1\bin;
-# environment
+# e 
+nvironment
 PROMPT = $P$G
 # environment
 CHOCOLATEYLASTPATHUPDATE = 132936339644037172
@@ -167,8 +167,8 @@ USERDOMAIN = DESKTOP-NA6PA21
 GNUMAKEFLAGS := 
 # environment
 OS = Windows_NT
-# makefile
-.DEFAULT_GOAL := 
+# makefile (from 'Makefile', line 27)
+.DEFAULT_GOAL := init
 # environment
 NVM_HOME = C:\Program Files\nvm
 # default
@@ -218,7 +218,7 @@ PROCESSOR_REVISION = 8e0b
 # environment
 PROCESSOR_IDENTIFIER = Intel64 Family 6 Model 142 Stepping 11, GenuineIntel
 # variable set hash-table stats:
-# Load=102/1024=10%, Rehash=0, Collisions=10/126=8%
+# Load=102/1024=10%, Rehash=0, Collisions=10/130=8%
 
 # Pattern-specific Variable Values
 
@@ -226,9 +226,9 @@ PROCESSOR_IDENTIFIER = Intel64 Family 6 Model 142 Stepping 11, GenuineIntel
 
 # Directories
 
-# . (key c:/Users/������������/Documents/����/������/ITMO-ICT-Backend-2022/labs/K33401/Shtreikh Anna/Lr2/Lr_2, mtime 1654443297): 5 files, no impossibilities.
+# . (key c:/Users/������������/Documents/����/������/ITMO-ICT-Backend-2022/labs/K33401/Shtreikh Anna/Lr2/Lr_2/films, mtime 1654443090): 18 files, no impossibilities.
 
-# 5 files, no impossibilities in 1 directories.
+# 18 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -236,18 +236,52 @@ PROCESSOR_IDENTIFIER = Intel64 Family 6 Model 142 Stepping 11, GenuineIntel
 
 # Files
 
+seed:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 25):
+	npx sequelize-cli db:seed:all
+
+lint:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 12):
+	npm run lint
+
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  File does not exist.
+#  Last modified 2022-05-13 00:16:17
 #  File has been updated.
-#  Failed to be updated.
+#  Successfully updated.
+
+sequelize:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 16):
+	npm i --save-dev sequelize-cli
+	npx sequelize-cli init
 
 # Not a target:
 .DEFAULT:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
+
+init:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 3):
+	npm i
+	npm run build
 
 # Not a target:
 all:
@@ -256,41 +290,42 @@ all:
 #  File does not exist.
 #  File has not been updated.
 
-# Not a target:
-makefile:
-#  Implicit rule search has been done.
+run:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
 #  File does not exist.
-#  File has been updated.
-#  Failed to be updated.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 8):
+	npm start
 
-# Not a target:
-makefile.mak:
-#  Implicit rule search has been done.
+migrate:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit r 
+ule search has not been done.
 #  File does not exist.
-#  File has been updated.
-#  Failed to be updated.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 21):
+	npx sequelize-cli db:migrate  
 
-# Not a target:
-GNUmakefile:
-#  Implicit rule search has been done.
-#  File does not exist.
-#  File has been updated.
-#  Failed to be updated.
+.PHONY: init run lint sequelize migrate seed
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # files hash-table stats:
-# Load=7/1024=1%, Rehash=0, Collisions=0/16=0%
+# Load=11/1024=1%, Rehash=0, Collisions=0/38=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 12 / storage = 91 B / avg = 7 B
-# current buf: size = 8174 B / used = 91 B / count = 12 / avg = 7 B
+# strcache buffers: 1 (0) / strings = 28 / storage = 245 B / avg = 8 B
+# current buf: size = 8174 B / used = 245 B / count = 28 / avg = 8 B
 
-# strcache performance: lookups = 15 / hit rate = 20%
+# strcache performance: lookups = 55 / hit rate = 49%
 # hash-table stats:
-# Load=12/8192=0%, Rehash=0, Collisions=0/15=0%
-# Finished Make data base on Tue Jun 07 11:13:41 2022
+# Load=28/8192=0%, Rehash=0, Collisions=0/55=0%
+# Finished Make data base on Wed Jun 08 23:49:36 2022
 
  
