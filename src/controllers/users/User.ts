@@ -12,7 +12,13 @@ class UserController {
         this.userService = new UserService()
     }
 
-    get = async (request: any, response: any) => {
+    retrieve = async (request: any, response: any) => {
+        // Permission check
+        if (!request.user?.isAdmin) {
+            response.status(403).send({ error: 'You do not have permission!' })
+            return
+        }
+
         try {
             const user: User | UserError = await this.userService.getById(Number(request.params.id))
 
@@ -22,7 +28,7 @@ class UserController {
         }
     }
 
-    post = async (request: any, response: any) => {
+    create = async (request: any, response: any) => {
         const { body } = request
 
         try {
@@ -38,7 +44,7 @@ class UserController {
         response.send(request.user)
     }
 
-    auth = async (request: any, response: any) => {
+    login = async (request: any, response: any) => {
         const { body } = request
 
         const { email, password } = body
