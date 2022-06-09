@@ -1,17 +1,18 @@
 import {Sequelize} from 'sequelize-typescript'
 import RefreshToken from '../models/auth/RefreshToken'
 import User from '../models/users/User'
+import Wallet from '../models/wallet/Wallet'
+import Coin from '../models/wallet/Coin'
+import CoinWallet from '../models/wallet/CoinWallet'
 import {dbConfig} from '../configs'
-import {col} from "sequelize";
 
 
 const sequelize = new Sequelize({
     ...dbConfig,
-    logging: console.log,
-    //repositoryMode: true
+    logging: console.log
 })
 
-const models = [User, RefreshToken]
+const models = [User, RefreshToken, Wallet, Coin, CoinWallet]
 
 sequelize.addModels(models)
 console.log('Added models')

@@ -1,6 +1,19 @@
-import {Model, Table, Column, Unique, AllowNull, BeforeCreate, BeforeUpdate, DefaultScope, Scopes} from 'sequelize-typescript'
-import generateSalt from "../../utils/generateSalt";
-import encodePassword from "../../utils/encodePassword";
+import {
+    Model,
+    Table,
+    Column,
+    Unique,
+    AllowNull,
+    BeforeCreate,
+    BeforeUpdate,
+    DefaultScope,
+    Scopes,
+    HasMany
+} from 'sequelize-typescript'
+import generateSalt from '../../utils/generateSalt'
+import encodePassword from '../../utils/encodePassword'
+import Wallet from '../wallet/Wallet'
+
 
 @DefaultScope(() => ({
     attributes: ['id', 'firstName', 'lastName', 'email']
@@ -31,6 +44,9 @@ class User extends Model {
 
     @Column
     salt: string
+
+    @HasMany(() => Wallet)
+    wallets: [Wallet]
 
     @BeforeCreate
     static setPasswordInitial(instance: User) {
