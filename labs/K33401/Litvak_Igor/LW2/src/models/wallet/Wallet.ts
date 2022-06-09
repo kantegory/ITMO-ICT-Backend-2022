@@ -2,6 +2,7 @@ import {Model, Table, Column, Default, AllowNull, ForeignKey, BelongsTo, Belongs
 import Coin from './Coin'
 import CoinWallet from './CoinWallet'
 import User from '../users/User'
+import APIError from "../../errors/APIError";
 
 
 @Table
@@ -11,7 +12,11 @@ class Wallet extends Model {
     name: string
 
     @Default(0)
-    @Column
+    @Column({
+        set(val): void {
+            throw new APIError('Cannot set balance')
+        }
+    })
     balance: number
 
     @ForeignKey(() => User)
