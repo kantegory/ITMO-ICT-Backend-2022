@@ -39,12 +39,16 @@ class WalletController {
     }
 
     post = async (request: any, response: any) => {
-        const {body} = request
-        try {
-            const wallet: Wallet | APIError = await Wallet.create(body)
-            response.status(201).send(wallet)
-        } catch (error: any) {
-            response.status(400).send({'detail': error.message})
+        const {body, user} = request
+        if (user) {
+            try {
+                const wallet: Wallet | APIError = await this.walletService.create(body, user)
+                response.status(201).send(wallet)
+            } catch (error: any) {
+                response.status(400).send({'detail': error.message})
+            }
+        } else {
+            response.status(401).send({'detail': 'Not authenticated'})
         }
     }
 }

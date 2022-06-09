@@ -1,10 +1,44 @@
-import {Model, Table, Column, Default, AllowNull, ForeignKey, BelongsTo, BelongsToMany} from 'sequelize-typescript'
+import {
+    Model,
+    Table,
+    Column,
+    Default,
+    AllowNull,
+    ForeignKey,
+    BelongsTo,
+    BelongsToMany,
+    HasMany,
+    DefaultScope,
+    Scopes,
+    DataType
+} from 'sequelize-typescript'
 import Coin from './Coin'
 import CoinWallet from './CoinWallet'
 import User from '../users/User'
-import APIError from "../../errors/APIError";
 
 
+@DefaultScope(() => ({
+    attributes: ['id', 'name', 'balance', 'userId'],
+}))
+@Scopes(() => ({
+    // nested: (instance: Wallet) => ({
+    //     attributes: ['id', 'name', 'balance'],
+    //     include: [{
+    //         model: CoinWallet,
+    //         attributes: ['amount'],
+    //         where: {walletId: instance.id}
+    //     }],
+    //     nest: true
+    // })
+    nested: {
+        attributes: ['id', 'name', 'balance', 'userId'],
+        include: [{
+            model: CoinWallet,
+            attributes: ['amount']
+        }],
+        nest: true
+    }
+}))
 @Table
 class Wallet extends Model {
     @AllowNull(false)
@@ -13,8 +47,9 @@ class Wallet extends Model {
 
     @Default(0)
     @Column({
-        set(val): void {
-            throw new APIError('Cannot set balance')
+        type: DataType.FLOAT,
+        set(this, val): void {
+            console.log('Balance not allowed to be set')
         }
     })
     balance: number
@@ -25,6 +60,9 @@ class Wallet extends Model {
 
     @BelongsTo(() => User)
     user: User
+
+    @HasMany(() => CoinWallet)
+    coinWallets: CoinWallet[]
 
     @BelongsToMany(() => Coin, () => CoinWallet)
     coins: Coin[]
