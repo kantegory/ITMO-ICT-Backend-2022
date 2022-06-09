@@ -67,6 +67,13 @@ class User extends Model {
             instance.password = hashPassword(password)
         }
     }
+
+    toJSON(): User {
+        const user = super.toJSON()
+        // Remove password from JSON representation
+        delete user.password
+        return user
+    }
 }
 
 export default User
