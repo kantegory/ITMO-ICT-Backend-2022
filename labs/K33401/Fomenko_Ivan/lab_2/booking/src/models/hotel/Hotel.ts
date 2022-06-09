@@ -9,7 +9,7 @@ class Hotel extends Model {
     @Column
     town: string
 
-    @Min(10)
+    @Min(0)
     @Max(1000)
     @Column
     capacity: number

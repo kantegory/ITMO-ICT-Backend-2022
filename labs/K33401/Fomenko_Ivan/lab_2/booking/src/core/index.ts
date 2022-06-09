@@ -3,6 +3,8 @@ import { createServer, Server } from "http"
 import routes from "../routes/index"
 import {sequelize} from "../providers/db"
 import bodyParser from "body-parser"
+import customStrategy from "../middleware/passport"
+import passport from "passport"
 
 class App {
     public port: number
@@ -21,8 +23,10 @@ class App {
     
     private createApp(): express.Application {
         const app = express()
+        passport.use(customStrategy)
         app.use(bodyParser.urlencoded({extended: false}))
         app.use(bodyParser.json())
+        app.use(passport.initialize())
         app.use('/v1', routes)
     
         return app

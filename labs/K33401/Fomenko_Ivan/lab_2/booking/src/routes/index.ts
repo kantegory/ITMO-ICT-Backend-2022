@@ -1,12 +1,10 @@
 import express from "express"
-import UserController from "../controllers/user/index"
+import UserController from "../controllers/user"
 import HotelController from "../controllers/hotel"
 import BookingController from "../controllers/booking"
+import passport from "passport"
 
 const router: express.Router = express.Router()
-const passport = require('passport')
-const jwt = require('jsonwebtoken')
-
 
 const userController = new UserController()
 const hotelController = new HotelController()
