@@ -10,22 +10,38 @@ class WalletController {
         this.walletService = new WalletService()
     }
 
+    private wrapperFunc = async (
+        request: any,
+        response: any,
+        func: (id: number,walletData: any) => Promise<Wallet | APIError>
+    ) => {
+        // Helper function to prevent duplicated code
+        const {body, user} = request
+        const {id} = request.params
+        if (user && await this.walletService.checkUser(id, user.id)) {
+            try {
+                const wallet = await func(id, body)
+                response.status(200).send(wallet)
+            } catch (error: any) {
+                response.status(400).send({'detail': error.message})
+            }
+        } else {
+            response.status(403).send({'detail': 'Unauthorized'})
+        }
+    }
+
     get = async (request: any, response: any) => {
         const {user} = request
         const {id} = request.params
-        if (user) {
+        if (user && await this.walletService.checkUser(id, user.id)) {
             try {
                 const wallet: Wallet | APIError = await this.walletService.getById(id)
-                if (!(wallet instanceof APIError) && wallet.userId === user.id) {
-                    response.status(200).send(wallet)
-                } else {
-                    response.status(404).send({'detail': 'Wallet not found'})
-                }
+                response.status(200).send(wallet)
             } catch (error: any) {
                 response.status(404).send({'detail': error.message})
             }
         } else {
-            response.status(401).send({'detail': 'Not authenticated'})
+            response.status(403).send({'detail': 'Unauthorized'})
         }
     }
 
@@ -34,7 +50,7 @@ class WalletController {
         if (user) {
             response.send(await this.walletService.getByUserId(user.id))
         } else {
-            response.status(401).send({'detail': 'Not authenticated'})
+            response.status(403).send({'detail': 'Unauthorized'})
         }
     }
 
@@ -50,6 +66,26 @@ class WalletController {
         } else {
             response.status(401).send({'detail': 'Not authenticated'})
         }
+    }
+
+    increaseBalance = async (request: any, response: any) => {
+        return this.wrapperFunc(request, response, this.walletService.increaseBalance)
+    }
+
+    decreaseBalance = async (request: any, response: any) => {
+        return this.wrapperFunc(request, response, this.walletService.decreaseBalance)
+    }
+
+    buyCoin = async (request: any, response: any) => {
+        return this.wrapperFunc(request, response, this.walletService.buyCoin)
+    }
+
+    sellCoin = async (request: any, response: any) => {
+        return this.wrapperFunc(request, response, this.walletService.sellCoin)
+    }
+
+    sellAllCoin = async (request: any, response: any) => {
+        return this.wrapperFunc(request, response, this.walletService.sellAllCoin)
     }
 }
 

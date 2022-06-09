@@ -10,6 +10,10 @@ class Coin extends Model {
     @Column
     ticker: string
 
+    @AllowNull(false)
+    @Column
+    name: string
+
     @BelongsToMany(() => Wallet, () => CoinWallet)
     wallets: Wallet[]
 }

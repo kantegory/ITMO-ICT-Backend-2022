@@ -21,15 +21,6 @@ import User from '../users/User'
     attributes: ['id', 'name', 'balance', 'userId'],
 }))
 @Scopes(() => ({
-    // nested: (instance: Wallet) => ({
-    //     attributes: ['id', 'name', 'balance'],
-    //     include: [{
-    //         model: CoinWallet,
-    //         attributes: ['amount'],
-    //         where: {walletId: instance.id}
-    //     }],
-    //     nest: true
-    // })
     nested: {
         attributes: ['id', 'name', 'balance', 'userId'],
         include: [{
