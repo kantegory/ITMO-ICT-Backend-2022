@@ -38,6 +38,9 @@ class User extends Model {
     @Column
     email: string
 
+    @HasMany(() => Wallet)
+    wallets: [Wallet]
+
     @AllowNull(false)
     @Column
     password: string
@@ -45,16 +48,11 @@ class User extends Model {
     @Column
     salt: string
 
-    @HasMany(() => Wallet)
-    wallets: [Wallet]
-
     @BeforeCreate
     static setPasswordInitial(instance: User) {
         instance.salt = generateSalt()
         const {password} = instance
         instance.password = encodePassword(password, instance.salt)
-        console.log(instance.salt)
-        console.log(instance.password)
     }
 
     @BeforeUpdate

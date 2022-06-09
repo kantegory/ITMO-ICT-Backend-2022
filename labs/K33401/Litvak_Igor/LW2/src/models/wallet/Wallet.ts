@@ -7,6 +7,9 @@ import User from '../users/User'
 @Table
 class Wallet extends Model {
     @AllowNull(false)
+    @Column
+    name: string
+
     @Default(0)
     @Column
     balance: number
