@@ -1,7 +1,10 @@
-import { Model, Table, Column, Unique, AllowNull, BeforeCreate, BeforeUpdate} from 'sequelize-typescript'
+import {Model, Table, Column, Unique, AllowNull, BeforeCreate, BeforeUpdate, DefaultScope} from 'sequelize-typescript'
 import generateSalt from "../../utils/generateSalt";
 import encodePassword from "../../utils/encodePassword";
 
+@DefaultScope(() => ({
+    attributes: ['id', 'firstName', 'lastName', 'email']
+}))
 @Table
 class User extends Model {
     @AllowNull(false)
