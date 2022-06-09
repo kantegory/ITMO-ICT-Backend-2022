@@ -9,5 +9,6 @@
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "allowJs": true,
+        "sourceMap": true,
     }
 }
