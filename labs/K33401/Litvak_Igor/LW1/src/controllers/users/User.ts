@@ -12,16 +12,16 @@ class UserController {
         this.userService = new UserService()
     }
 
-    get = async (request: any, response: any) => {
-        try {
-            const user: User | APIError = await this.userService.getById(
-                Number(request.params.id)
-            )
-            response.send(user)
-        } catch (error: any) {
-            response.status(404).send({'detail': error.message})
-        }
-    }
+    // get = async (request: any, response: any) => {
+    //     try {
+    //         const user: User | APIError = await this.userService.getById(
+    //             Number(request.params.id)
+    //         )
+    //         response.send(user)
+    //     } catch (error: any) {
+    //         response.status(404).send({'detail': error.message})
+    //     }
+    // }
 
     post = async (request: any, response: any) => {
         const {body} = request
@@ -33,15 +33,32 @@ class UserController {
         }
     }
 
-    me = async (request: any, response: any) => {
-        const {user} = request.user
+    // Get only allowed for myself
+    get = async (request: any, response: any) => {
+        const {user} = request
         if (user) {
             response.send(user)
+        } else {
+            response.status(401).send({'detail': 'Not authenticated'})
         }
-        response.status(401).send({'detail': 'Not authenticated'})
     }
 
-    auth = async (request: any, response: any) => {
+    // Put only allowed for myself
+    put = async (request: any, response: any) => {
+        const {body, user} = request
+        if (user) {
+            try {
+                const updatedUser: User | APIError = await this.userService.update(user.id, body)
+                response.status(200).send(updatedUser)
+            } catch (error: any) {
+                response.status(400).send({'detail': error.message})
+            }
+        } else {
+            response.status(401).send({'detail': 'Not authenticated'})
+        }
+    }
+
+    login = async (request: any, response: any) => {
         const {body} = request
         const {email, password} = body
         try {

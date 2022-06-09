@@ -10,9 +10,12 @@ router.route('/')
     .post(controller.post)
 
 router.route('/me')
-    .get(passport.authenticate('jwt', { session: false }), controller.me)
+    .get(passport.authenticate('jwt', { session: false }), controller.get)
 
-router.route('/:id')
-    .get(controller.get)
+router.route('/me')
+    .put(passport.authenticate('jwt', { session: false }), controller.put)
+
+// router.route('/:id')
+//     .get(controller.get)
 
 export default router

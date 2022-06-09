@@ -22,6 +22,20 @@ class UserService {
         }
     }
 
+    async update(id: number, userData: any): Promise<User | APIError> {
+        let user = await User.findByPk(id)
+        if (user) {
+            try {
+                user = await user.update(userData)
+                return user.toJSON()
+            } catch (e: any) {
+                const errors = e.errors.map((error: any) => error.message)
+                throw new APIError(errors)
+            }
+        }
+        throw new APIError('User not found')
+    }
+
     async checkPassword(email: string, password: string): Promise<any> {
         const user = await User.findOne({where: {email}})
         if (user) {
