@@ -28,6 +28,7 @@ class UserService {
         if (user) {
             try {
                 user = await user.update(userData)
+                await user.reload()
                 return user.toJSON()
             } catch (e: any) {
                 const errors = e.errors.map((error: any) => error.message)
