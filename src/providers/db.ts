@@ -1,12 +1,13 @@
 import { Sequelize, SequelizeOptions } from 'sequelize-typescript'
 import RefreshToken from '../models/auth/RefreshToken'
 import { config } from '../configs/config'
+import User from '../models/users/User'
 
 const sequelizeConfig = config.db as SequelizeOptions
 
 const sequelize = new Sequelize(sequelizeConfig)
 
-const models = [RefreshToken]
+const models = [User, RefreshToken]
 
 sequelize.addModels(models)
 
