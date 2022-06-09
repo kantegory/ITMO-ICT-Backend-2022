@@ -47,11 +47,7 @@ class UserController {
             const { user, checkPassword } = await this.userService.checkPassword(email, password)
 
             if (checkPassword) {
-                const payload = { id: user.id }
-
-                console.log('Payload is', payload)
-
-                const accessToken = jwt.sign(payload, jwtOptions.secretOrKey)
+                const accessToken = jwt.sign(user, jwtOptions.secretOrKey)
 
                 const refreshTokenService = new RefreshTokenService(user)
 
