@@ -2,12 +2,13 @@ import { Sequelize, SequelizeOptions } from 'sequelize-typescript'
 import RefreshToken from '../models/auth/RefreshToken'
 import { config } from '../configs/config'
 import User from '../models/users/User'
+import Hotel from '../models/hotels/Hotel'
 
 const sequelizeConfig = config.db as SequelizeOptions
 
 const sequelize = new Sequelize(sequelizeConfig)
 
-const models = [User, RefreshToken]
+const models = [User, RefreshToken, Hotel]
 
 sequelize.addModels(models)
 
