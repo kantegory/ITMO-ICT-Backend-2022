@@ -10,7 +10,7 @@ router.route('/').post(controller.create)
 
 router.route('/profile').get(isAuthenticated, controller.me)
 
-router.route('/profile/:id').get(isAuthenticated, isAdmin, controller.retrieve)
+router.route('/profile/:id(\\d+)').get(isAuthenticated, isAdmin, controller.retrieve)
 
 router.route('/login').post(controller.login)
 
