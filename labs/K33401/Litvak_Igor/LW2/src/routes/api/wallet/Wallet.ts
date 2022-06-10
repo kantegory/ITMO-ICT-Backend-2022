@@ -1,6 +1,6 @@
 import express from 'express'
 import WalletController from '../../../controllers/wallet/Wallet'
-import passport from "../../../middlewares/passport";
+import passport from '../../../middlewares/passport'
 
 const router: express.Router = express.Router()
 

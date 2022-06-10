@@ -1,8 +1,11 @@
-import {Model, Table, Column, AllowNull, PrimaryKey, BelongsTo, BelongsToMany} from 'sequelize-typescript'
+import {Model, Table, Column, AllowNull, PrimaryKey, BelongsToMany, DefaultScope} from 'sequelize-typescript'
 import Wallet from './Wallet'
 import CoinWallet from './CoinWallet'
 
 
+@DefaultScope(() => ({
+    attributes: ['ticker', 'name', 'createdAt']
+}))
 @Table
 class Coin extends Model {
     @PrimaryKey
