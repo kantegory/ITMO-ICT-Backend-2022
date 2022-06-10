@@ -147,7 +147,7 @@ class WalletService {
         const wallet = await Wallet.scope('nested').findByPk(id)
         const coin = await Coin.findByPk(ticker)
         if (wallet && coin) {
-            const coinWallet = await CoinWallet.findOne({where: {coinId: coin.id, walletId: id}})
+            const coinWallet = await CoinWallet.findOne({where: {coinId: ticker, walletId: id}})
             if (coinWallet) {
                 const amount = coinWallet.amount
                 try {
