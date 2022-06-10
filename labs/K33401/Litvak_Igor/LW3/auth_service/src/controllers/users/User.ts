@@ -93,8 +93,8 @@ class UserController {
         const {body} = request
         const {accessToken} = body
         try {
-            jwt.verify(accessToken, jwtConfig.secret)
-            response.send({'valid': true})
+            const payload = jwt.verify(accessToken, jwtConfig.secret)
+            response.send({'valid': true, 'payload': payload})
         } catch (e: any) {
             response.status(401).send({'valid': false})
         }
