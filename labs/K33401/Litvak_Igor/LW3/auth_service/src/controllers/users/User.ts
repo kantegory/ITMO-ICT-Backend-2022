@@ -94,7 +94,9 @@ class UserController {
         const {accessToken} = body
         try {
             const payload = jwt.verify(accessToken, jwtConfig.secret)
-            response.send({'valid': true, 'payload': payload})
+			// @ts-ignore
+			const user = await this.userService.getById(payload.id)
+            response.send({'valid': true, 'user': user})
         } catch (e: any) {
             response.status(401).send({'valid': false})
         }
