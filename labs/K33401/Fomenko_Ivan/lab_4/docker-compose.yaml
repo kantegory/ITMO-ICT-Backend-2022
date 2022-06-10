@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  auth:
+    build: 
+      context: ./auth
+    ports:
+      - '8100:8100'
+    restart: always
+  booking:
+    build: 
+      context: ./booking
+    ports:
+      - '8000:8000'
+    restart: always

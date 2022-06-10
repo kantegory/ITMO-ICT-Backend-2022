@@ -23,7 +23,8 @@ class BookingController {
             const usero = await this.userService.getById(booking.userId)
             const hotelo = await this.hotelService.getById(booking.hotelId)
             if(usero && usero.age > 17 && hotelo && hotelo.capacity > booking.visitors){
-                await this.bookingService.add(booking.arrival, booking.departure, booking.visitors, booking.userId, booking.hotelId)
+                await this.bookingService.add(booking.arrival, booking.departure,
+                     booking.visitors, booking.userId, booking.hotelId)
                 response.send('Successfully added booking')
             } else {
                 response.status(400).send('Out of space or you are too young')

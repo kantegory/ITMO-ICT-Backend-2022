@@ -1,4 +1,4 @@
-import App from "./core/index"
+import App from "./core"
 
 const app = new App()
 

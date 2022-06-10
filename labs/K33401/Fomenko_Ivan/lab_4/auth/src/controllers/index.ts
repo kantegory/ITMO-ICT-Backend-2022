@@ -6,7 +6,7 @@ class AuthController {
         const secretOrKey = 'jamesbond'
         if (data.email && data.password) {
 
-            let user = await axios.get("http://localhost:8000/v1/user", {
+            let user = await axios.get("http://booking:8000/v1/user", {
                 params: {
                     email: data.email
                 }
