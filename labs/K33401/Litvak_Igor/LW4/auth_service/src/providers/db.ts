@@ -1,11 +1,15 @@
 import {Sequelize} from 'sequelize-typescript'
 import RefreshToken from '../models/auth/RefreshToken'
 import User from '../models/users/User'
-import {dbConfig} from '../configs'
+import {dbConfig, dbProdConfig} from '../configs'
 
+let selectedDbConfig = dbConfig
+if (process.env.NODE_ENV == 'production') {
+    selectedDbConfig = dbProdConfig
+}
 
 const sequelize = new Sequelize({
-    ...dbConfig,
+    ...selectedDbConfig,
     logging: console.log
 })
 

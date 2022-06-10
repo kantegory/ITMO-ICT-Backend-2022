@@ -2,11 +2,15 @@ import {Sequelize} from 'sequelize-typescript'
 import Wallet from '../models/wallet/Wallet'
 import Coin from '../models/wallet/Coin'
 import CoinWallet from '../models/wallet/CoinWallet'
-import {dbConfig} from '../configs'
+import {dbConfig, dbProdConfig} from '../configs'
 
+let selectedDbConfig = dbConfig
+if (process.env.NODE_ENV == 'production') {
+    selectedDbConfig = dbProdConfig
+}
 
 const sequelize = new Sequelize({
-    ...dbConfig,
+    ...selectedDbConfig,
     logging: console.log
 })
 
