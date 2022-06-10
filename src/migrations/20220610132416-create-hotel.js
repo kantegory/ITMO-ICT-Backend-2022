@@ -26,7 +26,7 @@ module.exports = {
             },
             stars: {
                 allowNull: false,
-                type: Sequelize.NUMBER,
+                type: Sequelize.INTEGER,
                 validate: {
                     notNull: true,
                     isInt: true,
