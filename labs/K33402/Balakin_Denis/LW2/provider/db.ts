@@ -1,4 +1,5 @@
 import { Sequelize } from "sequelize-typescript";
+import Booking from "../models/Airbnb/Booking";
 import Property from "../models/Airbnb/Property";
 
 import User from "../models/User/User"
@@ -15,7 +16,7 @@ const sequelize = new Sequelize({
     storage: 'lw2.sqlite',
 })
 
-const models = [User, Property]
+const models = [User, Property, Booking]
 sequelize.addModels(models)
 
 sequelize.sync()
