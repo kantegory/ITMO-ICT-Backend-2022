@@ -1,0 +1,13 @@
+services:
+  user:
+    build: ./user
+    ports:
+      - "7777:7777"
+  flight_ticket:
+    build: ./flight_ticket
+    ports:
+      - "7778:7778"
+  express_gateway:
+    build: ./express_gateway
+    ports:
+      - "8080:8080"
