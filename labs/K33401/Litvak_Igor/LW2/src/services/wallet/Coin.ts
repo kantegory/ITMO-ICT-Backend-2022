@@ -1,3 +1,4 @@
+import {Op} from 'sequelize'
 import Coin from '../../models/wallet/Coin'
 import APIError from '../../errors/APIError'
 import getCurrentPrice from '../../utils/getCurrentPrice'
@@ -15,6 +16,14 @@ class CoinService {
 
     async getAll(): Promise<Coin[]> {
         return await Coin.findAll()
+    }
+
+    async getAllFilter(from: Date): Promise<Coin[]> {
+        return await Coin.findAll({
+            where: {
+                createdAt: {[Op.gte]: from}
+            }
+        })
     }
 
     async getPrice(ticker: string): Promise<{ price: number } | APIError> {

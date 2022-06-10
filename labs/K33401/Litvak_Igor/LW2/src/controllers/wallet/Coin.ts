@@ -4,7 +4,8 @@ const TIME_INTERVAL_MAPPING: any = {
     h: 3600,
     d: 3600 * 24,
     w: 3600 * 24 * 7,
-    m: 3600 * 24 * 30
+    m: 3600 * 24 * 30,
+    y: 3600 * 24 * 365
 }
 
 class CoinController {
@@ -24,7 +25,16 @@ class CoinController {
     }
 
     getAll = async (request: any, response: any) => {
-        response.send(await this.coinService.getAll())
+        const time = request.query.time
+        let seconds = null
+        if (time) {
+            seconds = TIME_INTERVAL_MAPPING[time]
+        }
+        if (seconds) {
+            response.send(await this.coinService.getAllFilter(new Date(Date.now() - seconds * 1000)))
+        } else {
+            response.send(await this.coinService.getAll())
+        }
     }
 
     price = async (request: any, response: any) => {
