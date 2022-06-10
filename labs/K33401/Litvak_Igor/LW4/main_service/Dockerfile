@@ -22,9 +22,11 @@ COPY --chown=node:node package*.json ./
 USER node
 RUN npm install --production
 COPY --from=builder /home/node/app/dist ./dist
-COPY --chown=node:node .sequelizerc .
-COPY --chown=node:node  src/configs/settings.ini ./dist/configs/settings.ini
-COPY --chown=node:node  ./docker-entrypoint.sh ./docker-entrypoint.sh
+COPY --chown=node:node .sequelizerc ./dist/
+COPY --chown=node:node src/configs/settings.ini ./dist/configs/settings.ini
+COPY --chown=node:node src/sequelize/index.js ./dist/sequelize/index.js
+COPY --chown=node:node src/seeders/*.js ./dist/seeders/
+COPY --chown=node:node docker-entrypoint.sh .
 RUN chmod +x ./docker-entrypoint.sh
 
 EXPOSE 5000
