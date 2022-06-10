@@ -1,6 +1,6 @@
 import express from 'express'
 import UserController from '../../../controllers/users/User'
-import { isAuthenticated } from '../../../utils/auth'
+import { isAdmin, isAuthenticated } from '../../../utils/auth'
 
 const router: express.Router = express.Router()
 
@@ -10,7 +10,7 @@ router.route('/').post(controller.create)
 
 router.route('/profile').get(isAuthenticated, controller.me)
 
-router.route('/profile/:id').get(isAuthenticated, controller.retrieve)
+router.route('/profile/:id').get(isAuthenticated, isAdmin, controller.retrieve)
 
 router.route('/login').post(controller.login)
 

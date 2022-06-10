@@ -13,12 +13,6 @@ class UserController {
     }
 
     retrieve = async (request: any, response: any) => {
-        // Permission check
-        if (!request.user?.isAdmin) {
-            response.status(403).send({ error: 'You do not have permission!' })
-            return
-        }
-
         try {
             const user: User | UserError = await this.userService.getById(Number(request.params.id))
 
