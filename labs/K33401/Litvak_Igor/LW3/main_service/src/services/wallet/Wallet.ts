@@ -77,10 +77,6 @@ class WalletService {
         const wallet = await Wallet.scope('nested').findByPk(id)
         const coin = await Coin.findByPk(ticker)
         if (wallet && coin) {
-            let coinWallet = await CoinWallet.findOne({where: {coinId: ticker, walletId: id}})
-            if (!coinWallet) {
-                coinWallet = await CoinWallet.create({amount: 0, coinId: ticker, walletId: id})
-            }
             let price: number
             try {
                 price = await getCurrentPrice(ticker)
@@ -89,6 +85,10 @@ class WalletService {
             }
             if (price * amount > wallet.getDataValue('balance')) {
                 throw new APIError('Not enough money')
+            }
+            let coinWallet = await CoinWallet.findOne({where: {coinId: ticker, walletId: id}})
+            if (!coinWallet) {
+                coinWallet = await CoinWallet.create({amount: 0, coinId: ticker, walletId: id})
             }
             wallet.setDataValue('balance', wallet.getDataValue('balance') - price * amount)
             coinWallet.amount += amount
