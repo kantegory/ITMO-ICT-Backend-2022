@@ -2,11 +2,18 @@ import Hotel from '../../models/hotels/Hotel'
 import HotelError from '../../errors/hotels/Hotel'
 import { Op, Optional } from 'sequelize'
 import { ParsedQs } from 'qs'
+import Room from '../../models/hotels/Room'
 
 class HotelService {
     async list(query: ParsedQs): Promise<Hotel[]> {
         const options = {
             where: {} as any,
+            include: [
+                {
+                    model: Room,
+                    where: undefined as any,
+                },
+            ],
         }
 
         if (query.name) {
@@ -23,6 +30,10 @@ class HotelService {
             options.where.stars = { [Op.gte]: query.starsFrom }
         } else if (query.starsTo) {
             options.where.stars = { [Op.lte]: query.starsTo }
+        }
+
+        if (query.capacity) {
+            options.include[0].where = { capacity: query.capacity }
         }
 
         return await Hotel.findAll(options)
