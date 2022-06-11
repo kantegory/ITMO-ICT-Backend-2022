@@ -1,14 +1,23 @@
 import { Optional } from 'sequelize'
 import Room from '../../models/hotels/Room'
 import RoomError from '../../errors/hotels/Room'
+import Hotel from '../../models/hotels/Hotel'
+import HotelError from '../../errors/hotels/Hotel'
 
 class RoomService {
     async create(data: Optional<string, any>): Promise<Room | RoomError> {
         try {
+            const hotelId = data.hotelId
+            const hotel = await Hotel.findByPk(hotelId)
+            if (!hotel) throw new HotelError(`Hotel with ID ${hotelId} not found!`)
+
             const room = await Room.create(data)
 
             return room.toJSON()
         } catch (e: any) {
+            if (e.message) {
+                throw new RoomError(e.message)
+            }
             const errors = e.errors.map((error: any) => error.message)
 
             throw new RoomError(errors)
