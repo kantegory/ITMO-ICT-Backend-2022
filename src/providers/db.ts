@@ -3,12 +3,13 @@ import RefreshToken from '../models/auth/RefreshToken'
 import { config } from '../configs/config'
 import User from '../models/users/User'
 import Hotel from '../models/hotels/Hotel'
+import Room from '../models/hotels/Room'
 
 const sequelizeConfig = config.db as SequelizeOptions
 
 const sequelize = new Sequelize(sequelizeConfig)
 
-const models = [User, RefreshToken, Hotel]
+const models = [User, RefreshToken, Hotel, Room]
 
 sequelize.addModels(models)
 

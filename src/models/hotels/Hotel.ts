@@ -1,4 +1,5 @@
-import { AllowNull, Column, IsInt, Length, Max, Min, Model, NotNull, Table } from 'sequelize-typescript'
+import { AllowNull, Column, HasMany, IsInt, Length, Max, Min, Model, NotNull, Table } from 'sequelize-typescript'
+import Room from './Room'
 
 @Table
 class Hotel extends Model {
@@ -21,6 +22,9 @@ class Hotel extends Model {
     @AllowNull(false)
     @Column
     stars: number
+
+    @HasMany(() => Room)
+    rooms: Room[]
 }
 
 export default Hotel
