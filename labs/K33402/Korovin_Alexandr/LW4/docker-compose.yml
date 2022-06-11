@@ -1,9 +1,7 @@
 version: '3'
 services:
   app:
-    image: node_app
-          - .:/home/node/app
-          - node_modules:/home/node/app/node_modules    
+    image: node_app   
     env_file: .env
     environment:
       - MONGO_USERNAME=$MONGO_USERNAME
@@ -17,5 +15,4 @@ services:
     ports:
       - "5000:5000"
     restart: unless-stopped
-volumes:
-  node_modules:
+
