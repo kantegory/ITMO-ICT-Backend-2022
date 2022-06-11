@@ -2,3 +2,4 @@ node_modules
 dist
 src/configs/*.js
 src/migrations/*.js
+swagger-autogen.js

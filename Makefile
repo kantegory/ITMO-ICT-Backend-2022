@@ -11,6 +11,10 @@ build:
 migrate:
 	npm run migrate
 
+.PHONY: swagger
+swagger:
+	npm run swagger-autogen
+
 .PHONY: run
 run:
 	npm start
