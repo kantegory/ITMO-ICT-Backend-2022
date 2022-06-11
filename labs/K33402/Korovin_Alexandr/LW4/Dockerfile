@@ -1,8 +1,20 @@
-# Build
-FROM node:18
-WORKDIR /app
-COPY package.json /app
+FROM node:latest
+
+RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
+
+WORKDIR /home/node/app
+
+COPY package*.json ./
+
+COPY --chown=node:node package*.json ./
+
+USER node
+
 RUN npm install
-COPY . /app
-CMD nodemon
-EXPOSE 5000
+
+COPY --chown=node:node . .
+
+CMD [ "npm", "run", "start" ]
+
+EXPOSE 5000 
+
