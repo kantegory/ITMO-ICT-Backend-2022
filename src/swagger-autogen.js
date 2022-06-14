@@ -5,6 +5,7 @@ const doc = {
         title: 'Hotels API',
         description: 'Hotel booking service',
     },
+    host: process.env.SERVER_PUBLIC_URN,
     schemes: ['http'],
 }
 
