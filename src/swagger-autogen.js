@@ -1,11 +1,12 @@
-const swaggerAutogen = require('swagger-autogen')({openapi: '3.0.0'})
+const { config } = require('./configs/config')
+const swaggerAutogen = require('swagger-autogen')({ openapi: '3.0.0' })
 
 const doc = {
     info: {
         title: 'Hotels API',
         description: 'Hotel booking service',
     },
-    host: process.env.SERVER_PUBLIC_URN,
+    host: config.server.publicURN,
     schemes: ['http'],
 }
 
