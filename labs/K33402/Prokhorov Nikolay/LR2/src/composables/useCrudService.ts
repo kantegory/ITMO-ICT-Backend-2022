@@ -14,7 +14,7 @@ export default function useCrudService<M extends ModelStatic<any>, E = Error>(
         ): Promise<InstanceType<M>> {
             const item = await model.findByPk(pk)
             if (item === null) throw new ObjectNotFoundError()
-            if (item.created_by !== userId) throw new ObjectPermisstionError()
+            if (item.createdBy !== userId) throw new ObjectPermisstionError()
             return item
         }
 

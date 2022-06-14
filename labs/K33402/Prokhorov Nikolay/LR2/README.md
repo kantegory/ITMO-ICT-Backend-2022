@@ -1,3 +1,3 @@
-# LR2 - Hotels booking
+# LR2 - Aviasales Superpowered
 
-Booking app
+Platform for the sale of air tickets
