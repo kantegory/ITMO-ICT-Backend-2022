@@ -5,6 +5,7 @@ import SeatModel from '../seats/SeatModel'
 @Table
 export default class TicketModel extends Model {
     @ForeignKey(() => SeatModel)
+    @Column({ allowNull: false })
     seatId: number
 
     @ForeignKey(() => UserModel)
