@@ -8,7 +8,7 @@ const doc = {
     schemes: ['http'],
 }
 
-const outputFile = '../run/swagger.json'
-const indexFile = './routes/v1/index.ts'
+const outputFile = `${__dirname}/../run/swagger.json`
+const indexFile = `${__dirname}/routes/v1/index.ts`
 
 swaggerAutogen(outputFile, [indexFile], doc)
