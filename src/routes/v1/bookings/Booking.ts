@@ -8,6 +8,6 @@ const bookingController = new BookingController()
 
 bookingRoutes.route('/').post(isAuthenticated, bookingController.create)
 bookingRoutes.route('/').get(isAuthenticated, bookingController.list)
-bookingRoutes.route('/:id(\\d+)').get(isAuthenticated, bookingController.retrieve)
+bookingRoutes.route('/:id').get(isAuthenticated, bookingController.retrieve)
 
 export default bookingRoutes

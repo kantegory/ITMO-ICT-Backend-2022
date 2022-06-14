@@ -7,7 +7,7 @@ const roomRoutes = express.Router()
 const roomController = new RoomController()
 
 roomRoutes.route('/').post(isAuthenticated, isAdmin, roomController.create)
-roomRoutes.route('/:id(\\d+)').patch(isAuthenticated, isAdmin, roomController.update)
-roomRoutes.route('/:id(\\d+)').delete(isAuthenticated, isAdmin, roomController.destroy)
+roomRoutes.route('/:id').patch(isAuthenticated, isAdmin, roomController.update)
+roomRoutes.route('/:id').delete(isAuthenticated, isAdmin, roomController.destroy)
 
 export default roomRoutes

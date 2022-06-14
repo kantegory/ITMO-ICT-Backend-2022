@@ -9,8 +9,8 @@ const hotelController = new HotelController()
 hotelRoutes.route('/').get(hotelController.list)
 hotelRoutes.route('/').post(isAuthenticated, isAdmin, hotelController.create)
 
-hotelRoutes.route('/:id(\\d+)').get(hotelController.retrieve)
-hotelRoutes.route('/:id(\\d+)').patch(isAuthenticated, isAdmin, hotelController.update)
-hotelRoutes.route('/:id(\\d+)').delete(isAuthenticated, isAdmin, hotelController.destroy)
+hotelRoutes.route('/:id').get(hotelController.retrieve)
+hotelRoutes.route('/:id').patch(isAuthenticated, isAdmin, hotelController.update)
+hotelRoutes.route('/:id').delete(isAuthenticated, isAdmin, hotelController.destroy)
 
 export default hotelRoutes
