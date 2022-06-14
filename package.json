@@ -7,7 +7,7 @@
         "start": "nodemon dist/index.js",
         "build": "npx tsc",
         "migrate": "npx sequelize db:migrate",
-        "swagger-autogen": "node swagger-autogen.js"
+        "swagger-autogen": "node src/swagger-autogen.js"
     },
     "author": "Komarov Georgiy",
     "license": "ISC",
