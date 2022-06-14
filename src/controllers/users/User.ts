@@ -4,6 +4,7 @@ import UserError from '../../errors/users/User'
 import jwt from 'jsonwebtoken'
 import { jwtOptions } from '../../middlewares/passport'
 import RefreshTokenService from '../../services/auth/RefreshToken'
+import { Request, Response } from 'express'
 
 class UserController {
     private userService: UserService
@@ -12,7 +13,7 @@ class UserController {
         this.userService = new UserService()
     }
 
-    retrieve = async (request: any, response: any) => {
+    retrieve = async (request: Request, response: Response) => {
         try {
             const user: User | UserError = await this.userService.getById(Number(request.params.id))
 
@@ -22,7 +23,7 @@ class UserController {
         }
     }
 
-    create = async (request: any, response: any) => {
+    create = async (request: Request, response: Response) => {
         const { body } = request
 
         try {
@@ -34,11 +35,11 @@ class UserController {
         }
     }
 
-    me = async (request: any, response: any) => {
+    me = async (request: Request, response: Response) => {
         response.send(request.user)
     }
 
-    login = async (request: any, response: any) => {
+    login = async (request: Request, response: Response) => {
         const { body } = request
 
         const { email, password } = body
@@ -62,7 +63,7 @@ class UserController {
         }
     }
 
-    refreshToken = async (request: any, response: any) => {
+    refreshToken = async (request: Request, response: Response) => {
         const { body } = request
 
         const { refreshToken } = body

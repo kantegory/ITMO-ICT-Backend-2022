@@ -2,9 +2,9 @@ import express from 'express'
 import UserController from '../../../controllers/users/User'
 import { isAdmin, isAuthenticated } from '../../../utils/auth'
 
-const router: express.Router = express.Router()
+const router = express.Router()
 
-const controller: UserController = new UserController()
+const controller = new UserController()
 
 router.route('/').post(controller.create)
 
