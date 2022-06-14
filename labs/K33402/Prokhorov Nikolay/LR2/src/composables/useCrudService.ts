@@ -1,17 +1,24 @@
 import UserModel from '../models/users/UserModel'
-import { ModelStatic } from 'sequelize/types/model'
+import { FindOptions, ModelStatic } from 'sequelize/types/model'
 import { ObjectNotFoundError, ObjectPermisstionError } from '../errors'
 
 export abstract class ModelCrudServiceBase<M extends ModelStatic<any>> {
     abstract getOwnedItem(pk: number, userId: number): Promise<InstanceType<M>>
 
-    abstract list(): Promise<InstanceType<M>[]>
+    abstract list(options?: FindOptions<any>): Promise<InstanceType<M>[]>
 
-    abstract item(pk: number): Promise<InstanceType<M> | null>
+    abstract item(pk: number, options?: FindOptions<any>): Promise<InstanceType<M> | null>
 
-    abstract create(data: Record<string, any>, userId: number): Promise<InstanceType<M>>
+    abstract create(
+        data: Record<string, any>,
+        userId: number
+    ): Promise<InstanceType<M>>
 
-    abstract update(pk: number, data: Record<string, any>, userId: number): Promise<InstanceType<M>>
+    abstract update(
+        pk: number,
+        data: Record<string, any>,
+        userId: number
+    ): Promise<InstanceType<M>>
 
     abstract delete(pk: number, userId: number): Promise<void>
 }
@@ -25,12 +32,12 @@ export default function useCrudService<M extends ModelStatic<any>>(model: M) {
             return item
         }
 
-        async list(): Promise<InstanceType<M>[]> {
-            return await model.findAll()
+        async list(options?: FindOptions<any>): Promise<InstanceType<M>[]> {
+            return await model.findAll(options)
         }
 
-        async item(pk: number): Promise<InstanceType<M> | null> {
-            return await model.findByPk(pk)
+        async item(pk: number, options?: FindOptions<any>): Promise<InstanceType<M> | null> {
+            return await model.findByPk(pk, options)
         }
 
         async create(

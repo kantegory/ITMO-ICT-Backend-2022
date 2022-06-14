@@ -15,7 +15,7 @@ build:
 	npm run build
 
 rm:
-	rm db.sqlite
+	rm -f db.sqlite
 
 .DEFAULT_GOAL: init
 

@@ -1,5 +1,6 @@
 import { AllowNull, Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript'
 import UserModel from '../users/UserModel'
+import FlightModel from '../flights/FlightModel'
 
 export type SeatClassEnum = 'ECONOM' | 'COMFORT' | 'BUSINESS'
 
@@ -14,6 +15,10 @@ export default class SeatModel extends Model {
 
     @Column({ allowNull: false })
     count: number
+
+    @ForeignKey(() => FlightModel)
+    @Column({ allowNull: false })
+    flightId: number
 
     @ForeignKey(() => UserModel)
     @Column({ allowNull: false })
