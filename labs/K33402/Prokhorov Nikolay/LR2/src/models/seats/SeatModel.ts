@@ -16,5 +16,6 @@ export default class SeatModel extends Model {
     count: number
 
     @ForeignKey(() => UserModel)
+    @Column({ allowNull: false })
     createdBy: number
 }

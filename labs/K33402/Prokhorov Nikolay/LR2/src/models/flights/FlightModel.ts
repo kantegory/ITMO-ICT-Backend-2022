@@ -22,5 +22,6 @@ export default class FlightModel extends Model {
     flightNumber: string
 
     @ForeignKey(() => UserModel)
+    @Column({ allowNull: false })
     createdBy: number
 }

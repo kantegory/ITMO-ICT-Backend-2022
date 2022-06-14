@@ -14,4 +14,8 @@ lint:
 build:
 	npm run build
 
+rm:
+	rm db.sqlite
+
 .DEFAULT_GOAL: init
+

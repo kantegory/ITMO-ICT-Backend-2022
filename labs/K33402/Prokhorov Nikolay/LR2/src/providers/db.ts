@@ -1,6 +1,9 @@
 import { Sequelize } from 'sequelize-typescript'
 import RefreshToken from '../models/auth/RefreshToken'
 import UserModel from '../models/users/UserModel'
+import FlightModel from '../models/flights/FlightModel'
+import SeatModel from '../models/seats/SeatModel'
+import TicketModel from '../models/tickets/TicketModel'
 
 const sequelize = new Sequelize({
     database: 'litedb',
@@ -11,7 +14,7 @@ const sequelize = new Sequelize({
     logging: console.log,
 })
 
-const models = [UserModel, RefreshToken]
+const models = [UserModel, RefreshToken, FlightModel, SeatModel, TicketModel]
 
 sequelize.addModels(models)
 

@@ -1,17 +1,24 @@
 import UserModel from '../models/users/UserModel'
-import UserError from '../errors/users/UserError'
 import { ModelStatic } from 'sequelize/types/model'
 import { ObjectNotFoundError, ObjectPermisstionError } from '../errors'
 
-export default function useCrudService<M extends ModelStatic<any>, E = Error>(
-    model: M,
-    error: E
-) {
-    return class ModelCrudServices {
-        async getOwnedItem(
-            pk: number,
-            userId: number
-        ): Promise<InstanceType<M>> {
+export abstract class ModelCrudServiceBase<M extends ModelStatic<any>> {
+    abstract getOwnedItem(pk: number, userId: number): Promise<InstanceType<M>>
+
+    abstract list(): Promise<InstanceType<M>[]>
+
+    abstract item(pk: number): Promise<InstanceType<M> | null>
+
+    abstract create(data: Record<string, any>, userId: number): Promise<InstanceType<M>>
+
+    abstract update(pk: number, data: Record<string, any>, userId: number): Promise<InstanceType<M>>
+
+    abstract delete(pk: number, userId: number): Promise<void>
+}
+
+export default function useCrudService<M extends ModelStatic<any>>(model: M) {
+    return class ModelCrudService {
+        async getOwnedItem(pk: number, userId: number) {
             const item = await model.findByPk(pk)
             if (item === null) throw new ObjectNotFoundError()
             if (item.createdBy !== userId) throw new ObjectPermisstionError()
@@ -30,7 +37,7 @@ export default function useCrudService<M extends ModelStatic<any>, E = Error>(
             data: Record<string, any>,
             userId: number
         ): Promise<InstanceType<M>> {
-            data.created_by = userId
+            data.createdBy = userId
             return await model.create(data)
         }
 
@@ -46,12 +53,11 @@ export default function useCrudService<M extends ModelStatic<any>, E = Error>(
         async delete(pk: number, userId: number): Promise<void> {
             const item = await this.getOwnedItem(pk, userId)
             return item.destroy()
-
         }
     }
 }
 
-class Test extends useCrudService(UserModel, UserError) {
+class Test extends useCrudService(UserModel) {
     async test() {
         const list_res = await this.list()
         const list_real = await UserModel.findAll()
