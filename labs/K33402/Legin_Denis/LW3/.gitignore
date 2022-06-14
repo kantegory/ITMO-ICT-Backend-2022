@@ -1,0 +1,6 @@
+.idea/
+.DS_Store
+auth/node_modules/
+auth/dist/
+base/node_modules/
+base/dist/
