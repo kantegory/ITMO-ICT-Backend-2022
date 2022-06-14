@@ -46,7 +46,7 @@ class User extends Model {
     @Column
     middleName: string
 
-    @Length({ min: 8, max: 8 })
+    @Length({ min: 10, max: 10 })
     @IsAlphanumeric
     @NotNull
     @AllowNull(false)
