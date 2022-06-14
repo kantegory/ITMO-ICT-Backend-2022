@@ -7,6 +7,7 @@ import { Sequelize } from 'sequelize-typescript'
 import bodyParser from 'body-parser'
 import passport from '../middlewares/passport'
 import { config } from '../configs/config'
+import swaggerUi from 'swagger-ui-express'
 
 class App {
     public port: number
@@ -31,6 +32,10 @@ class App {
         app.use(bodyParser.json())
         app.use(passport.initialize())
         app.use('/v1', routes)
+
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        const swaggerDoc = require('../../run/swagger.json')
+        app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc))
 
         return app
     }
