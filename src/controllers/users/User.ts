@@ -14,6 +14,19 @@ class UserController {
     }
 
     retrieve = async (request: Request, response: Response) => {
+        /*
+            #swagger.responses[200] = {
+                description: 'OK',
+                schema: { $ref: '#/definitions/User' },
+            }
+            #swagger.security = [{
+               "bearerAuth": []
+            }]
+            #swagger.tags = ['Users']
+            #swagger.summary = Получить данные пользователя
+            #swagger.description = Только для админов
+        */
+
         try {
             const user: User | UserError = await this.userService.getById(Number(request.params.id))
 
@@ -24,6 +37,19 @@ class UserController {
     }
 
     create = async (request: Request, response: Response) => {
+        /*
+            #swagger.requestBody = {
+                required: true,
+                schema: { $ref: "#/definitions/UserCreate" }
+            }
+            #swagger.responses[200] = {
+                description: 'OK',
+                schema: { $ref: '#/definitions/User' },
+            }
+            #swagger.tags = ['Users']
+            #swagger.summary = Регистрация пользователя
+        */
+
         const { body } = request
 
         try {
@@ -36,10 +62,35 @@ class UserController {
     }
 
     me = async (request: Request, response: Response) => {
+        /*
+            #swagger.responses[200] = {
+                description: 'OK',
+                schema: { $ref: '#/definitions/User' },
+            }
+            #swagger.security = [{
+               "bearerAuth": []
+            }]
+            #swagger.tags = ['Users']
+            #swagger.summary = Мой профиль
+        */
+
         response.send(request.user)
     }
 
     login = async (request: Request, response: Response) => {
+        /*
+            #swagger.requestBody = {
+                required: true,
+                schema: { $ref: "#/definitions/UserLogin" }
+            }
+            #swagger.responses[200] = {
+                description: 'OK',
+                schema: { $ref: '#/definitions/AuthTokens' },
+            }
+            #swagger.tags = ['Users']
+            #swagger.summary = Авторизация пользователя
+        */
+
         const { body } = request
 
         const { email, password } = body
@@ -64,6 +115,19 @@ class UserController {
     }
 
     refreshToken = async (request: Request, response: Response) => {
+        /*
+            #swagger.requestBody = {
+                required: true,
+                schema: { $ref: "#/definitions/RefreshToken" }
+            }
+            #swagger.responses[200] = {
+                description: 'OK',
+                schema: { $ref: '#/definitions/AuthTokens' },
+            }
+            #swagger.tags = ['Users']
+            #swagger.summary = Обновить токены
+        */
+
         const { body } = request
 
         const { refreshToken } = body
