@@ -52,7 +52,7 @@ class HotelService {
     }
 
     async retrieve(id: number): Promise<Hotel> {
-        const hotel = await Hotel.findByPk(id)
+        const hotel = await Hotel.findByPk(id, { include: [Room] })
 
         if (hotel) return hotel.toJSON()
 
