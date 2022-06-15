@@ -6,7 +6,7 @@ const doc = {
         title: 'Hotels API',
         description: 'Hotel booking service',
     },
-    host: config.server.publicURN,
+    host: config.server.publicURN + '/v1',
     definitions: {
         UserCreate: {
             $email: 'mail@example.com',
