@@ -88,6 +88,32 @@ const doc = {
             stars: 5,
         },
         Hotels: [{ $ref: '#/definitions/HotelWithRooms' }],
+        RoomWithHotel: {
+            $id: 1,
+            $hotelId: 1,
+            $capacity: 1,
+            $price: 2500,
+            $description: 'Описание',
+            $createdAt: '2022-06-14T16:25:06.384Z',
+            $updatedAt: '2022-06-14T16:25:06.384Z',
+            $hotel: { $ref: '#/definitions/Hotel' },
+        },
+        BookingCreate: {
+            $roomId: 1,
+            $dateFrom: '2022-06-15',
+            $dateTo: '2022-06-16',
+        },
+        Booking: {
+            $id: 1,
+            $userId: 1,
+            $roomId: 1,
+            $dateFrom: '2022-06-15',
+            $dateTo: '2022-06-16',
+            $createdAt: '2022-06-14T16:25:06.384Z',
+            $updatedAt: '2022-06-14T16:25:06.384Z',
+            $room: { $ref: '#/definitions/RoomWithHotel' },
+        },
+        Bookings: [{ $ref: '#/definitions/Booking' }],
     },
     schemes: ['http'],
     securityDefinitions: {
@@ -109,6 +135,10 @@ const doc = {
         {
             name: 'Rooms',
             description: 'Методы для работы с комнатами',
+        },
+        {
+            name: 'Bookings',
+            description: 'Методы для работы с бронированиями',
         },
     ],
 }

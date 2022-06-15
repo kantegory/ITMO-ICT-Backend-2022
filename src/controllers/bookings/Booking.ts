@@ -10,6 +10,22 @@ class BookingController {
     }
 
     create = async (request: Request, response: Response) => {
+        /*
+            #swagger.requestBody = {
+                required: true,
+                schema: { $ref: '#/definitions/BookingCreate' }
+            }
+            #swagger.responses[200] = {
+                description: 'OK',
+                schema: { $ref: '#/definitions/Booking' },
+            }
+            #swagger.security = [{
+               'bearerAuth': []
+            }]
+            #swagger.tags = ['Bookings']
+            #swagger.summary = Создать бронирование
+        */
+
         const userId = (request.user as User)?.id
 
         try {
@@ -21,6 +37,18 @@ class BookingController {
     }
 
     retrieve = async (request: Request, response: Response) => {
+        /*
+            #swagger.responses[200] = {
+                description: 'OK',
+                schema: { $ref: '#/definitions/Booking' },
+            }
+            #swagger.security = [{
+               'bearerAuth': []
+            }]
+            #swagger.tags = ['Bookings']
+            #swagger.summary = Получить информацию о бронировании пользователя
+        */
+
         const id = Number(request.params.id)
         try {
             const booking = await this.bookingService.retrieve(request.user as User, id)
@@ -31,6 +59,18 @@ class BookingController {
     }
 
     list = async (request: Request, response: Response) => {
+        /*
+            #swagger.responses[200] = {
+                description: 'OK',
+                schema: { $ref: '#/definitions/Bookings' },
+            }
+            #swagger.security = [{
+               'bearerAuth': []
+            }]
+            #swagger.tags = ['Bookings']
+            #swagger.summary = Получить список бронирований пользователя
+        */
+
         try {
             const bookings = await this.bookingService.list(request.user as User)
             response.send(bookings)
