@@ -18,7 +18,7 @@ const config = {
     server: {
         host: process.env.SERVER_HOST,
         port: process.env.SERVER_PORT,
-        publicURN: process.env.SERVER_PUBLIC_URN,
+        publicURL: process.env.SERVER_PUBLIC_URL,
     },
 }
 
