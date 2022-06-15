@@ -9,6 +9,23 @@ class RoomController {
     }
 
     create = async (request: Request, response: Response) => {
+        /*
+            #swagger.requestBody = {
+                required: true,
+                schema: { $ref: '#/definitions/RoomCreate' }
+            }
+            #swagger.responses[200] = {
+                description: 'OK',
+                schema: { $ref: '#/definitions/Room' },
+            }
+            #swagger.security = [{
+               'bearerAuth': []
+            }]
+            #swagger.tags = ['Rooms']
+            #swagger.summary = Создать комнату
+            #swagger.description = Только для админов
+        */
+
         try {
             const room = await this.roomService.create(request.body)
 
@@ -19,6 +36,19 @@ class RoomController {
     }
 
     update = async (request: Request, response: Response) => {
+        /*
+            #swagger.requestBody = {
+                required: true,
+                schema: { $ref: '#/definitions/RoomUpdate' }
+            }
+            #swagger.security = [{
+               'bearerAuth': []
+            }]
+            #swagger.tags = ['Rooms']
+            #swagger.summary = Редактировать комнату
+            #swagger.description = Только для админов
+        */
+
         const { body, params } = request
         const id = Number(params.id)
 
@@ -31,6 +61,15 @@ class RoomController {
     }
 
     destroy = async (request: Request, response: Response) => {
+        /*
+            #swagger.security = [{
+               'bearerAuth': []
+            }]
+            #swagger.tags = ['Rooms']
+            #swagger.summary = Удалить комнату
+            #swagger.description = Только для админов
+        */
+
         const id = Number(request.params.id)
 
         try {

@@ -39,6 +39,55 @@ const doc = {
         RefreshToken: {
             $refreshToken: '00000000-0000-0000-0000-000000000000',
         },
+        Room: {
+            $id: 1,
+            $hotelId: 1,
+            $capacity: 1,
+            $price: 2500,
+            $description: 'Описание',
+            $createdAt: '2022-06-14T16:25:06.384Z',
+            $updatedAt: '2022-06-14T16:25:06.384Z',
+        },
+        RoomCreate: {
+            $hotelId: 1,
+            $capacity: 1,
+            $price: 2500,
+            $description: 'Описание',
+        },
+        RoomUpdate: {
+            hotelId: 1,
+            capacity: 1,
+            price: 2500,
+            description: 'Описание',
+        },
+        Hotel: {
+            $id: 1,
+            $name: 'Hilton',
+            $city: 'Moscow',
+            $stars: 5,
+            $createdAt: '2022-06-14T16:25:06.384Z',
+            $updatedAt: '2022-06-14T16:25:06.384Z',
+        },
+        HotelWithRooms: {
+            $id: 1,
+            $name: 'Hilton',
+            $city: 'Moscow',
+            $stars: 5,
+            $createdAt: '2022-06-14T16:25:06.384Z',
+            $updatedAt: '2022-06-14T16:25:06.384Z',
+            $rooms: [{ $ref: '#/definitions/Room' }],
+        },
+        HotelCreate: {
+            $name: 'Hilton',
+            $city: 'Moscow',
+            $stars: 5,
+        },
+        HotelUpdate: {
+            name: 'Hilton',
+            city: 'Moscow',
+            stars: 5,
+        },
+        Hotels: [{ $ref: '#/definitions/HotelWithRooms' }],
     },
     schemes: ['http'],
     securityDefinitions: {
@@ -52,6 +101,14 @@ const doc = {
         {
             name: 'Users',
             description: 'Методы для работы с пользователями',
+        },
+        {
+            name: 'Hotels',
+            description: 'Методы для работы с отелями',
+        },
+        {
+            name: 'Rooms',
+            description: 'Методы для работы с комнатами',
         },
     ],
 }
