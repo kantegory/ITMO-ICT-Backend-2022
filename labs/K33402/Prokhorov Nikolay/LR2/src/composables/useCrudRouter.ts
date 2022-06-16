@@ -8,11 +8,11 @@ export default function useCrudRouter<
     const router = express.Router()
     const controller = new ControllerClass()
 
-    router.route('/').get(controller.list)
-    router.route('/').post(isLogged, controller.create)
-    router.route('/:id').get(controller.item)
-    router.route('/:id').patch(isLogged, controller.update)
-    router.route('/:id').delete(isLogged, controller.delete)
+    router.route('/').get(controller.list.bind(controller))
+    router.route('/').post(isLogged, controller.create.bind(controller))
+    router.route('/:id').get(controller.item.bind(controller))
+    router.route('/:id').patch(isLogged, controller.update.bind(controller))
+    router.route('/:id').delete(isLogged, controller.delete.bind(controller))
 
     return router
 }
