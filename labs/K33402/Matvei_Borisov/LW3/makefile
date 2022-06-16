@@ -4,6 +4,7 @@ init:
 
 .PHONY: run
 run:
+	docker compose up -d
 	npm run start:dev
 
 .PHONY: migrate
