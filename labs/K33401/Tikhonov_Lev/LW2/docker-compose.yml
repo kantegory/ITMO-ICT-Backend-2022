@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  pg:
+    image: postgres:13-alpine
+    env_file:
+      - .env
+    volumes:
+      - pg:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+
+volumes:
+  pg:
+  pgadmin:

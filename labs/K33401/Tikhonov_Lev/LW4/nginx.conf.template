@@ -1,0 +1,11 @@
+server {
+    listen 80;
+
+    location /hotels/ {
+        proxy_pass http://hotels:3000/;
+    }
+
+    location /bookings/ {
+        proxy_pass http://bookings:3000/;
+    }
+}
