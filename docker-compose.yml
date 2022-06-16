@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  backend:
+    build: .
+    restart: unless-stopped
+    volumes:
+      - /var/www/${COMPOSE_PROJECT_NAME}:/app/run
+    ports:
+      - "8088:${SERVER_PORT}"
+    env_file: .env
