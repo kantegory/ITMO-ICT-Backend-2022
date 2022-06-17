@@ -15,4 +15,4 @@ deploy:
     - echo "$SSH_PRIVATE_KEY" | ssh-add -
     - cp $ENV .env
     - rsync -atv --delete --progress . $SSH_HOST:~/hotels-backend
-    - ssh $SSH_HOST "cd ~/hotels-backend && make run"
+    - ssh $SSH_HOST "cd ~/hotels-backend && make d-run"
