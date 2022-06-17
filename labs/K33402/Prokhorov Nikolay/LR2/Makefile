@@ -14,8 +14,13 @@ lint:
 build:
 	npm run build
 
+.PHONY: rm
 rm:
 	rm -f db.sqlite
+
+.PHONY: migrate
+migrate:
+	npm run migrate
 
 .DEFAULT_GOAL: init
 
