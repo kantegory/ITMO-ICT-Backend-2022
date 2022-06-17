@@ -10,4 +10,4 @@ RUN npm install -g npm serve && npm i
 COPY . .
 RUN npm run build
 
-CMD make migrate && make swagger && make run
+CMD npm run migrate && npm run swagger-autogen && NODE_ENV=production node dist/index.js
