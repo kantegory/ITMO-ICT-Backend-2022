@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  backend:
+    depends_on:
+        - db
+
+  db:
+    image: postgres:latest
+    restart: unless-stopped
+    volumes:
+      - hotels_backend_db:/var/lib/postgresql/data
+    env_file: .env
+
+volumes:
+  hotels_backend_db:
+    external: true
