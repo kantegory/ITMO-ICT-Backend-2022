@@ -1,6 +1,6 @@
 FROM node:16-alpine
 
-RUN apk add --update --no-cache make
+RUN apk add --update --no-cache python3-dev build-base
 
 WORKDIR /app
 
