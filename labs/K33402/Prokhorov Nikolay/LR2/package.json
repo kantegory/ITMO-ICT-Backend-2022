@@ -1,7 +1,7 @@
 {
     "name": "lr2",
     "version": "1.0.0",
-    "description": "Boilerplate for express RESTful API, using real TypeScript and Sequelize ORM",
+    "description": "Platform for the sale of air tickets",
     "main": "index.js",
     "scripts": {
         "prestart": "npm run build",
@@ -10,7 +10,7 @@
         "lint": "npx eslint . --ext .ts",
         "migrate": "npx sequelize db:migrate"
     },
-    "author": "David Dobryakov <kantegory@kantegory.me>",
+    "author": "Nikolay Prokhorov <mail@prokhn.ru>",
     "license": "ISC",
     "dependencies": {
         "bcrypt": "^5.0.1",
