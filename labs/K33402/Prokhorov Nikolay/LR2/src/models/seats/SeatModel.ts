@@ -1,4 +1,4 @@
-import { AllowNull, Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript'
+import { AllowNull, BelongsTo, Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript'
 import UserModel from '../users/UserModel'
 import FlightModel from '../flights/FlightModel'
 
@@ -19,6 +19,9 @@ export default class SeatModel extends Model {
     @ForeignKey(() => FlightModel)
     @Column({ allowNull: false })
     flightId: number
+
+    @BelongsTo(() => FlightModel)
+    flight: FlightModel
 
     @ForeignKey(() => UserModel)
     @Column({ allowNull: false })

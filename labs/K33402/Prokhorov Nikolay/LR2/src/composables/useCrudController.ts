@@ -54,7 +54,7 @@ export default function useCrudController<
                     request.body,
                     (request.user as UserModel).id
                 )
-                response.send(modelItem)
+                response.status(201).send(modelItem)
             })
         }
 

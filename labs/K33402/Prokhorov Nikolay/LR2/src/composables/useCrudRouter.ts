@@ -10,9 +10,13 @@ export default function useCrudRouter<
 
     router.route('/').get(controller.list.bind(controller))
     router.route('/').post(isLogged, controller.create.bind(controller))
-    router.route('/:id').get(controller.item.bind(controller))
-    router.route('/:id').patch(isLogged, controller.update.bind(controller))
-    router.route('/:id').delete(isLogged, controller.delete.bind(controller))
+    router.route('/:id(\\d+)').get(controller.item.bind(controller))
+    router
+        .route('/:id(\\d+)')
+        .patch(isLogged, controller.update.bind(controller))
+    router
+        .route('/:id(\\d+)')
+        .delete(isLogged, controller.delete.bind(controller))
 
-    return router
+    return { router, controller }
 }

@@ -1,4 +1,4 @@
-import { Column, ForeignKey, Model, Table } from 'sequelize-typescript'
+import { BelongsTo, Column, ForeignKey, Model, Table } from 'sequelize-typescript'
 import UserModel from '../users/UserModel'
 import SeatModel from '../seats/SeatModel'
 
@@ -8,7 +8,13 @@ export default class TicketModel extends Model {
     @Column({ allowNull: false })
     seatId: number
 
+    @BelongsTo(() => SeatModel)
+    seat: SeatModel
+
     @ForeignKey(() => UserModel)
     @Column({ allowNull: false })
     createdBy: number
+
+    @BelongsTo(() => UserModel)
+    passenger: UserModel
 }
