@@ -32,4 +32,10 @@ export default class UserModel extends Model {
             instance.password = hashPassword(password)
         }
     }
+
+    toJSON() {
+        const data = super.toJSON()
+        delete data.password
+        return data
+    }
 }
