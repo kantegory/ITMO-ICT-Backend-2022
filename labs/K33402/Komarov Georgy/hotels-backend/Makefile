@@ -27,24 +27,24 @@ dev:
 run:
 	NODE_ENV=production node dist/index.js
 
-.PHONY: d-run
-d-run:
+.PHONY: d_run
+d_run:
 	docker-compose -f docker-compose.yml -f docker-compose.db.yml up -d --build
 
-.PHONY: d-stop
-d-stop:
+.PHONY: d_stop
+d_stop:
 	docker-compose -f docker-compose.yml -f docker-compose.db.yml stop
 
-.PHONY: d-down
-d-down:
+.PHONY: d_down
+d_down:
 	docker-compose -f docker-compose.yml -f docker-compose.db.yml down
 
-.PHONY: d-logs
-d-logs:
+.PHONY: d_logs
+d_logs:
 	docker-compose logs --tail=1000 --follow
 
-.PHONY: d-bash
-d-bash:
+.PHONY: d_bash
+d_bash:
 	docker exec -it ${COMPOSE_PROJECT_NAME}_backend_1 bash
 
 .PHONY: psql
