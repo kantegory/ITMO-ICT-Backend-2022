@@ -1,0 +1,43 @@
+http:
+  port: 8080
+admin:
+  port: 9876
+  host: localhost
+apiEndpoints:
+  user:
+    host: localhost
+    paths: '/auth/*'
+  flightticket:
+    host: localhost
+    paths: ['/flights', '/tickets', '/tickets/*', '/flights/*']
+serviceEndpoints:
+  userService:
+    url: 'http://localhost:7777/'
+  flightticketService:
+    url: 'http://localhost:7778/'
+policies:
+  - basic-auth
+  - cors
+  - expression
+  - key-auth
+  - log
+  - oauth2
+  - proxy
+  - rate-limit
+pipelines:
+  userPipeline:
+    apiEndpoints:
+      - user
+    policies:
+      - proxy:
+          - action:
+              serviceEndpoint: userService
+              changeOrigin: true
+  flightticketPipeline:
+    apiEndpoints:
+      - flightticket
+    policies:
+      - proxy:
+          - action:
+              serviceEndpoint: flightticketService
+              changeOrigin: true
