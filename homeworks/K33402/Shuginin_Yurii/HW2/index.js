@@ -8,7 +8,13 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-app.get('/users/:id', async (req, res) => {
+app.get('/users', async (req, res) => {
+  // List of users
+  const users = await db.User.findAll()
+  res.send(users)
+})
+
+app.get('/users/id/:id', async (req, res) => {
   const user = await db.User.findByPk(req.params.id)
 
   if (user) {
