@@ -8,10 +8,40 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
+// List of all users
 app.get('/users', async (req, res) => {
-  // List of users
   const users = await db.User.findAll()
   res.send(users)
+})
+
+// Create a new user
+app.post('/users', async (req, res) => {
+  const user = await db.User.create(req.body)
+  res.send(user.toJSON())
+})
+
+// Update user by id
+app.put('/users/:id', async (req, res) => {
+  const user = await db.User.findByPk(req.params.id)
+  
+  if (user) {
+    await db.User.update(req.body, { where: { id: req.params.id } })
+    res.send({"msg": "user updated successfully"})
+  } else {
+    res.send({"msg": "user is not found"})
+  }
+})
+
+// Delete user by id
+app.delete('/users/:id', async (req, res) => {
+  const user = await db.User.findByPk(req.params.id)
+  
+  if (user) {
+    await db.User.destroy({ where: { id: req.params.id } })
+    res.send({"msg": "user deleted successfully"})
+  } else {
+    res.send({"msg": "user is not found"})
+  }
 })
 
 app.get('/users/id/:id', async (req, res) => {
