@@ -1,0 +1,361 @@
+{
+	"info": {
+		"_postman_id": "a7dbe080-ee3a-40ac-90fe-c6e2cacd4899",
+		"name": "ExpressBackend-Denis",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10062556"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"4user\",\r\n    \"email\": \"4user@example.com\",\r\n    \"password\": \"password\",\r\n    \"firstName\": \"first\",\r\n    \"lastName\": \"last\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/register",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"4user@example.com\",\r\n    \"password\": \"password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/signin",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Change pass",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"newPassword\": \"qwe123rty\",\r\n    \"oldPassword\": \"password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/reset",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"reset"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Me",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/me",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add prop",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"city\": \"Saint-Petersburg\",\r\n    \"address\": \"Basseynaya street, 9\",\r\n    \"description\": \"No comment bro...\",\r\n    \"pricePerDay\" : 300,\r\n    \"type\": \"room\",\r\n    \"maxGuestCount\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/property",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"property"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get props",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{host}}/property",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"property"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get prop",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{host}}/property/1",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"property",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete prop",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/property/1",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"property",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Book",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dateIn\": \"2022-09-01T00:00\",\r\n    \"dateOut\": \"2022-09-10T00:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/property/1/booking",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"property",
+						"1",
+						"booking"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get bookings of prop",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/property/1/booking",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"property",
+						"1",
+						"booking"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get booking of user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/booking",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"booking"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update booking time",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"dateOut\": \"2022-09-15T00:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/booking",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"booking"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get booking",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/booking/1",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"booking",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete booking",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/booking/1",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"booking",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiI0dXNlciIsImlhdCI6MTY1NDg0NTg5MH0._NL3-n6dDrdYkEnaDwJRlHyCre5rChEN0iib8io3J1U",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://localhost:11111",
+			"type": "string"
+		}
+	]
+}

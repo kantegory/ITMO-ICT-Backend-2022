@@ -1,0 +1,28 @@
+version: "3.6"
+
+networks:
+  default:
+    driver: bridge
+
+services:
+  userservice:
+    build: User
+    expose:
+      - "11111"
+    ports:
+      - "11111:11111"
+    command: npm run start
+  airbnbservice:
+    build: Airbnb
+    ports:
+      - "22222:22222"
+    command: npm run start
+
+  expressgatewayservice:
+    build: ExpressGateway
+    ports:
+      - "33333:33333"
+    depends_on:
+      - "userservice"
+      - "airbnbservice"
+    command: npm run start

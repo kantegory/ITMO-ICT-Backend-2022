@@ -1,0 +1,43 @@
+http:
+  port: 33333
+admin:
+  port: 33334
+  host: localhost
+apiEndpoints:
+  user:
+    host: localhost
+    paths: ['/register', '/signin', '/me', '/reset', '/user', '/user/*']
+  airbnb:
+    host: localhost
+    paths: ['/property', '/booking', '/property/*', '/booking/*']
+serviceEndpoints:
+  userService:
+    url: 'http://localhost:11111'
+  airbnbService:
+    url: 'http://localhost:22222'
+policies:
+  - basic-auth
+  - cors
+  - expression
+  - key-auth
+  - log
+  - oauth2
+  - proxy
+  - rate-limit
+pipelines:
+  userPipeline:
+    apiEndpoints:
+      - user
+    policies:
+      - proxy:
+          - action:
+              serviceEndpoint: userService
+              changeOrigin: true
+  airbnbPipeline:
+    apiEndpoints:
+      - airbnb
+    policies:
+      - proxy:
+          - action:
+              serviceEndpoint: airbnbService
+              changeOrigin: true
