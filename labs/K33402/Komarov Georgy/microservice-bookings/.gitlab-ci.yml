@@ -1,0 +1,18 @@
+default:
+  image: alpine
+  before_script:
+    - apk update && apk add openssh-client rsync
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+    - eval $(ssh-agent -s)
+
+deploy:
+  stage: deploy
+  only:
+    - master
+  script:
+    - echo "$SSH_PRIVATE_KEY" | ssh-add -
+    - cp $ENV .env
+    - rsync -atv --delete --progress . $SSH_HOST:~/hotels-backend
+    - ssh $SSH_HOST "cd ~/hotels-backend && make d-run"
