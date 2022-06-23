@@ -1,5 +1,5 @@
 const { config } = require('./configs/config')
-const swaggerAutogen = require('labs/K33402/Komarov Georgy/hotels-backend/src/swagger-autogen')({ openapi: '3.0.0' })
+const swaggerAutogen = require('swagger-autogen')({ openapi: '3.0.0' })
 
 const doc = {
     info: {

@@ -7,7 +7,7 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install -g npm serve && npm i
 
-COPY ../../../.. .
+COPY . .
 RUN npm run build
 
 CMD npm run migrate && npm run swagger-autogen && NODE_ENV=production node dist/index.js

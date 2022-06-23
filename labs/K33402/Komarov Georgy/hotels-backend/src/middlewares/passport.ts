@@ -1,4 +1,4 @@
-import passport from 'src/middlewares/passport'
+import passport from 'passport'
 import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt'
 import UserService from '../services/users/User'
 import { config } from '../configs/config'

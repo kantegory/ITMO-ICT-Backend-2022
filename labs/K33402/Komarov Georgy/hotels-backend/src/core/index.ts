@@ -1,7 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import { createServer, Server } from 'http'
-import routes from '../routes/v1'
+import routes from '../routes/v1/index'
 import sequelize from '../providers/db'
 import { Sequelize } from 'sequelize-typescript'
 import bodyParser from 'body-parser'
