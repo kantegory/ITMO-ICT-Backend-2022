@@ -4,11 +4,13 @@ const db = require('./models')
 const app = express()
 const port = 3000
 
+app.use(express.json())
+
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-// List of all users
+// Get list of all users
 app.get('/users', async (req, res) => {
   const users = await db.User.findAll()
   res.send(users)
@@ -25,10 +27,10 @@ app.put('/users/:id', async (req, res) => {
   const user = await db.User.findByPk(req.params.id)
   
   if (user) {
-    await db.User.update(req.body, { where: { id: req.params.id } })
-    res.send({"msg": "user updated successfully"})
+    await user.update(req.body, { where: { id: req.params.id } })
+    res.send(user.toJSON())
   } else {
-    res.send({"msg": "user is not found"})
+    res.status(404).send('User is not found')
   }
 })
 
@@ -37,10 +39,10 @@ app.delete('/users/:id', async (req, res) => {
   const user = await db.User.findByPk(req.params.id)
   
   if (user) {
-    await db.User.destroy({ where: { id: req.params.id } })
-    res.send({"msg": "user deleted successfully"})
+    await user.destroy({ where: { id: req.params.id } })
+    res.send('User deleted successfully')
   } else {
-    res.send({"msg": "user is not found"})
+    res.status(404).send('User is not found')
   }
 })
 
@@ -50,7 +52,7 @@ app.get('/users/id/:id', async (req, res) => {
   if (user) {
     res.send(user.toJSON())
   } else {
-    res.send({"msg": "user is not found"})
+    res.status(404).send('User is not found')
   }
 })
 
@@ -64,7 +66,7 @@ app.get('/users/email/:email', async (req, res) => {
   if (user) {
     res.send(user.toJSON())
   } else {
-    res.send({"msg": "user is not found"})
+    res.status(404).send('User is not found')
   }
 })
 
