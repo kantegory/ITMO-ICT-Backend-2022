@@ -1,0 +1,30 @@
+version: '3'
+
+# docker volume create --name itmo-backend-db -d local
+
+services:
+  backend:
+    restart: unless-stopped
+    container_name: itmo-backend
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+    env_file:
+      - ./.env
+
+  postgres:
+    restart: unless-stopped
+    container_name: itmo-backend-db
+    image: postgres:latest
+    volumes:
+      - itmo-backend-db:/var/lib/postgresql/data
+    env_file:
+      - ./.env
+
+volumes:
+  itmo-backend-db:
+    external: true
