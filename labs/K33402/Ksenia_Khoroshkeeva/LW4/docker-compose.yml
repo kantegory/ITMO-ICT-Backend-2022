@@ -1,0 +1,53 @@
+version: '3.9'
+services:
+  db_main:
+    image: mysql
+    environment:
+      - MYSQL_USER=mysql
+      - MYSQL_PASSWORD=mysql
+      - MYSQL_DATABASE=mysql
+      - MYSQL_ROOT_PASSWORD=mysql
+    expose:
+      - 3306
+    volumes:
+      - data_main:/var/lib/mysql
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      timeout: 10s
+      retries: 15
+
+  db_booking:
+    image: mysql
+    environment:
+      - MYSQL_USER=mysql
+      - MYSQL_PASSWORD=mysql
+      - MYSQL_DATABASE=mysql
+      - MYSQL_ROOT_PASSWORD=mysql
+    expose:
+      - 3306
+    volumes:
+      - data_booking:/var/lib/mysql
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      timeout: 10s
+      retries: 15
+
+  main:
+    build:
+      context: main
+    ports:
+      - "8000:8000"
+    depends_on:
+      db_main:
+        condition: service_healthy
+
+  booking:
+    build:
+      context: booking
+    depends_on:
+      db_booking:
+        condition: service_healthy
+
+volumes:
+  data_main:
+  data_booking:
