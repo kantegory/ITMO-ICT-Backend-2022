@@ -1,0 +1,16 @@
+version: '3'
+services:
+  auth_service:
+    build:
+      context: auth_service
+    working_dir: /home/node/app
+    restart: unless-stopped
+
+  main_service:
+    build:
+      context: ./main_service
+    working_dir: /home/node/app
+    ports:
+      - "5000:5000"
+    restart: unless-stopped
+
