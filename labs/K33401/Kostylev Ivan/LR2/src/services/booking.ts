@@ -14,6 +14,11 @@ class BookingService {
         }
     }
 
+    async getAll() {
+        const bookings = await Booking.findAll()
+        return bookings
+    }
+
     async getByUserId(id: number) {
         const bookings = await Booking.findAll({ include: User, where : {userId: id}})
         if (bookings[0]) return bookings
