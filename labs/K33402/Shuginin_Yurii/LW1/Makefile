@@ -7,4 +7,8 @@ init:
 run:
 	npm start
 
+.PHONY: migrate
+migrate:
+	npx sequelize db:migrate
+
 .DEFAULT_GOAL := init
