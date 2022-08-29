@@ -19,7 +19,7 @@ class App {
   
   private createApp(): express.Application {
       const app = express()
-      app.use('/v1', routes)
+      app.use('/example', routes)
   
       return app
     }
