@@ -2,12 +2,6 @@ import { Table, Column, Model, Unique, AllowNull } from 'sequelize-typescript'
 
 @Table
 class User extends Model {
-    @Column
-    firstName: string
-    
-    @Column
-    lastName: string
-    
     @Unique
     @AllowNull(false)
     @Column
@@ -17,6 +11,12 @@ class User extends Model {
     @Column
     password: string
 
+    @Column
+    firstName: string
+    
+    @Column
+    lastName: string
+    
     @Column
     birthday: Date
 
