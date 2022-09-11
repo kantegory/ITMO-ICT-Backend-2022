@@ -1,0 +1,19 @@
+version: "3.3"
+
+services:
+  hotels:
+    build: .
+    restart: always
+    ports:
+      - "8000:8000"
+
+  database:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+      - "33060:333060"
+    environment:
+      MYSQL_ROOT_PASSWORD: "qwerty"
+
+
