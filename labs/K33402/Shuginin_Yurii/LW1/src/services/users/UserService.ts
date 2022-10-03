@@ -11,7 +11,7 @@ class UserService {
         if (user) {
             return user.toJSON()
         }
-        throw new Error()
+        throw new Error('No User with such id')
     }
 
     async createUser(userData: any) : Promise<User|Error> {
