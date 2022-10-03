@@ -23,6 +23,7 @@ class App {
   
   private createApp(): express.Application {
       const app = express()
+      app.use(express.json())
       app.use('/example', routes)
   
       return app
