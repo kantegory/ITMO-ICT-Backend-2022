@@ -1,6 +1,7 @@
 import express from "express"
 import { createServer, Server } from "http"
 import routes from "../routes/example/index"
+import userRoutes from "../routes/users/UserRoutes"
 import sequelize from "../providers/db"
 import { Sequelize } from 'sequelize-typescript'
 
@@ -25,6 +26,7 @@ class App {
       const app = express()
       app.use(express.json())
       app.use('/example', routes)
+      app.use('/users', userRoutes)
   
       return app
     }
