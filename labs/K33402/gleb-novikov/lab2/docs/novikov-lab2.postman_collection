@@ -1,0 +1,1305 @@
+{
+	"info": {
+		"_postman_id": "0c5d26f2-44a0-40aa-96f7-c808b3efc515",
+		"name": "backend-lab2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11215862"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Register\", function () {\r",
+									"  pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"gleb\",\r\n    \"lastName\": \"novikov\",\r\n    \"email\": \"glebneko@yandex.ru\",\r\n    \"password\": \"1234\"\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"users"
+							]
+						},
+						"description": "Регистрация пользователя"
+					},
+					"response": [
+						{
+							"name": "users",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\": \"gleb\",\r\n    \"lastName\": \"novikov\",\r\n    \"email\": \"glebneko@yandex.ru\",\r\n    \"password\": \"1234\"\r\n}\r\n\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/v1/users",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"v1",
+										"users"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "229"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"e5-gn/Qy/sqnV6Pp8DzzDscfCo5f8E\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 09 Oct 2022 18:06:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 2,\n    \"firstName\": \"gleb\",\n    \"lastName\": \"novikov\",\n    \"email\": \"glebneko@yandex.ru\",\n    \"password\": \"$2b$08$Cgb3gaAbE8.bj0uxHY1C/O4ean.IjEVwsGK2wnilUdq0nhSa8AA6S\",\n    \"updatedAt\": \"2022-10-09T18:06:37.615Z\",\n    \"createdAt\": \"2022-10-09T18:06:37.615Z\"\n}"
+						}
+					]
+				},
+				{
+					"name": "users-login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Login\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.collectionVariables.set(\"token\", pm.response.json().accessToken);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"glebneko@yandex.ru\",\r\n    \"password\": \"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1/users/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "users-login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"glebneko@yandex.ru\",\r\n    \"password\": \"1234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/v1/users/login",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "187"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"bb-y6jKYVXkLy08IcuJz2SlCKCpbhs\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 09 Oct 2022 18:08:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjY1MzM4OTI3fQ.81d33ay0unIyXkixyeIMhhu3SHatjh0nGbPX694w6YA\",\n    \"refreshToken\": \"bee70e53-3259-4482-a4d9-2143714cd837\"\n}"
+						}
+					]
+				},
+				{
+					"name": "users-profile-id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Get profile\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/v1/users/profile/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"users",
+								"profile",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2",
+									"description": "User's ID"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "users-profile-id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/v1/users/profile/:id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"profile",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2",
+											"description": "User's ID"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "229"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"e5-c/NQs0seLJnpXqJiPb/OoGNqqpI\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 09 Oct 2022 18:10:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 2,\n    \"firstName\": \"gleb\",\n    \"lastName\": \"novikov\",\n    \"email\": \"glebneko@yandex.ru\",\n    \"password\": \"$2b$08$Cgb3gaAbE8.bj0uxHY1C/O4ean.IjEVwsGK2wnilUdq0nhSa8AA6S\",\n    \"createdAt\": \"2022-10-09T18:06:37.615Z\",\n    \"updatedAt\": \"2022-10-09T18:06:37.615Z\"\n}"
+						}
+					]
+				},
+				{
+					"name": "users-profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Get profile\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/v1/users/profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"users",
+								"profile"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "users-profile",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/v1/users/profile",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"v1",
+										"users",
+										"profile"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "229"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"e5-c/NQs0seLJnpXqJiPb/OoGNqqpI\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 09 Oct 2022 18:15:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 2,\n    \"firstName\": \"gleb\",\n    \"lastName\": \"novikov\",\n    \"email\": \"glebneko@yandex.ru\",\n    \"password\": \"$2b$08$Cgb3gaAbE8.bj0uxHY1C/O4ean.IjEVwsGK2wnilUdq0nhSa8AA6S\",\n    \"createdAt\": \"2022-10-09T18:06:37.615Z\",\n    \"updatedAt\": \"2022-10-09T18:06:37.615Z\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "flights",
+			"item": [
+				{
+					"name": "flights",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Get profile\", function () {\r",
+									"  pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"departureAirport\": \"LED\",\r\n    \"departureTime\": \"2022-06-14T12:30:00\",\r\n    \"arrivalAirport\": \"VKO\",\r\n    \"arrivalTime\": \"2022-06-14T14:45:00\",\r\n    \"aircraft\": \"Sukhoi Superjet 100\",\r\n    \"flightNumber\": \"LEDVKO-1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1/flights",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"flights"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "flights",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"departureAirport\": \"LED\",\r\n    \"departureTime\": \"2022-06-14T12:30:00\",\r\n    \"arrivalAirport\": \"VKO\",\r\n    \"arrivalTime\": \"2022-06-14T14:45:00\",\r\n    \"aircraft\": \"Sukhoi Superjet 100\",\r\n    \"flightNumber\": \"LEDVKO-1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/v1/flights",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"v1",
+										"flights"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "291"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"123-li+GaWQOH0XRTBMoMdM7vooQsIc\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 09 Oct 2022 22:22:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"departureAirport\": \"LED\",\n    \"departureTime\": \"2022-06-14T09:30:00.000Z\",\n    \"arrivalAirport\": \"VKO\",\n    \"arrivalTime\": \"2022-06-14T11:45:00.000Z\",\n    \"aircraft\": \"Sukhoi Superjet 100\",\n    \"flightNumber\": \"LEDVKO-1\",\n    \"createdBy\": 1,\n    \"updatedAt\": \"2022-10-09T22:22:36.986Z\",\n    \"createdAt\": \"2022-10-09T22:22:36.986Z\"\n}"
+						}
+					]
+				},
+				{
+					"name": "flights",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Check flight created\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"  pm.response.json().lenght.to.have.lenght(1)\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/v1/flights",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"flights"
+							],
+							"query": [
+								{
+									"key": "aircraft",
+									"value": "Sukhoi",
+									"disabled": true
+								},
+								{
+									"key": "priceFrom",
+									"value": "7000",
+									"disabled": true
+								},
+								{
+									"key": "departureTimeFrom",
+									"value": "2022-10-14",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "flights",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/v1/flights",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"v1",
+										"flights"
+									],
+									"query": [
+										{
+											"key": "aircraft",
+											"value": "Sukhoi",
+											"disabled": true
+										},
+										{
+											"key": "priceFrom",
+											"value": "7000",
+											"disabled": true
+										},
+										{
+											"key": "departureTimeFrom",
+											"value": "2022-10-14",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "304"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"130-mEFhvJSFDWZqm71DHzDbZTmWjfM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 09 Oct 2022 22:23:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"departureAirport\": \"LED\",\n        \"departureTime\": \"2022-06-14T09:30:00.000Z\",\n        \"arrivalAirport\": \"VKO\",\n        \"arrivalTime\": \"2022-06-14T11:45:00.000Z\",\n        \"aircraft\": \"Sukhoi Superjet 100\",\n        \"flightNumber\": \"LEDVKO-1\",\n        \"createdBy\": 1,\n        \"createdAt\": \"2022-10-09T22:22:36.986Z\",\n        \"updatedAt\": \"2022-10-09T22:22:36.986Z\",\n        \"seats\": []\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "flights-id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"arrivalAirport\": \"KLF\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1/flights/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"flights",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1",
+									"description": "Flight's ID"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "flights-id",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"arrivalAirport\": \"KLF\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/v1/flights/:id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"v1",
+										"flights",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1",
+											"description": "Flight's ID"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "291"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"123-gRrmXvl0vk9Ftiw+UH45LdaNwMs\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 09 Oct 2022 22:23:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"departureAirport\": \"LED\",\n    \"departureTime\": \"2022-06-14T09:30:00.000Z\",\n    \"arrivalAirport\": \"KLF\",\n    \"arrivalTime\": \"2022-06-14T11:45:00.000Z\",\n    \"aircraft\": \"Sukhoi Superjet 100\",\n    \"flightNumber\": \"LEDVKO-1\",\n    \"createdBy\": 1,\n    \"createdAt\": \"2022-10-09T22:22:36.986Z\",\n    \"updatedAt\": \"2022-10-09T22:23:49.612Z\"\n}"
+						}
+					]
+				},
+				{
+					"name": "flights-id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/v1/flights/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"flights",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1",
+									"description": "Flight's ID"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "flights-id",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/v1/flights/:id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"v1",
+										"flights",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1",
+											"description": "Flight's ID"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 09 Oct 2022 22:24:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "tickets",
+			"item": [
+				{
+					"name": "tickets",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"seatId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1/tickets",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"tickets"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "tickets",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"seatId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/v1/tickets",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"v1",
+										"tickets"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "111"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"6f-CLsSEtlNQB0boJc1aELnmjgUJ5M\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 09 Oct 2022 22:32:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"seatId\": 1,\n    \"createdBy\": 1,\n    \"updatedAt\": \"2022-10-09T22:32:15.906Z\",\n    \"createdAt\": \"2022-10-09T22:32:15.906Z\"\n}"
+						}
+					]
+				},
+				{
+					"name": "tickets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/v1/tickets",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"tickets"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "tickets",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/v1/tickets",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"v1",
+										"tickets"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "822"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"336-tz/iKk1HpT9PKxLifnqtwZDRzFU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 09 Oct 2022 22:32:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"seatId\": 1,\n        \"createdBy\": 1,\n        \"createdAt\": \"2022-10-09T22:32:15.906Z\",\n        \"updatedAt\": \"2022-10-09T22:32:15.906Z\",\n        \"passenger\": {\n            \"id\": 1,\n            \"firstName\": \"gleb\",\n            \"lastName\": \"novikov\",\n            \"email\": \"glebneko@yandex.ru\",\n            \"password\": \"$2b$08$92k11DHhMiESQZv3mh8PcujLXmp.6d/Asp0QWD08a8nUyyTSEqRgq\",\n            \"createdAt\": \"2022-10-09T22:14:03.287Z\",\n            \"updatedAt\": \"2022-10-09T22:14:03.287Z\"\n        },\n        \"seat\": {\n            \"id\": 1,\n            \"seatClass\": \"ECONOM\",\n            \"price\": 1000,\n            \"count\": 10,\n            \"flightId\": 2,\n            \"createdBy\": 1,\n            \"createdAt\": \"2022-10-09T22:31:57.406Z\",\n            \"updatedAt\": \"2022-10-09T22:31:57.406Z\",\n            \"flight\": {\n                \"id\": 2,\n                \"departureAirport\": \"LED\",\n                \"departureTime\": \"2022-06-14T09:30:00.000Z\",\n                \"arrivalAirport\": \"VKO\",\n                \"arrivalTime\": \"2022-06-14T11:45:00.000Z\",\n                \"aircraft\": \"Sukhoi Superjet 100\",\n                \"flightNumber\": \"LEDVKO-1\",\n                \"createdBy\": 1,\n                \"createdAt\": \"2022-10-09T22:24:07.923Z\",\n                \"updatedAt\": \"2022-10-09T22:24:07.923Z\"\n            }\n        }\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "tickets-my",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/v1/tickets/my",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"tickets",
+								"my"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "tickets-my",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/v1/tickets/my",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"v1",
+										"tickets",
+										"my"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "580"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"244-fscj8DlzM4JAHmfd4EnatiRfZkA\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 09 Oct 2022 22:32:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"seatId\": 1,\n        \"createdBy\": 1,\n        \"createdAt\": \"2022-10-09T22:32:15.906Z\",\n        \"updatedAt\": \"2022-10-09T22:32:15.906Z\",\n        \"seat\": {\n            \"id\": 1,\n            \"seatClass\": \"ECONOM\",\n            \"price\": 1000,\n            \"count\": 10,\n            \"flightId\": 2,\n            \"createdBy\": 1,\n            \"createdAt\": \"2022-10-09T22:31:57.406Z\",\n            \"updatedAt\": \"2022-10-09T22:31:57.406Z\",\n            \"flight\": {\n                \"id\": 2,\n                \"departureAirport\": \"LED\",\n                \"departureTime\": \"2022-06-14T09:30:00.000Z\",\n                \"arrivalAirport\": \"VKO\",\n                \"arrivalTime\": \"2022-06-14T11:45:00.000Z\",\n                \"aircraft\": \"Sukhoi Superjet 100\",\n                \"flightNumber\": \"LEDVKO-1\",\n                \"createdBy\": 1,\n                \"createdAt\": \"2022-10-09T22:24:07.923Z\",\n                \"updatedAt\": \"2022-10-09T22:24:07.923Z\"\n            }\n        }\n    }\n]"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "seats",
+			"item": [
+				{
+					"name": "seats",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"seatClass\": \"ECONOM\",\r\n    \"price\": 1000,\r\n    \"count\": 10,\r\n    \"flightId\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1/seats",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"seats"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "seats",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"seatClass\": \"ECONOM\",\r\n    \"price\": 1000,\r\n    \"count\": 10,\r\n    \"flightId\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/v1/seats",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"v1",
+										"seats"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "158"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9e-oIvLWU1kpjTzwxyu7+u4iox4UKE\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 09 Oct 2022 22:31:57 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"seatClass\": \"ECONOM\",\n    \"price\": 1000,\n    \"count\": 10,\n    \"flightId\": 2,\n    \"createdBy\": 1,\n    \"updatedAt\": \"2022-10-09T22:31:57.406Z\",\n    \"createdAt\": \"2022-10-09T22:31:57.406Z\"\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://localhost:8000",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjY1MzM4OTI3fQ.81d33ay0unIyXkixyeIMhhu3SHatjh0nGbPX694w6YA",
+			"type": "string"
+		}
+	]
+}

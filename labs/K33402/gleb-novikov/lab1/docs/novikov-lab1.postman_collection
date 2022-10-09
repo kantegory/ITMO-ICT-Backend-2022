@@ -1,0 +1,475 @@
+{
+	"info": {
+		"_postman_id": "65373cb4-a2fc-4b03-ab49-b664bb8395e2",
+		"name": "backend-lab1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11215862"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Register\", function () {\r",
+									"  pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"gleb\",\r\n    \"lastName\": \"novikov\",\r\n    \"email\": \"glebneko@yandex.ru\",\r\n    \"password\": \"1234\"\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"users"
+							]
+						},
+						"description": "Регистрация пользователя"
+					},
+					"response": [
+						{
+							"name": "users",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\": \"gleb\",\r\n    \"lastName\": \"novikov\",\r\n    \"email\": \"glebneko@yandex.ru\",\r\n    \"password\": \"1234\"\r\n}\r\n\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/v1/users",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"v1",
+										"users"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "229"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"e5-gn/Qy/sqnV6Pp8DzzDscfCo5f8E\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 09 Oct 2022 18:06:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 2,\n    \"firstName\": \"gleb\",\n    \"lastName\": \"novikov\",\n    \"email\": \"glebneko@yandex.ru\",\n    \"password\": \"$2b$08$Cgb3gaAbE8.bj0uxHY1C/O4ean.IjEVwsGK2wnilUdq0nhSa8AA6S\",\n    \"updatedAt\": \"2022-10-09T18:06:37.615Z\",\n    \"createdAt\": \"2022-10-09T18:06:37.615Z\"\n}"
+						}
+					]
+				},
+				{
+					"name": "users-login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Login\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.collectionVariables.set(\"token\", pm.response.json().accessToken);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"glebneko@yandex.ru\",\r\n    \"password\": \"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/v1/users/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "users-login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"glebneko@yandex.ru\",\r\n    \"password\": \"1234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/v1/users/login",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "187"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"bb-y6jKYVXkLy08IcuJz2SlCKCpbhs\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 09 Oct 2022 18:08:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjY1MzM4OTI3fQ.81d33ay0unIyXkixyeIMhhu3SHatjh0nGbPX694w6YA\",\n    \"refreshToken\": \"bee70e53-3259-4482-a4d9-2143714cd837\"\n}"
+						}
+					]
+				},
+				{
+					"name": "users-profile-id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Get profile\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/v1/users/profile/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"v1",
+								"users",
+								"profile",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2",
+									"description": "User's ID"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "users-profile-id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/v1/users/profile/:id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"v1",
+										"users",
+										"profile",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2",
+											"description": "User's ID"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "229"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"e5-c/NQs0seLJnpXqJiPb/OoGNqqpI\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 09 Oct 2022 18:10:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 2,\n    \"firstName\": \"gleb\",\n    \"lastName\": \"novikov\",\n    \"email\": \"glebneko@yandex.ru\",\n    \"password\": \"$2b$08$Cgb3gaAbE8.bj0uxHY1C/O4ean.IjEVwsGK2wnilUdq0nhSa8AA6S\",\n    \"createdAt\": \"2022-10-09T18:06:37.615Z\",\n    \"updatedAt\": \"2022-10-09T18:06:37.615Z\"\n}"
+						}
+					]
+				},
+				{
+					"name": "users-profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Get profile\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/v1/users/profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"users",
+								"profile"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "users-profile",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/v1/users/profile",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"v1",
+										"users",
+										"profile"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "229"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"e5-c/NQs0seLJnpXqJiPb/OoGNqqpI\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 09 Oct 2022 18:15:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 2,\n    \"firstName\": \"gleb\",\n    \"lastName\": \"novikov\",\n    \"email\": \"glebneko@yandex.ru\",\n    \"password\": \"$2b$08$Cgb3gaAbE8.bj0uxHY1C/O4ean.IjEVwsGK2wnilUdq0nhSa8AA6S\",\n    \"createdAt\": \"2022-10-09T18:06:37.615Z\",\n    \"updatedAt\": \"2022-10-09T18:06:37.615Z\"\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://localhost:8000",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjY1MzM4OTI3fQ.81d33ay0unIyXkixyeIMhhu3SHatjh0nGbPX694w6YA",
+			"type": "string"
+		}
+	]
+}
