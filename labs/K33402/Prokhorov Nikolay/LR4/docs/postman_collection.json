@@ -1,0 +1,1725 @@
+{
+	"info": {
+		"_postman_id": "83661764-342e-4d21-9581-f90709515b68",
+		"name": "Backend",
+		"description": "Методы API платформы для продажи авиабилетов",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11644847"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8000/v1/users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Register\", function () {\r",
+							"  pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"Test\",\r\n    \"lastName\": \"Testov\",\r\n    \"email\": \"test@test.ru\",\r\n    \"password\": \"111\"\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/v1/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"users"
+					]
+				},
+				"description": "Регистрация пользователя"
+			},
+			"response": [
+				{
+					"name": "Example",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Test\",\r\n    \"lastName\": \"Testov\",\r\n    \"email\": \"test@test.ru\",\r\n    \"password\": \"111\"\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/v1/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"users"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "148"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"94-8+z/bcLKl01XDlpo6wjhzNJ4Iro\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 17 Jun 2022 00:32:45 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"firstName\": \"Test\",\n    \"lastName\": \"Testov\",\n    \"email\": \"test@test.ru\",\n    \"updatedAt\": \"2022-06-17T00:32:45.186Z\",\n    \"createdAt\": \"2022-06-17T00:32:45.186Z\"\n}"
+				}
+			]
+		},
+		{
+			"name": "http://localhost:8000/v1/users/login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Login\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.globals.set(\"accessToken\", pm.response.json().accessToken);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"test@test.ru\",\r\n    \"password\": \"111\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/v1/users/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Example",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"test@test.ru\",\r\n    \"password\": \"111\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/v1/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"users",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "187"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"bb-bxw9pY5tAkvhJ3TaWdq61ey562M\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 17 Jun 2022 00:33:27 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjU1NDI2MDA3fQ.vxD9zIjfSMTfS-l-oFlUzC5xuOchloN2dVdLfXvg3ro\",\n    \"refreshToken\": \"746d2392-5f05-4b7a-a561-f4cbfb297b5d\"\n}"
+				}
+			]
+		},
+		{
+			"name": "http://localhost:8000/v1/users/profile/1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Get profile\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/v1/users/profile/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"users",
+						"profile",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/v1/users/profile/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"users",
+								"profile",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "148"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"94-xoBmzo9sk8tcAX+tFfGcJKgK72U\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 17 Jun 2022 00:40:41 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"firstName\": \"Test\",\n    \"lastName\": \"Testov\",\n    \"email\": \"test@test.ru\",\n    \"createdAt\": \"2022-06-17T00:40:37.303Z\",\n    \"updatedAt\": \"2022-06-17T00:40:37.303Z\"\n}"
+				}
+			]
+		},
+		{
+			"name": "http://localhost:8000/v1/users/profile",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Get profile\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/v1/users/profile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"users",
+						"profile"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/v1/users/profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"users",
+								"profile"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "148"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"94-xoBmzo9sk8tcAX+tFfGcJKgK72U\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 17 Jun 2022 00:41:00 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"firstName\": \"Test\",\n    \"lastName\": \"Testov\",\n    \"email\": \"test@test.ru\",\n    \"createdAt\": \"2022-06-17T00:40:37.303Z\",\n    \"updatedAt\": \"2022-06-17T00:40:37.303Z\"\n}"
+				}
+			]
+		},
+		{
+			"name": "http://localhost:8000/v1/flights",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Get profile\", function () {\r",
+							"  pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"departureAirport\": \"LED\",\r\n    \"departureTime\": \"2022-06-14T12:30:00\",\r\n    \"arrivalAirport\": \"VKO\",\r\n    \"arrivalTime\": \"2022-06-14T14:45:00\",\r\n    \"aircraft\": \"Sukhoi Superjet 100\",\r\n    \"flightNumber\": \"LEDVKO-1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/v1/flights",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"flights"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Example",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"departureAirport\": \"LED\",\r\n    \"departureTime\": \"2022-06-14T12:30:00\",\r\n    \"arrivalAirport\": \"VKO\",\r\n    \"arrivalTime\": \"2022-06-14T14:45:00\",\r\n    \"aircraft\": \"Sukhoi Superjet 100\",\r\n    \"flightNumber\": \"LEDVKO-1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/v1/flights",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"flights"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "291"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"123-HQ8JPVR1/PiW88km6H2oGouli20\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 17 Jun 2022 00:41:12 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"departureAirport\": \"LED\",\n    \"departureTime\": \"2022-06-14T09:30:00.000Z\",\n    \"arrivalAirport\": \"VKO\",\n    \"arrivalTime\": \"2022-06-14T11:45:00.000Z\",\n    \"aircraft\": \"Sukhoi Superjet 100\",\n    \"flightNumber\": \"LEDVKO-1\",\n    \"createdBy\": 1,\n    \"updatedAt\": \"2022-06-17T00:41:12.019Z\",\n    \"createdAt\": \"2022-06-17T00:41:12.019Z\"\n}"
+				}
+			]
+		},
+		{
+			"name": "http://localhost:8000/v1/flights",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check flight created\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"  pm.response.json().lenght.to.have.lenght(1)\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/v1/flights",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"flights"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/v1/flights",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"flights"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "304"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"130-AFa1dgyRMjA51s30t5IBZzSnED8\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 17 Jun 2022 00:41:25 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"departureAirport\": \"LED\",\n        \"departureTime\": \"2022-06-14T09:30:00.000Z\",\n        \"arrivalAirport\": \"VKO\",\n        \"arrivalTime\": \"2022-06-14T11:45:00.000Z\",\n        \"aircraft\": \"Sukhoi Superjet 100\",\n        \"flightNumber\": \"LEDVKO-1\",\n        \"createdBy\": 1,\n        \"createdAt\": \"2022-06-17T00:41:12.019Z\",\n        \"updatedAt\": \"2022-06-17T00:41:12.019Z\",\n        \"seats\": []\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "http://localhost:8000/v1/flights/1",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"arrivalAirport\": \"KLF\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/v1/flights/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"flights",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Example",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"arrivalAirport\": \"KLF\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/v1/flights/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"flights",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "291"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"123-Yi2g5h/bqu22eYe4CkERVAUXlUc\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 17 Jun 2022 00:41:38 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"departureAirport\": \"LED\",\n    \"departureTime\": \"2022-06-14T09:30:00.000Z\",\n    \"arrivalAirport\": \"KLF\",\n    \"arrivalTime\": \"2022-06-14T11:45:00.000Z\",\n    \"aircraft\": \"Sukhoi Superjet 100\",\n    \"flightNumber\": \"LEDVKO-1\",\n    \"createdBy\": 1,\n    \"createdAt\": \"2022-06-17T00:41:12.019Z\",\n    \"updatedAt\": \"2022-06-17T00:41:38.092Z\"\n}"
+				}
+			]
+		},
+		{
+			"name": "http://localhost:8000/v1/flights/1",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/v1/flights/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"flights",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Example",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/v1/flights/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"flights",
+								"1"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 17 Jun 2022 00:41:46 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "http://localhost:8000/v1/flights",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/v1/flights",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"flights"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/v1/flights",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"departureAirport\": \"LED\",\r\n    \"departureTime\": \"2022-06-14T12:30:00\",\r\n    \"arrivalAirport\": \"VKO\",\r\n    \"arrivalTime\": \"2022-06-14T14:45:00\",\r\n    \"aircraft\": \"Sukhoi Superjet 100\",\r\n    \"flightNumber\": \"LEDVKO-2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/v1/flights",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"flights"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/v1/seats",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"seatClass\": \"ECONOM\",\r\n    \"price\": 1000,\r\n    \"count\": 10,\r\n    \"flightId\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/v1/seats",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"seats"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Example",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"seatClass\": \"ECONOM\",\r\n    \"price\": 1000,\r\n    \"count\": 10,\r\n    \"flightId\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/v1/seats",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"seats"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "158"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"9e-xQ5qXpq5yIcZgSet1Q2jTbj23aM\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 17 Jun 2022 00:42:06 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"seatClass\": \"ECONOM\",\n    \"price\": 1000,\n    \"count\": 10,\n    \"flightId\": 2,\n    \"createdBy\": 1,\n    \"updatedAt\": \"2022-06-17T00:42:06.097Z\",\n    \"createdAt\": \"2022-06-17T00:42:06.097Z\"\n}"
+				}
+			]
+		},
+		{
+			"name": "http://localhost:8000/v1/seats",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"seatClass\": \"BUSINESS\",\r\n    \"price\": 5000,\r\n    \"count\": 1,\r\n    \"flightId\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/v1/seats",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"seats"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Example",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"seatClass\": \"BUSINESS\",\r\n    \"price\": 5000,\r\n    \"count\": 1,\r\n    \"flightId\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/v1/seats",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"seats"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "159"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"9f-Dsn9z2mHkTxhGqxmZfyF38HAExw\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 17 Jun 2022 00:42:19 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 2,\n    \"seatClass\": \"BUSINESS\",\n    \"price\": 5000,\n    \"count\": 1,\n    \"flightId\": 2,\n    \"createdBy\": 1,\n    \"updatedAt\": \"2022-06-17T00:42:19.090Z\",\n    \"createdAt\": \"2022-06-17T00:42:19.090Z\"\n}"
+				}
+			]
+		},
+		{
+			"name": "http://localhost:8000/v1/flights/2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/v1/flights/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"flights",
+						"2"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/v1/flights/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"flights",
+								"2"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "620"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"26c-ZoRbVB35kKMeEo9eGt/sjtlXgHg\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 17 Jun 2022 00:42:26 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 2,\n    \"departureAirport\": \"LED\",\n    \"departureTime\": \"2022-06-14T09:30:00.000Z\",\n    \"arrivalAirport\": \"VKO\",\n    \"arrivalTime\": \"2022-06-14T11:45:00.000Z\",\n    \"aircraft\": \"Sukhoi Superjet 100\",\n    \"flightNumber\": \"LEDVKO-2\",\n    \"createdBy\": 1,\n    \"createdAt\": \"2022-06-17T00:42:02.740Z\",\n    \"updatedAt\": \"2022-06-17T00:42:02.740Z\",\n    \"seats\": [\n        {\n            \"id\": 1,\n            \"seatClass\": \"ECONOM\",\n            \"price\": 1000,\n            \"count\": 10,\n            \"flightId\": 2,\n            \"createdBy\": 1,\n            \"createdAt\": \"2022-06-17T00:42:06.097Z\",\n            \"updatedAt\": \"2022-06-17T00:42:06.097Z\"\n        },\n        {\n            \"id\": 2,\n            \"seatClass\": \"BUSINESS\",\n            \"price\": 5000,\n            \"count\": 1,\n            \"flightId\": 2,\n            \"createdBy\": 1,\n            \"createdAt\": \"2022-06-17T00:42:19.090Z\",\n            \"updatedAt\": \"2022-06-17T00:42:19.090Z\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "http://localhost:8000/v1/tickets/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"seatId\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/v1/tickets/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"tickets",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Example",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"seatId\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/v1/tickets/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"tickets",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "111"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"6f-drld4kKXuQnnCzfrGGf8blGixDU\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 17 Jun 2022 00:42:34 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"seatId\": 2,\n    \"createdBy\": 1,\n    \"updatedAt\": \"2022-06-17T00:42:34.232Z\",\n    \"createdAt\": \"2022-06-17T00:42:34.232Z\"\n}"
+				}
+			]
+		},
+		{
+			"name": "http://localhost:8000/v1/tickets/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"seatId\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/v1/tickets/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"tickets",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Example",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"seatId\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/v1/tickets/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"tickets",
+								""
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "50"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"32-YC6ZodEMBF9lHjad765M/evfkCk\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 17 Jun 2022 00:42:40 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"No more seats in this class available!\"\n}"
+				}
+			]
+		},
+		{
+			"name": "http://localhost:8000/v1/tickets/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/v1/tickets/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"tickets",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/v1/tickets/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"tickets",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "816"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"330-6PxQ+y/vq/J1whKaqifxPXDRaqw\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 17 Jun 2022 00:42:48 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"seatId\": 2,\n        \"createdBy\": 1,\n        \"createdAt\": \"2022-06-17T00:42:34.232Z\",\n        \"updatedAt\": \"2022-06-17T00:42:34.232Z\",\n        \"passenger\": {\n            \"id\": 1,\n            \"firstName\": \"Test\",\n            \"lastName\": \"Testov\",\n            \"email\": \"test@test.ru\",\n            \"password\": \"$2b$08$V9LJEijbAKnDjREgD9i7r.fFj4ScOHnX3psb33KiW4QHGwfTguqO2\",\n            \"createdAt\": \"2022-06-17T00:40:37.303Z\",\n            \"updatedAt\": \"2022-06-17T00:40:37.303Z\"\n        },\n        \"seat\": {\n            \"id\": 2,\n            \"seatClass\": \"BUSINESS\",\n            \"price\": 5000,\n            \"count\": 1,\n            \"flightId\": 2,\n            \"createdBy\": 1,\n            \"createdAt\": \"2022-06-17T00:42:19.090Z\",\n            \"updatedAt\": \"2022-06-17T00:42:19.090Z\",\n            \"flight\": {\n                \"id\": 2,\n                \"departureAirport\": \"LED\",\n                \"departureTime\": \"2022-06-14T09:30:00.000Z\",\n                \"arrivalAirport\": \"VKO\",\n                \"arrivalTime\": \"2022-06-14T11:45:00.000Z\",\n                \"aircraft\": \"Sukhoi Superjet 100\",\n                \"flightNumber\": \"LEDVKO-2\",\n                \"createdBy\": 1,\n                \"createdAt\": \"2022-06-17T00:42:02.740Z\",\n                \"updatedAt\": \"2022-06-17T00:42:02.740Z\"\n            }\n        }\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "http://localhost:8000/v1/flights",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"departureAirport\": \"KLF\",\r\n    \"departureTime\": \"2022-10-14T12:30:00\",\r\n    \"arrivalAirport\": \"KGD\",\r\n    \"arrivalTime\": \"2022-10-14T14:45:00\",\r\n    \"aircraft\": \"Sukhoi Superjet 100\",\r\n    \"flightNumber\": \"KLFKGD-1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/v1/flights",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"flights"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/v1/seats",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"seatClass\": \"BUSINESS\",\r\n    \"price\": 13500,\r\n    \"count\": 10,\r\n    \"flightId\": 3\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/v1/seats",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"seats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/v1/flights?aircraft=Sukhoi%&priceFrom=7000&departureTimeFrom=2022-10-14",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/v1/flights?aircraft=Sukhoi%&priceFrom=7000&departureTimeFrom=2022-10-14",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"flights"
+					],
+					"query": [
+						{
+							"key": "aircraft",
+							"value": "Sukhoi%"
+						},
+						{
+							"key": "priceFrom",
+							"value": "7000"
+						},
+						{
+							"key": "departureTimeFrom",
+							"value": "2022-10-14"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/v1/tickets/my",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/v1/tickets/my",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"tickets",
+						"my"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/v1/tickets/my",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"v1",
+								"tickets",
+								"my"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "581"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"245-G1VTFiUBPMmRo5YoBkf7jhONESk\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 17 Jun 2022 00:43:18 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"seatId\": 2,\n        \"createdBy\": 1,\n        \"createdAt\": \"2022-06-17T00:42:34.232Z\",\n        \"updatedAt\": \"2022-06-17T00:42:34.232Z\",\n        \"seat\": {\n            \"id\": 2,\n            \"seatClass\": \"BUSINESS\",\n            \"price\": 5000,\n            \"count\": 1,\n            \"flightId\": 2,\n            \"createdBy\": 1,\n            \"createdAt\": \"2022-06-17T00:42:19.090Z\",\n            \"updatedAt\": \"2022-06-17T00:42:19.090Z\",\n            \"flight\": {\n                \"id\": 2,\n                \"departureAirport\": \"LED\",\n                \"departureTime\": \"2022-06-14T09:30:00.000Z\",\n                \"arrivalAirport\": \"VKO\",\n                \"arrivalTime\": \"2022-06-14T11:45:00.000Z\",\n                \"aircraft\": \"Sukhoi Superjet 100\",\n                \"flightNumber\": \"LEDVKO-2\",\n                \"createdBy\": 1,\n                \"createdAt\": \"2022-06-17T00:42:02.740Z\",\n                \"updatedAt\": \"2022-06-17T00:42:02.740Z\"\n            }\n        }\n    }\n]"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

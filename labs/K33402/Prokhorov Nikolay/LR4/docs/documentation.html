@@ -1,0 +1,1909 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Backend</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai-sublime.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>
+        hljs.configure({
+            tabReplace: '    ',
+        });
+        hljs.initHighlightingOnLoad();
+    </script>
+    <style>body {
+    position: relative;
+}
+
+h1 {
+    margin-top: 5px;
+}
+
+h1, h2, h3, h4 {
+    color: #2b2b2b;
+}
+
+h2:after {
+    content: ' ';
+}
+
+h5 {
+    font-weight: bold;
+}
+
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+    display: none;
+    position: absolute;
+    margin-left: 8px;
+}
+
+h1:hover a, h2:hover a, h3:hover a, h4:hover a, h5:hover a, h6:hover a {
+    color: #a5a5a5;
+    display: initial;
+}
+
+.nav.nav-tabs > li > a {
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.tab-content {
+    padding-top: 8px;
+}
+
+.table {
+    margin-bottom: 8px;
+}
+
+pre {
+    border-radius: 0px;
+    border: none;
+}
+
+pre code {
+    margin: -9.5px;
+}
+
+.request {
+    margin-top: 12px;
+    margin-bottom: 24px;
+}
+
+.response-text-sample {
+    padding: 0px !important;
+}
+
+.response-text-sample pre {
+    margin-bottom: 0px;
+}
+
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 250px;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: #2b2b2b;
+    padding-top: 20px;
+}
+
+#sidebar-wrapper ul {
+    width: 250px;
+}
+
+#sidebar-wrapper ul li {
+    margin-right: 10px;
+}
+
+#sidebar-wrapper ul li a:hover {
+    background: inherit;
+    text-decoration: none;
+}
+
+#sidebar-wrapper ul li a {
+    display: block;
+    color: #ECF0F1;
+    padding: 6px 15px;
+}
+
+#sidebar-wrapper ul li ul {
+    padding-left: 25px;
+}
+
+#sidebar-wrapper ul li ul li a {
+    padding: 1px 0px;
+}
+
+#sidebar-wrapper ul li a:hover,
+#sidebar-wrapper ul li a:focus {
+    color: #e0c46c;
+    border-right: solid 1px #e0c46c;
+}
+
+#sidebar-wrapper ul li.active > a {
+    color: #e0c46c;
+    border-right: solid 3px #e0c46c;
+}
+
+#sidebar-wrapper ul li:not(.active) ul {
+    display: none;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 15px 15px 15px 250px;
+}
+</style>
+</head>
+<body data-spy="scroll" data-target=".scrollspy">
+<div id="sidebar-wrapper">
+    <div class="scrollspy">
+    <ul id="main-menu" data-spy="affix" class="nav">
+        <li>
+            <a href="#doc-general-notes">General notes</a>
+        </li>
+        
+        <li>
+            <a href="#doc-api-detail">API detail</a>
+        </li>
+        
+        <li>
+            <a href="#request-http-localhost-8000-v1-users">http://localhost:8000/v1/users</a>
+        </li>
+        
+        <li>
+            <a href="#request-http-localhost-8000-v1-users-login">http://localhost:8000/v1/users/login</a>
+        </li>
+        
+        <li>
+            <a href="#request-http-localhost-8000-v1-users-profile-1">http://localhost:8000/v1/users/profile/1</a>
+        </li>
+        
+        <li>
+            <a href="#request-http-localhost-8000-v1-users-profile">http://localhost:8000/v1/users/profile</a>
+        </li>
+        
+        <li>
+            <a href="#request-http-localhost-8000-v1-flights">http://localhost:8000/v1/flights</a>
+        </li>
+        
+        <li>
+            <a href="#request-http-localhost-8000-v1-flights">http://localhost:8000/v1/flights</a>
+        </li>
+        
+        <li>
+            <a href="#request-http-localhost-8000-v1-flights-1">http://localhost:8000/v1/flights/1</a>
+        </li>
+        
+        <li>
+            <a href="#request-http-localhost-8000-v1-flights-1">http://localhost:8000/v1/flights/1</a>
+        </li>
+        
+        <li>
+            <a href="#request-http-localhost-8000-v1-flights">http://localhost:8000/v1/flights</a>
+        </li>
+        
+        <li>
+            <a href="#request-http-localhost-8000-v1-flights">http://localhost:8000/v1/flights</a>
+        </li>
+        
+        <li>
+            <a href="#request-http-localhost-8000-v1-seats">http://localhost:8000/v1/seats</a>
+        </li>
+        
+        <li>
+            <a href="#request-http-localhost-8000-v1-seats">http://localhost:8000/v1/seats</a>
+        </li>
+        
+        <li>
+            <a href="#request-http-localhost-8000-v1-flights-2">http://localhost:8000/v1/flights/2</a>
+        </li>
+        
+        <li>
+            <a href="#request-http-localhost-8000-v1-tickets">http://localhost:8000/v1/tickets/</a>
+        </li>
+        
+        <li>
+            <a href="#request-http-localhost-8000-v1-tickets">http://localhost:8000/v1/tickets/</a>
+        </li>
+        
+        <li>
+            <a href="#request-http-localhost-8000-v1-tickets">http://localhost:8000/v1/tickets/</a>
+        </li>
+        
+        <li>
+            <a href="#request-http-localhost-8000-v1-flights">http://localhost:8000/v1/flights</a>
+        </li>
+        
+        <li>
+            <a href="#request-http-localhost-8000-v1-seats">http://localhost:8000/v1/seats</a>
+        </li>
+        
+        <li>
+            <a href="#request-http-localhost-8000-v1-flights-aircraft-sukhoi-pricefrom-7000-departuretimefrom-2022-10-14">http://localhost:8000/v1/flights?aircraft=Sukhoi%&priceFrom=7000&departureTimeFrom=2022-10-14</a>
+        </li>
+        
+        <li>
+            <a href="#request-http-localhost-8000-v1-tickets-my">http://localhost:8000/v1/tickets/my</a>
+        </li>
+        
+        
+    </ul>
+</div>
+
+</div>
+<div id="page-content-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Backend</h1>
+
+                <h2 id="doc-general-notes">
+                    General notes
+                    <a href="#doc-general-notes"><i class="glyphicon glyphicon-link"></i></a>
+                </h2>
+
+                <p>Методы API платформы для продажи авиабилетов</p>
+
+
+                
+
+                <h2 id="doc-api-detail">
+                    API detail
+                    <a href="#doc-api-detail"><i class="glyphicon glyphicon-link"></i></a>
+                </h2>
+
+                
+                
+                <div class="request">
+
+                    <h3 id="request-http-localhost-8000-v1-users">
+                        http://localhost:8000/v1/users
+                        <a href="#request-http-localhost-8000-v1-users"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div><p>Регистрация пользователя</p>
+</div>
+
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#request-http-localhost-8000-v1-users-example-curl" data-toggle="tab">Curl</a></li>
+                            <li role="presentation"><a href="#request-http-localhost-8000-v1-users-example-http" data-toggle="tab">HTTP</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="request-http-localhost-8000-v1-users-example-curl">
+                                <pre><code class="hljs curl">curl -X POST -d '{
+    "firstName": "Test",
+    "lastName": "Testov",
+    "email": "test@test.ru",
+    "password": "111"
+}
+
+' "http://localhost:8000/v1/users"</code></pre>
+                            </div>
+                            <div class="tab-pane" id="request-http-localhost-8000-v1-users-example-http">
+                                <pre><code class="hljs http">POST /v1/users HTTP/1.1
+Host: localhost:8000
+
+{
+    "firstName": "Test",
+    "lastName": "Testov",
+    "email": "test@test.ru",
+    "password": "111"
+}
+
+</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            
+                            <li role="presentation" class="active">
+                                <a href="#request-http-localhost-8000-v1-users-responses-2b4217b8-1bb6-4015-b323-f756f5d5c5a7" data-toggle="tab">
+                                    
+                                    Response
+                                    
+                                </a>
+                            </li>
+                            
+                        </ul>
+                        <div class="tab-content">
+                            
+                            <div class="tab-pane active" id="request-http-localhost-8000-v1-users-responses-2b4217b8-1bb6-4015-b323-f756f5d5c5a7">
+                                <table class="table table-bordered">
+                                    <tr><th style="width: 20%;">Status</th><td>201 Created</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">X-Powered-By</th><td>Express</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Content-Length</th><td>148</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">ETag</th><td>W/"94-8+z/bcLKl01XDlpo6wjhzNJ4Iro"</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Date</th><td>Fri, 17 Jun 2022 00:32:45 GMT</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Keep-Alive</th><td>timeout=5</td></tr>
+                                    
+                                    
+                                    
+                                    <tr><td class="response-text-sample" colspan="2">
+                                        <pre><code>{
+    "id": 1,
+    "firstName": "Test",
+    "lastName": "Testov",
+    "email": "test@test.ru",
+    "updatedAt": "2022-06-17T00:32:45.186Z",
+    "createdAt": "2022-06-17T00:32:45.186Z"
+}</code></pre>
+                                    </td></tr>
+                                    
+                                    
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+
+                    <hr>
+                </div>
+                
+                
+                <div class="request">
+
+                    <h3 id="request-http-localhost-8000-v1-users-login">
+                        http://localhost:8000/v1/users/login
+                        <a href="#request-http-localhost-8000-v1-users-login"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#request-http-localhost-8000-v1-users-login-example-curl" data-toggle="tab">Curl</a></li>
+                            <li role="presentation"><a href="#request-http-localhost-8000-v1-users-login-example-http" data-toggle="tab">HTTP</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="request-http-localhost-8000-v1-users-login-example-curl">
+                                <pre><code class="hljs curl">curl -X POST -d '{
+    "email": "test@test.ru",
+    "password": "111"
+}' "http://localhost:8000/v1/users/login"</code></pre>
+                            </div>
+                            <div class="tab-pane" id="request-http-localhost-8000-v1-users-login-example-http">
+                                <pre><code class="hljs http">POST /v1/users/login HTTP/1.1
+Host: localhost:8000
+
+{
+    "email": "test@test.ru",
+    "password": "111"
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            
+                            <li role="presentation" class="active">
+                                <a href="#request-http-localhost-8000-v1-users-login-responses-1376c164-aa9b-4861-b2e7-cef59326e443" data-toggle="tab">
+                                    
+                                    Response
+                                    
+                                </a>
+                            </li>
+                            
+                        </ul>
+                        <div class="tab-content">
+                            
+                            <div class="tab-pane active" id="request-http-localhost-8000-v1-users-login-responses-1376c164-aa9b-4861-b2e7-cef59326e443">
+                                <table class="table table-bordered">
+                                    <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">X-Powered-By</th><td>Express</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Content-Length</th><td>187</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">ETag</th><td>W/"bb-bxw9pY5tAkvhJ3TaWdq61ey562M"</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Date</th><td>Fri, 17 Jun 2022 00:33:27 GMT</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Keep-Alive</th><td>timeout=5</td></tr>
+                                    
+                                    
+                                    
+                                    <tr><td class="response-text-sample" colspan="2">
+                                        <pre><code>{
+    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjU1NDI2MDA3fQ.vxD9zIjfSMTfS-l-oFlUzC5xuOchloN2dVdLfXvg3ro",
+    "refreshToken": "746d2392-5f05-4b7a-a561-f4cbfb297b5d"
+}</code></pre>
+                                    </td></tr>
+                                    
+                                    
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+
+                    <hr>
+                </div>
+                
+                
+                <div class="request">
+
+                    <h3 id="request-http-localhost-8000-v1-users-profile-1">
+                        http://localhost:8000/v1/users/profile/1
+                        <a href="#request-http-localhost-8000-v1-users-profile-1"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#request-http-localhost-8000-v1-users-profile-1-example-curl" data-toggle="tab">Curl</a></li>
+                            <li role="presentation"><a href="#request-http-localhost-8000-v1-users-profile-1-example-http" data-toggle="tab">HTTP</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="request-http-localhost-8000-v1-users-profile-1-example-curl">
+                                <pre><code class="hljs curl">curl -X GET "http://localhost:8000/v1/users/profile/1"</code></pre>
+                            </div>
+                            <div class="tab-pane" id="request-http-localhost-8000-v1-users-profile-1-example-http">
+                                <pre><code class="hljs http">GET /v1/users/profile/1 HTTP/1.1
+Host: localhost:8000</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            
+                            <li role="presentation" class="active">
+                                <a href="#request-http-localhost-8000-v1-users-profile-1-responses-1f3106c1-46b9-430d-981c-3320d7bc4935" data-toggle="tab">
+                                    
+                                    Response
+                                    
+                                </a>
+                            </li>
+                            
+                        </ul>
+                        <div class="tab-content">
+                            
+                            <div class="tab-pane active" id="request-http-localhost-8000-v1-users-profile-1-responses-1f3106c1-46b9-430d-981c-3320d7bc4935">
+                                <table class="table table-bordered">
+                                    <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">X-Powered-By</th><td>Express</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Content-Length</th><td>148</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">ETag</th><td>W/"94-xoBmzo9sk8tcAX+tFfGcJKgK72U"</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Date</th><td>Fri, 17 Jun 2022 00:40:41 GMT</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Keep-Alive</th><td>timeout=5</td></tr>
+                                    
+                                    
+                                    
+                                    <tr><td class="response-text-sample" colspan="2">
+                                        <pre><code>{
+    "id": 1,
+    "firstName": "Test",
+    "lastName": "Testov",
+    "email": "test@test.ru",
+    "createdAt": "2022-06-17T00:40:37.303Z",
+    "updatedAt": "2022-06-17T00:40:37.303Z"
+}</code></pre>
+                                    </td></tr>
+                                    
+                                    
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+
+                    <hr>
+                </div>
+                
+                
+                <div class="request">
+
+                    <h3 id="request-http-localhost-8000-v1-users-profile">
+                        http://localhost:8000/v1/users/profile
+                        <a href="#request-http-localhost-8000-v1-users-profile"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#request-http-localhost-8000-v1-users-profile-example-curl" data-toggle="tab">Curl</a></li>
+                            <li role="presentation"><a href="#request-http-localhost-8000-v1-users-profile-example-http" data-toggle="tab">HTTP</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="request-http-localhost-8000-v1-users-profile-example-curl">
+                                <pre><code class="hljs curl">curl -X GET "http://localhost:8000/v1/users/profile"</code></pre>
+                            </div>
+                            <div class="tab-pane" id="request-http-localhost-8000-v1-users-profile-example-http">
+                                <pre><code class="hljs http">GET /v1/users/profile HTTP/1.1
+Host: localhost:8000</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            
+                            <li role="presentation" class="active">
+                                <a href="#request-http-localhost-8000-v1-users-profile-responses-5583bba3-28c7-4905-8384-9c285f08b231" data-toggle="tab">
+                                    
+                                    Response
+                                    
+                                </a>
+                            </li>
+                            
+                        </ul>
+                        <div class="tab-content">
+                            
+                            <div class="tab-pane active" id="request-http-localhost-8000-v1-users-profile-responses-5583bba3-28c7-4905-8384-9c285f08b231">
+                                <table class="table table-bordered">
+                                    <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">X-Powered-By</th><td>Express</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Content-Length</th><td>148</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">ETag</th><td>W/"94-xoBmzo9sk8tcAX+tFfGcJKgK72U"</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Date</th><td>Fri, 17 Jun 2022 00:41:00 GMT</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Keep-Alive</th><td>timeout=5</td></tr>
+                                    
+                                    
+                                    
+                                    <tr><td class="response-text-sample" colspan="2">
+                                        <pre><code>{
+    "id": 1,
+    "firstName": "Test",
+    "lastName": "Testov",
+    "email": "test@test.ru",
+    "createdAt": "2022-06-17T00:40:37.303Z",
+    "updatedAt": "2022-06-17T00:40:37.303Z"
+}</code></pre>
+                                    </td></tr>
+                                    
+                                    
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+
+                    <hr>
+                </div>
+                
+                
+                <div class="request">
+
+                    <h3 id="request-http-localhost-8000-v1-flights">
+                        http://localhost:8000/v1/flights
+                        <a href="#request-http-localhost-8000-v1-flights"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#request-http-localhost-8000-v1-flights-example-curl" data-toggle="tab">Curl</a></li>
+                            <li role="presentation"><a href="#request-http-localhost-8000-v1-flights-example-http" data-toggle="tab">HTTP</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="request-http-localhost-8000-v1-flights-example-curl">
+                                <pre><code class="hljs curl">curl -X POST -d '{
+    "departureAirport": "LED",
+    "departureTime": "2022-06-14T12:30:00",
+    "arrivalAirport": "VKO",
+    "arrivalTime": "2022-06-14T14:45:00",
+    "aircraft": "Sukhoi Superjet 100",
+    "flightNumber": "LEDVKO-1"
+}' "http://localhost:8000/v1/flights"</code></pre>
+                            </div>
+                            <div class="tab-pane" id="request-http-localhost-8000-v1-flights-example-http">
+                                <pre><code class="hljs http">POST /v1/flights HTTP/1.1
+Host: localhost:8000
+
+{
+    "departureAirport": "LED",
+    "departureTime": "2022-06-14T12:30:00",
+    "arrivalAirport": "VKO",
+    "arrivalTime": "2022-06-14T14:45:00",
+    "aircraft": "Sukhoi Superjet 100",
+    "flightNumber": "LEDVKO-1"
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            
+                            <li role="presentation" class="active">
+                                <a href="#request-http-localhost-8000-v1-flights-responses-a8d41c93-327c-41cb-b185-d461c3a947cb" data-toggle="tab">
+                                    
+                                    Response
+                                    
+                                </a>
+                            </li>
+                            
+                        </ul>
+                        <div class="tab-content">
+                            
+                            <div class="tab-pane active" id="request-http-localhost-8000-v1-flights-responses-a8d41c93-327c-41cb-b185-d461c3a947cb">
+                                <table class="table table-bordered">
+                                    <tr><th style="width: 20%;">Status</th><td>201 Created</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">X-Powered-By</th><td>Express</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Content-Length</th><td>291</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">ETag</th><td>W/"123-HQ8JPVR1/PiW88km6H2oGouli20"</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Date</th><td>Fri, 17 Jun 2022 00:41:12 GMT</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Keep-Alive</th><td>timeout=5</td></tr>
+                                    
+                                    
+                                    
+                                    <tr><td class="response-text-sample" colspan="2">
+                                        <pre><code>{
+    "id": 1,
+    "departureAirport": "LED",
+    "departureTime": "2022-06-14T09:30:00.000Z",
+    "arrivalAirport": "VKO",
+    "arrivalTime": "2022-06-14T11:45:00.000Z",
+    "aircraft": "Sukhoi Superjet 100",
+    "flightNumber": "LEDVKO-1",
+    "createdBy": 1,
+    "updatedAt": "2022-06-17T00:41:12.019Z",
+    "createdAt": "2022-06-17T00:41:12.019Z"
+}</code></pre>
+                                    </td></tr>
+                                    
+                                    
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+
+                    <hr>
+                </div>
+                
+                
+                <div class="request">
+
+                    <h3 id="request-http-localhost-8000-v1-flights">
+                        http://localhost:8000/v1/flights
+                        <a href="#request-http-localhost-8000-v1-flights"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#request-http-localhost-8000-v1-flights-example-curl" data-toggle="tab">Curl</a></li>
+                            <li role="presentation"><a href="#request-http-localhost-8000-v1-flights-example-http" data-toggle="tab">HTTP</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="request-http-localhost-8000-v1-flights-example-curl">
+                                <pre><code class="hljs curl">curl -X GET "http://localhost:8000/v1/flights"</code></pre>
+                            </div>
+                            <div class="tab-pane" id="request-http-localhost-8000-v1-flights-example-http">
+                                <pre><code class="hljs http">GET /v1/flights HTTP/1.1
+Host: localhost:8000</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            
+                            <li role="presentation" class="active">
+                                <a href="#request-http-localhost-8000-v1-flights-responses-f1197186-0641-4eda-953c-3ea0a014104f" data-toggle="tab">
+                                    
+                                    Response
+                                    
+                                </a>
+                            </li>
+                            
+                        </ul>
+                        <div class="tab-content">
+                            
+                            <div class="tab-pane active" id="request-http-localhost-8000-v1-flights-responses-f1197186-0641-4eda-953c-3ea0a014104f">
+                                <table class="table table-bordered">
+                                    <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">X-Powered-By</th><td>Express</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Content-Length</th><td>304</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">ETag</th><td>W/"130-AFa1dgyRMjA51s30t5IBZzSnED8"</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Date</th><td>Fri, 17 Jun 2022 00:41:25 GMT</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Keep-Alive</th><td>timeout=5</td></tr>
+                                    
+                                    
+                                    
+                                    <tr><td class="response-text-sample" colspan="2">
+                                        <pre><code>[
+    {
+        "id": 1,
+        "departureAirport": "LED",
+        "departureTime": "2022-06-14T09:30:00.000Z",
+        "arrivalAirport": "VKO",
+        "arrivalTime": "2022-06-14T11:45:00.000Z",
+        "aircraft": "Sukhoi Superjet 100",
+        "flightNumber": "LEDVKO-1",
+        "createdBy": 1,
+        "createdAt": "2022-06-17T00:41:12.019Z",
+        "updatedAt": "2022-06-17T00:41:12.019Z",
+        "seats": []
+    }
+]</code></pre>
+                                    </td></tr>
+                                    
+                                    
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+
+                    <hr>
+                </div>
+                
+                
+                <div class="request">
+
+                    <h3 id="request-http-localhost-8000-v1-flights-1">
+                        http://localhost:8000/v1/flights/1
+                        <a href="#request-http-localhost-8000-v1-flights-1"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#request-http-localhost-8000-v1-flights-1-example-curl" data-toggle="tab">Curl</a></li>
+                            <li role="presentation"><a href="#request-http-localhost-8000-v1-flights-1-example-http" data-toggle="tab">HTTP</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="request-http-localhost-8000-v1-flights-1-example-curl">
+                                <pre><code class="hljs curl">curl -X PATCH -d '{
+    "arrivalAirport": "KLF"
+}' "http://localhost:8000/v1/flights/1"</code></pre>
+                            </div>
+                            <div class="tab-pane" id="request-http-localhost-8000-v1-flights-1-example-http">
+                                <pre><code class="hljs http">PATCH /v1/flights/1 HTTP/1.1
+Host: localhost:8000
+
+{
+    "arrivalAirport": "KLF"
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            
+                            <li role="presentation" class="active">
+                                <a href="#request-http-localhost-8000-v1-flights-1-responses-7d15ff5e-a7ee-4b3b-9337-22ed166dc55f" data-toggle="tab">
+                                    
+                                    Response
+                                    
+                                </a>
+                            </li>
+                            
+                        </ul>
+                        <div class="tab-content">
+                            
+                            <div class="tab-pane active" id="request-http-localhost-8000-v1-flights-1-responses-7d15ff5e-a7ee-4b3b-9337-22ed166dc55f">
+                                <table class="table table-bordered">
+                                    <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">X-Powered-By</th><td>Express</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Content-Length</th><td>291</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">ETag</th><td>W/"123-Yi2g5h/bqu22eYe4CkERVAUXlUc"</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Date</th><td>Fri, 17 Jun 2022 00:41:38 GMT</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Keep-Alive</th><td>timeout=5</td></tr>
+                                    
+                                    
+                                    
+                                    <tr><td class="response-text-sample" colspan="2">
+                                        <pre><code>{
+    "id": 1,
+    "departureAirport": "LED",
+    "departureTime": "2022-06-14T09:30:00.000Z",
+    "arrivalAirport": "KLF",
+    "arrivalTime": "2022-06-14T11:45:00.000Z",
+    "aircraft": "Sukhoi Superjet 100",
+    "flightNumber": "LEDVKO-1",
+    "createdBy": 1,
+    "createdAt": "2022-06-17T00:41:12.019Z",
+    "updatedAt": "2022-06-17T00:41:38.092Z"
+}</code></pre>
+                                    </td></tr>
+                                    
+                                    
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+
+                    <hr>
+                </div>
+                
+                
+                <div class="request">
+
+                    <h3 id="request-http-localhost-8000-v1-flights-1">
+                        http://localhost:8000/v1/flights/1
+                        <a href="#request-http-localhost-8000-v1-flights-1"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#request-http-localhost-8000-v1-flights-1-example-curl" data-toggle="tab">Curl</a></li>
+                            <li role="presentation"><a href="#request-http-localhost-8000-v1-flights-1-example-http" data-toggle="tab">HTTP</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="request-http-localhost-8000-v1-flights-1-example-curl">
+                                <pre><code class="hljs curl">curl -X DELETE "http://localhost:8000/v1/flights/1"</code></pre>
+                            </div>
+                            <div class="tab-pane" id="request-http-localhost-8000-v1-flights-1-example-http">
+                                <pre><code class="hljs http">DELETE /v1/flights/1 HTTP/1.1
+Host: localhost:8000</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            
+                            <li role="presentation" class="active">
+                                <a href="#request-http-localhost-8000-v1-flights-1-responses-158f0ec9-3d77-4776-8d16-03dd06f1232a" data-toggle="tab">
+                                    
+                                    Response
+                                    
+                                </a>
+                            </li>
+                            
+                        </ul>
+                        <div class="tab-content">
+                            
+                            <div class="tab-pane active" id="request-http-localhost-8000-v1-flights-1-responses-158f0ec9-3d77-4776-8d16-03dd06f1232a">
+                                <table class="table table-bordered">
+                                    <tr><th style="width: 20%;">Status</th><td>204 No Content</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">X-Powered-By</th><td>Express</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Date</th><td>Fri, 17 Jun 2022 00:41:46 GMT</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Keep-Alive</th><td>timeout=5</td></tr>
+                                    
+                                    
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+
+                    <hr>
+                </div>
+                
+                
+                <div class="request">
+
+                    <h3 id="request-http-localhost-8000-v1-flights">
+                        http://localhost:8000/v1/flights
+                        <a href="#request-http-localhost-8000-v1-flights"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#request-http-localhost-8000-v1-flights-example-curl" data-toggle="tab">Curl</a></li>
+                            <li role="presentation"><a href="#request-http-localhost-8000-v1-flights-example-http" data-toggle="tab">HTTP</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="request-http-localhost-8000-v1-flights-example-curl">
+                                <pre><code class="hljs curl">curl -X GET "http://localhost:8000/v1/flights"</code></pre>
+                            </div>
+                            <div class="tab-pane" id="request-http-localhost-8000-v1-flights-example-http">
+                                <pre><code class="hljs http">GET /v1/flights HTTP/1.1
+Host: localhost:8000</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+                    <hr>
+                </div>
+                
+                
+                <div class="request">
+
+                    <h3 id="request-http-localhost-8000-v1-flights">
+                        http://localhost:8000/v1/flights
+                        <a href="#request-http-localhost-8000-v1-flights"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#request-http-localhost-8000-v1-flights-example-curl" data-toggle="tab">Curl</a></li>
+                            <li role="presentation"><a href="#request-http-localhost-8000-v1-flights-example-http" data-toggle="tab">HTTP</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="request-http-localhost-8000-v1-flights-example-curl">
+                                <pre><code class="hljs curl">curl -X POST -d '{
+    "departureAirport": "LED",
+    "departureTime": "2022-06-14T12:30:00",
+    "arrivalAirport": "VKO",
+    "arrivalTime": "2022-06-14T14:45:00",
+    "aircraft": "Sukhoi Superjet 100",
+    "flightNumber": "LEDVKO-2"
+}' "http://localhost:8000/v1/flights"</code></pre>
+                            </div>
+                            <div class="tab-pane" id="request-http-localhost-8000-v1-flights-example-http">
+                                <pre><code class="hljs http">POST /v1/flights HTTP/1.1
+Host: localhost:8000
+
+{
+    "departureAirport": "LED",
+    "departureTime": "2022-06-14T12:30:00",
+    "arrivalAirport": "VKO",
+    "arrivalTime": "2022-06-14T14:45:00",
+    "aircraft": "Sukhoi Superjet 100",
+    "flightNumber": "LEDVKO-2"
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+                    <hr>
+                </div>
+                
+                
+                <div class="request">
+
+                    <h3 id="request-http-localhost-8000-v1-seats">
+                        http://localhost:8000/v1/seats
+                        <a href="#request-http-localhost-8000-v1-seats"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#request-http-localhost-8000-v1-seats-example-curl" data-toggle="tab">Curl</a></li>
+                            <li role="presentation"><a href="#request-http-localhost-8000-v1-seats-example-http" data-toggle="tab">HTTP</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="request-http-localhost-8000-v1-seats-example-curl">
+                                <pre><code class="hljs curl">curl -X POST -d '{
+    "seatClass": "ECONOM",
+    "price": 1000,
+    "count": 10,
+    "flightId": 2
+}' "http://localhost:8000/v1/seats"</code></pre>
+                            </div>
+                            <div class="tab-pane" id="request-http-localhost-8000-v1-seats-example-http">
+                                <pre><code class="hljs http">POST /v1/seats HTTP/1.1
+Host: localhost:8000
+
+{
+    "seatClass": "ECONOM",
+    "price": 1000,
+    "count": 10,
+    "flightId": 2
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            
+                            <li role="presentation" class="active">
+                                <a href="#request-http-localhost-8000-v1-seats-responses-cddb2673-f8e0-428a-98fb-8fb92467a12b" data-toggle="tab">
+                                    
+                                    Response
+                                    
+                                </a>
+                            </li>
+                            
+                        </ul>
+                        <div class="tab-content">
+                            
+                            <div class="tab-pane active" id="request-http-localhost-8000-v1-seats-responses-cddb2673-f8e0-428a-98fb-8fb92467a12b">
+                                <table class="table table-bordered">
+                                    <tr><th style="width: 20%;">Status</th><td>201 Created</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">X-Powered-By</th><td>Express</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Content-Length</th><td>158</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">ETag</th><td>W/"9e-xQ5qXpq5yIcZgSet1Q2jTbj23aM"</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Date</th><td>Fri, 17 Jun 2022 00:42:06 GMT</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Keep-Alive</th><td>timeout=5</td></tr>
+                                    
+                                    
+                                    
+                                    <tr><td class="response-text-sample" colspan="2">
+                                        <pre><code>{
+    "id": 1,
+    "seatClass": "ECONOM",
+    "price": 1000,
+    "count": 10,
+    "flightId": 2,
+    "createdBy": 1,
+    "updatedAt": "2022-06-17T00:42:06.097Z",
+    "createdAt": "2022-06-17T00:42:06.097Z"
+}</code></pre>
+                                    </td></tr>
+                                    
+                                    
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+
+                    <hr>
+                </div>
+                
+                
+                <div class="request">
+
+                    <h3 id="request-http-localhost-8000-v1-seats">
+                        http://localhost:8000/v1/seats
+                        <a href="#request-http-localhost-8000-v1-seats"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#request-http-localhost-8000-v1-seats-example-curl" data-toggle="tab">Curl</a></li>
+                            <li role="presentation"><a href="#request-http-localhost-8000-v1-seats-example-http" data-toggle="tab">HTTP</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="request-http-localhost-8000-v1-seats-example-curl">
+                                <pre><code class="hljs curl">curl -X POST -d '{
+    "seatClass": "BUSINESS",
+    "price": 5000,
+    "count": 1,
+    "flightId": 2
+}' "http://localhost:8000/v1/seats"</code></pre>
+                            </div>
+                            <div class="tab-pane" id="request-http-localhost-8000-v1-seats-example-http">
+                                <pre><code class="hljs http">POST /v1/seats HTTP/1.1
+Host: localhost:8000
+
+{
+    "seatClass": "BUSINESS",
+    "price": 5000,
+    "count": 1,
+    "flightId": 2
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            
+                            <li role="presentation" class="active">
+                                <a href="#request-http-localhost-8000-v1-seats-responses-c022a439-eb23-48f5-ba6b-522e5fa393b2" data-toggle="tab">
+                                    
+                                    Response
+                                    
+                                </a>
+                            </li>
+                            
+                        </ul>
+                        <div class="tab-content">
+                            
+                            <div class="tab-pane active" id="request-http-localhost-8000-v1-seats-responses-c022a439-eb23-48f5-ba6b-522e5fa393b2">
+                                <table class="table table-bordered">
+                                    <tr><th style="width: 20%;">Status</th><td>201 Created</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">X-Powered-By</th><td>Express</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Content-Length</th><td>159</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">ETag</th><td>W/"9f-Dsn9z2mHkTxhGqxmZfyF38HAExw"</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Date</th><td>Fri, 17 Jun 2022 00:42:19 GMT</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Keep-Alive</th><td>timeout=5</td></tr>
+                                    
+                                    
+                                    
+                                    <tr><td class="response-text-sample" colspan="2">
+                                        <pre><code>{
+    "id": 2,
+    "seatClass": "BUSINESS",
+    "price": 5000,
+    "count": 1,
+    "flightId": 2,
+    "createdBy": 1,
+    "updatedAt": "2022-06-17T00:42:19.090Z",
+    "createdAt": "2022-06-17T00:42:19.090Z"
+}</code></pre>
+                                    </td></tr>
+                                    
+                                    
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+
+                    <hr>
+                </div>
+                
+                
+                <div class="request">
+
+                    <h3 id="request-http-localhost-8000-v1-flights-2">
+                        http://localhost:8000/v1/flights/2
+                        <a href="#request-http-localhost-8000-v1-flights-2"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#request-http-localhost-8000-v1-flights-2-example-curl" data-toggle="tab">Curl</a></li>
+                            <li role="presentation"><a href="#request-http-localhost-8000-v1-flights-2-example-http" data-toggle="tab">HTTP</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="request-http-localhost-8000-v1-flights-2-example-curl">
+                                <pre><code class="hljs curl">curl -X GET "http://localhost:8000/v1/flights/2"</code></pre>
+                            </div>
+                            <div class="tab-pane" id="request-http-localhost-8000-v1-flights-2-example-http">
+                                <pre><code class="hljs http">GET /v1/flights/2 HTTP/1.1
+Host: localhost:8000</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            
+                            <li role="presentation" class="active">
+                                <a href="#request-http-localhost-8000-v1-flights-2-responses-1a67ee6d-0d7b-4ee0-930b-7368b85538aa" data-toggle="tab">
+                                    
+                                    Response
+                                    
+                                </a>
+                            </li>
+                            
+                        </ul>
+                        <div class="tab-content">
+                            
+                            <div class="tab-pane active" id="request-http-localhost-8000-v1-flights-2-responses-1a67ee6d-0d7b-4ee0-930b-7368b85538aa">
+                                <table class="table table-bordered">
+                                    <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">X-Powered-By</th><td>Express</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Content-Length</th><td>620</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">ETag</th><td>W/"26c-ZoRbVB35kKMeEo9eGt/sjtlXgHg"</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Date</th><td>Fri, 17 Jun 2022 00:42:26 GMT</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Keep-Alive</th><td>timeout=5</td></tr>
+                                    
+                                    
+                                    
+                                    <tr><td class="response-text-sample" colspan="2">
+                                        <pre><code>{
+    "id": 2,
+    "departureAirport": "LED",
+    "departureTime": "2022-06-14T09:30:00.000Z",
+    "arrivalAirport": "VKO",
+    "arrivalTime": "2022-06-14T11:45:00.000Z",
+    "aircraft": "Sukhoi Superjet 100",
+    "flightNumber": "LEDVKO-2",
+    "createdBy": 1,
+    "createdAt": "2022-06-17T00:42:02.740Z",
+    "updatedAt": "2022-06-17T00:42:02.740Z",
+    "seats": [
+        {
+            "id": 1,
+            "seatClass": "ECONOM",
+            "price": 1000,
+            "count": 10,
+            "flightId": 2,
+            "createdBy": 1,
+            "createdAt": "2022-06-17T00:42:06.097Z",
+            "updatedAt": "2022-06-17T00:42:06.097Z"
+        },
+        {
+            "id": 2,
+            "seatClass": "BUSINESS",
+            "price": 5000,
+            "count": 1,
+            "flightId": 2,
+            "createdBy": 1,
+            "createdAt": "2022-06-17T00:42:19.090Z",
+            "updatedAt": "2022-06-17T00:42:19.090Z"
+        }
+    ]
+}</code></pre>
+                                    </td></tr>
+                                    
+                                    
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+
+                    <hr>
+                </div>
+                
+                
+                <div class="request">
+
+                    <h3 id="request-http-localhost-8000-v1-tickets">
+                        http://localhost:8000/v1/tickets/
+                        <a href="#request-http-localhost-8000-v1-tickets"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#request-http-localhost-8000-v1-tickets-example-curl" data-toggle="tab">Curl</a></li>
+                            <li role="presentation"><a href="#request-http-localhost-8000-v1-tickets-example-http" data-toggle="tab">HTTP</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="request-http-localhost-8000-v1-tickets-example-curl">
+                                <pre><code class="hljs curl">curl -X POST -d '{
+    "seatId": 2
+}' "http://localhost:8000/v1/tickets/"</code></pre>
+                            </div>
+                            <div class="tab-pane" id="request-http-localhost-8000-v1-tickets-example-http">
+                                <pre><code class="hljs http">POST /v1/tickets/ HTTP/1.1
+Host: localhost:8000
+
+{
+    "seatId": 2
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            
+                            <li role="presentation" class="active">
+                                <a href="#request-http-localhost-8000-v1-tickets-responses-c2889c71-e397-448b-bc0a-c9bc2343cec9" data-toggle="tab">
+                                    
+                                    Response
+                                    
+                                </a>
+                            </li>
+                            
+                        </ul>
+                        <div class="tab-content">
+                            
+                            <div class="tab-pane active" id="request-http-localhost-8000-v1-tickets-responses-c2889c71-e397-448b-bc0a-c9bc2343cec9">
+                                <table class="table table-bordered">
+                                    <tr><th style="width: 20%;">Status</th><td>201 Created</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">X-Powered-By</th><td>Express</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Content-Length</th><td>111</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">ETag</th><td>W/"6f-drld4kKXuQnnCzfrGGf8blGixDU"</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Date</th><td>Fri, 17 Jun 2022 00:42:34 GMT</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Keep-Alive</th><td>timeout=5</td></tr>
+                                    
+                                    
+                                    
+                                    <tr><td class="response-text-sample" colspan="2">
+                                        <pre><code>{
+    "id": 1,
+    "seatId": 2,
+    "createdBy": 1,
+    "updatedAt": "2022-06-17T00:42:34.232Z",
+    "createdAt": "2022-06-17T00:42:34.232Z"
+}</code></pre>
+                                    </td></tr>
+                                    
+                                    
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+
+                    <hr>
+                </div>
+                
+                
+                <div class="request">
+
+                    <h3 id="request-http-localhost-8000-v1-tickets">
+                        http://localhost:8000/v1/tickets/
+                        <a href="#request-http-localhost-8000-v1-tickets"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#request-http-localhost-8000-v1-tickets-example-curl" data-toggle="tab">Curl</a></li>
+                            <li role="presentation"><a href="#request-http-localhost-8000-v1-tickets-example-http" data-toggle="tab">HTTP</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="request-http-localhost-8000-v1-tickets-example-curl">
+                                <pre><code class="hljs curl">curl -X POST -d '{
+    "seatId": 2
+}' "http://localhost:8000/v1/tickets/"</code></pre>
+                            </div>
+                            <div class="tab-pane" id="request-http-localhost-8000-v1-tickets-example-http">
+                                <pre><code class="hljs http">POST /v1/tickets/ HTTP/1.1
+Host: localhost:8000
+
+{
+    "seatId": 2
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            
+                            <li role="presentation" class="active">
+                                <a href="#request-http-localhost-8000-v1-tickets-responses-59452601-a1ff-43cd-b69b-f63dee74d74c" data-toggle="tab">
+                                    
+                                    Response
+                                    
+                                </a>
+                            </li>
+                            
+                        </ul>
+                        <div class="tab-content">
+                            
+                            <div class="tab-pane active" id="request-http-localhost-8000-v1-tickets-responses-59452601-a1ff-43cd-b69b-f63dee74d74c">
+                                <table class="table table-bordered">
+                                    <tr><th style="width: 20%;">Status</th><td>400 Bad Request</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">X-Powered-By</th><td>Express</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Content-Length</th><td>50</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">ETag</th><td>W/"32-YC6ZodEMBF9lHjad765M/evfkCk"</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Date</th><td>Fri, 17 Jun 2022 00:42:40 GMT</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Keep-Alive</th><td>timeout=5</td></tr>
+                                    
+                                    
+                                    
+                                    <tr><td class="response-text-sample" colspan="2">
+                                        <pre><code>{
+    "error": "No more seats in this class available!"
+}</code></pre>
+                                    </td></tr>
+                                    
+                                    
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+
+                    <hr>
+                </div>
+                
+                
+                <div class="request">
+
+                    <h3 id="request-http-localhost-8000-v1-tickets">
+                        http://localhost:8000/v1/tickets/
+                        <a href="#request-http-localhost-8000-v1-tickets"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#request-http-localhost-8000-v1-tickets-example-curl" data-toggle="tab">Curl</a></li>
+                            <li role="presentation"><a href="#request-http-localhost-8000-v1-tickets-example-http" data-toggle="tab">HTTP</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="request-http-localhost-8000-v1-tickets-example-curl">
+                                <pre><code class="hljs curl">curl -X GET "http://localhost:8000/v1/tickets/"</code></pre>
+                            </div>
+                            <div class="tab-pane" id="request-http-localhost-8000-v1-tickets-example-http">
+                                <pre><code class="hljs http">GET /v1/tickets/ HTTP/1.1
+Host: localhost:8000</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            
+                            <li role="presentation" class="active">
+                                <a href="#request-http-localhost-8000-v1-tickets-responses-42eab39a-733b-4832-bd08-53afef1116e7" data-toggle="tab">
+                                    
+                                    Response
+                                    
+                                </a>
+                            </li>
+                            
+                        </ul>
+                        <div class="tab-content">
+                            
+                            <div class="tab-pane active" id="request-http-localhost-8000-v1-tickets-responses-42eab39a-733b-4832-bd08-53afef1116e7">
+                                <table class="table table-bordered">
+                                    <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">X-Powered-By</th><td>Express</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Content-Length</th><td>816</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">ETag</th><td>W/"330-6PxQ+y/vq/J1whKaqifxPXDRaqw"</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Date</th><td>Fri, 17 Jun 2022 00:42:48 GMT</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Keep-Alive</th><td>timeout=5</td></tr>
+                                    
+                                    
+                                    
+                                    <tr><td class="response-text-sample" colspan="2">
+                                        <pre><code>[
+    {
+        "id": 1,
+        "seatId": 2,
+        "createdBy": 1,
+        "createdAt": "2022-06-17T00:42:34.232Z",
+        "updatedAt": "2022-06-17T00:42:34.232Z",
+        "passenger": {
+            "id": 1,
+            "firstName": "Test",
+            "lastName": "Testov",
+            "email": "test@test.ru",
+            "password": "$2b$08$V9LJEijbAKnDjREgD9i7r.fFj4ScOHnX3psb33KiW4QHGwfTguqO2",
+            "createdAt": "2022-06-17T00:40:37.303Z",
+            "updatedAt": "2022-06-17T00:40:37.303Z"
+        },
+        "seat": {
+            "id": 2,
+            "seatClass": "BUSINESS",
+            "price": 5000,
+            "count": 1,
+            "flightId": 2,
+            "createdBy": 1,
+            "createdAt": "2022-06-17T00:42:19.090Z",
+            "updatedAt": "2022-06-17T00:42:19.090Z",
+            "flight": {
+                "id": 2,
+                "departureAirport": "LED",
+                "departureTime": "2022-06-14T09:30:00.000Z",
+                "arrivalAirport": "VKO",
+                "arrivalTime": "2022-06-14T11:45:00.000Z",
+                "aircraft": "Sukhoi Superjet 100",
+                "flightNumber": "LEDVKO-2",
+                "createdBy": 1,
+                "createdAt": "2022-06-17T00:42:02.740Z",
+                "updatedAt": "2022-06-17T00:42:02.740Z"
+            }
+        }
+    }
+]</code></pre>
+                                    </td></tr>
+                                    
+                                    
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+
+                    <hr>
+                </div>
+                
+                
+                <div class="request">
+
+                    <h3 id="request-http-localhost-8000-v1-flights">
+                        http://localhost:8000/v1/flights
+                        <a href="#request-http-localhost-8000-v1-flights"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#request-http-localhost-8000-v1-flights-example-curl" data-toggle="tab">Curl</a></li>
+                            <li role="presentation"><a href="#request-http-localhost-8000-v1-flights-example-http" data-toggle="tab">HTTP</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="request-http-localhost-8000-v1-flights-example-curl">
+                                <pre><code class="hljs curl">curl -X POST -d '{
+    "departureAirport": "KLF",
+    "departureTime": "2022-10-14T12:30:00",
+    "arrivalAirport": "KGD",
+    "arrivalTime": "2022-10-14T14:45:00",
+    "aircraft": "Sukhoi Superjet 100",
+    "flightNumber": "KLFKGD-1"
+}' "http://localhost:8000/v1/flights"</code></pre>
+                            </div>
+                            <div class="tab-pane" id="request-http-localhost-8000-v1-flights-example-http">
+                                <pre><code class="hljs http">POST /v1/flights HTTP/1.1
+Host: localhost:8000
+
+{
+    "departureAirport": "KLF",
+    "departureTime": "2022-10-14T12:30:00",
+    "arrivalAirport": "KGD",
+    "arrivalTime": "2022-10-14T14:45:00",
+    "aircraft": "Sukhoi Superjet 100",
+    "flightNumber": "KLFKGD-1"
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+                    <hr>
+                </div>
+                
+                
+                <div class="request">
+
+                    <h3 id="request-http-localhost-8000-v1-seats">
+                        http://localhost:8000/v1/seats
+                        <a href="#request-http-localhost-8000-v1-seats"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#request-http-localhost-8000-v1-seats-example-curl" data-toggle="tab">Curl</a></li>
+                            <li role="presentation"><a href="#request-http-localhost-8000-v1-seats-example-http" data-toggle="tab">HTTP</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="request-http-localhost-8000-v1-seats-example-curl">
+                                <pre><code class="hljs curl">curl -X POST -d '{
+    "seatClass": "BUSINESS",
+    "price": 13500,
+    "count": 10,
+    "flightId": 3
+}' "http://localhost:8000/v1/seats"</code></pre>
+                            </div>
+                            <div class="tab-pane" id="request-http-localhost-8000-v1-seats-example-http">
+                                <pre><code class="hljs http">POST /v1/seats HTTP/1.1
+Host: localhost:8000
+
+{
+    "seatClass": "BUSINESS",
+    "price": 13500,
+    "count": 10,
+    "flightId": 3
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+                    <hr>
+                </div>
+                
+                
+                <div class="request">
+
+                    <h3 id="request-http-localhost-8000-v1-flights-aircraft-sukhoi-pricefrom-7000-departuretimefrom-2022-10-14">
+                        http://localhost:8000/v1/flights?aircraft=Sukhoi%&priceFrom=7000&departureTimeFrom=2022-10-14
+                        <a href="#request-http-localhost-8000-v1-flights-aircraft-sukhoi-pricefrom-7000-departuretimefrom-2022-10-14"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#request-http-localhost-8000-v1-flights-aircraft-sukhoi-pricefrom-7000-departuretimefrom-2022-10-14-example-curl" data-toggle="tab">Curl</a></li>
+                            <li role="presentation"><a href="#request-http-localhost-8000-v1-flights-aircraft-sukhoi-pricefrom-7000-departuretimefrom-2022-10-14-example-http" data-toggle="tab">HTTP</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="request-http-localhost-8000-v1-flights-aircraft-sukhoi-pricefrom-7000-departuretimefrom-2022-10-14-example-curl">
+                                <pre><code class="hljs curl">curl -X GET "http://localhost:8000/v1/flights?aircraft=Sukhoi%&priceFrom=7000&departureTimeFrom=2022-10-14"</code></pre>
+                            </div>
+                            <div class="tab-pane" id="request-http-localhost-8000-v1-flights-aircraft-sukhoi-pricefrom-7000-departuretimefrom-2022-10-14-example-http">
+                                <pre><code class="hljs http">GET /v1/flights?aircraft=Sukhoi%&priceFrom=7000&departureTimeFrom=2022-10-14 HTTP/1.1
+Host: localhost:8000</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+                    <hr>
+                </div>
+                
+                
+                <div class="request">
+
+                    <h3 id="request-http-localhost-8000-v1-tickets-my">
+                        http://localhost:8000/v1/tickets/my
+                        <a href="#request-http-localhost-8000-v1-tickets-my"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#request-http-localhost-8000-v1-tickets-my-example-curl" data-toggle="tab">Curl</a></li>
+                            <li role="presentation"><a href="#request-http-localhost-8000-v1-tickets-my-example-http" data-toggle="tab">HTTP</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="request-http-localhost-8000-v1-tickets-my-example-curl">
+                                <pre><code class="hljs curl">curl -X GET "http://localhost:8000/v1/tickets/my"</code></pre>
+                            </div>
+                            <div class="tab-pane" id="request-http-localhost-8000-v1-tickets-my-example-http">
+                                <pre><code class="hljs http">GET /v1/tickets/my HTTP/1.1
+Host: localhost:8000</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            
+                            <li role="presentation" class="active">
+                                <a href="#request-http-localhost-8000-v1-tickets-my-responses-02ae0660-df57-42b0-8bff-1aabec8dfade" data-toggle="tab">
+                                    
+                                    Response
+                                    
+                                </a>
+                            </li>
+                            
+                        </ul>
+                        <div class="tab-content">
+                            
+                            <div class="tab-pane active" id="request-http-localhost-8000-v1-tickets-my-responses-02ae0660-df57-42b0-8bff-1aabec8dfade">
+                                <table class="table table-bordered">
+                                    <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">X-Powered-By</th><td>Express</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Access-Control-Allow-Origin</th><td>*</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Content-Length</th><td>581</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">ETag</th><td>W/"245-G1VTFiUBPMmRo5YoBkf7jhONESk"</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Date</th><td>Fri, 17 Jun 2022 00:43:18 GMT</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Connection</th><td>keep-alive</td></tr>
+                                    
+                                    <tr><th style="width: 20%;">Keep-Alive</th><td>timeout=5</td></tr>
+                                    
+                                    
+                                    
+                                    <tr><td class="response-text-sample" colspan="2">
+                                        <pre><code>[
+    {
+        "id": 1,
+        "seatId": 2,
+        "createdBy": 1,
+        "createdAt": "2022-06-17T00:42:34.232Z",
+        "updatedAt": "2022-06-17T00:42:34.232Z",
+        "seat": {
+            "id": 2,
+            "seatClass": "BUSINESS",
+            "price": 5000,
+            "count": 1,
+            "flightId": 2,
+            "createdBy": 1,
+            "createdAt": "2022-06-17T00:42:19.090Z",
+            "updatedAt": "2022-06-17T00:42:19.090Z",
+            "flight": {
+                "id": 2,
+                "departureAirport": "LED",
+                "departureTime": "2022-06-14T09:30:00.000Z",
+                "arrivalAirport": "VKO",
+                "arrivalTime": "2022-06-14T11:45:00.000Z",
+                "aircraft": "Sukhoi Superjet 100",
+                "flightNumber": "LEDVKO-2",
+                "createdBy": 1,
+                "createdAt": "2022-06-17T00:42:02.740Z",
+                "updatedAt": "2022-06-17T00:42:02.740Z"
+            }
+        }
+    }
+]</code></pre>
+                                    </td></tr>
+                                    
+                                    
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+
+                    <hr>
+                </div>
+                
+
+
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("table:not(.table)").addClass('table table-bordered');
+    });
+</script>
+</body>
+</html>
